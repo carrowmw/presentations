@@ -1,19 +1,19 @@
 @font-face {
     font-family: 'Derailed';
-    src: url('./derailed-black-webfont.eot');
-    src: url('./derailed-black-webfont.eot?#iefix') format('embedded-opentype'),
-        url('./derailed-black-webfont.woff') format('woff'),
-        url('./derailed-black-webfont.ttf') format('truetype');
+    src: url('./derailed-regular-webfont.eot');
+    src: url('./derailed-regular-webfont.eot?#iefix') format('embedded-opentype'),
+        url('./derailed-regular-webfont.woff') format('woff'),
+        url('./derailed-regular-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Derailed';
-    src: url('./derailed-blackitalic-webfont.eot');
-    src: url('./derailed-blackitalic-webfont.eot?#iefix') format('embedded-opentype'),
-        url('./derailed-blackitalic-webfont.woff') format('woff'),
-        url('./derailed-blackitalic-webfont.ttf') format('truetype');
+    src: url('./derailed-regularitalic-webfont.eot');
+    src: url('./derailed-regularitalic-webfont.eot?#iefix') format('embedded-opentype'),
+        url('./derailed-regularitalic-webfont.woff') format('woff'),
+        url('./derailed-regularitalic-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: italic;
 }
