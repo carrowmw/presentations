@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="dist/theme/newcastle.css">
 
 	<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+	<script src="plugin/notes/notes.js"></script>
 
 	<!-- Theme used for syntax highlighted code -->
 	<link rel="stylesheet" href="plugin/highlight/monokai.css">
@@ -21,31 +22,45 @@
 	<div class="reveal">
 		<div class="slides">
 			<!-- Title Slide -->
-			<section data-state="make-it-pop" data-transition="slide-in fade-out" data-markdown>
-				<textarea data-template>
-					### Towards Situational Awareness of Urban Pedestrian Flows: Data Quality Issues
-				</textarea>
+			<section data-state="make-it-pop" data-transition="slide-in fade-out">
+				<h3>Towards Situational Awareness of Urban Pedestrian Flows: Data Quality Issues</h3>
+				<aside class="notes">
+					name
+					10 months in
+					geospatial system cdt
+					supervised by stuart barr, phil james
+					dstl
+				</aside>
 			</section>
 
 			<!-- PhD Overview Slide -->
-			<section data-markdown>
-				<textarea data-template data-auto-animate>
-					# AIM
+			<section>
+				<h4>AIM</h4>
+				<p class="fragment"> To develop a fast and efficient emulator for nowcasting a complex system. </p>
+				<p class="fragment"> (There are a number of caveats) </p>
+				<p class="fragment">Apply the method to a case study of pedestrian flow data in Newcastle</p>
 
-					<p class="fragment"> To develop a fast and efficient emulator for nowcasting a complex system. </p>
+				<aside class="notes">
+					start at end
+					work backwards
+					(nowcasting = real-time)
+					during mres looked at identifying anomalous data
+					get onto later
 
-					<p class="fragment">Apply the framework to a case study of pedestrian flow data in Newcastle</p>
-
-				</textarea>
+				</aside>
 			</section>
 
 			<!-- Data Assimilation Slide -->
 			<section data-auto-animate>
 				<h4>Once confident in the real-time data...</h4>
+
 			</section>
 			<section data-auto-animate>
 				<h4>Once confident in the real-time data...</h4>
 				<img src="images/data_assimilation.png" height="600">
+				<aside class="notes">
+					comparison to weather forecasting
+				</aside>
 			</section>
 
 			<!-- Applications Slide -->
@@ -59,21 +74,39 @@
 					<li class="fragment">Monitoring Transportation Infrastructure</li>
 					<li class="fragment">Optimising Resource Use</li>
 				</ul>
+				<aside class="notes">
+					move towards a scalable system for example use cases (city scale)
+					require real-time data
+				</aside>
 			</section>
+
 			<section data-auto-animate>
 				<box-icon name='mobile-alt' color='#FFFFFF' size="100px"></box-icon>
 				<box-icon name='buildings' color='#FFFFFF' size="100px"></box-icon>
 				<box-icon name='edit' color='#FFFFFF' size="100px"></box-icon>
 				<box-icon data-id="cctv" name='cctv' color='#FFFFFF' size="100px"></box-icon>
+				<aside class="notes">
+					lots of ways of understanding pedestrian fllows
+					mobile phone data
+					data from private companies
+					open sources repositories like the urban observatory
+				</aside>
 			</section>
 
 			<!-- Data Sources Slide -->
 			<section data-auto-animate>
 				<box-icon data-id="cctv" name='cctv' color='#FFFFFF' size="120px"></box-icon>
+				<aside class="notes">
+					only option for real-time is cctv data from urban observatory
+					(mostly because of data protection guidelines)
+				</aside>
 			</section>
 
 			<!-- Data Quality Slide -->
 			<section data-background-iframe="videos/computer_vision.mp4">
+				<aside class="notes">
+					talk about how the sensors work
+				</aside>
 			</section>
 
 			<!-- Data Issues Slide -->
@@ -84,6 +117,12 @@
 				<p class="fragment">(Sometimes) Unknown Accuracy</p>
 				<p class="fragment">Timeliness</p>
 				</ul>
+				<aside class="notes">
+					faulty weather sensors
+					sensors shut off
+					depending on the context of sensor - blocking objects
+					variable frequency of recording
+				</aside>
 			</section>
 
 			<!-- Dashboard Slide -->
@@ -91,10 +130,21 @@
 				<h4>Dashboard v Alpha</h4>
 			</section>
 			<section data-background-iframe="images/sensor_map_a.png">
+				<aside class="notes">
+					completeness
+					records per day (pilgrim street green)
+					follows a noisy but consistent pattern
+				</aside>
 			</section>
 			<section data-background-iframe="images/sensor_map_b.png">
+				<aside class="notes">
+					pull up different stages of the machine learning pipeline
+				</aside>
 			</section>
 			<section data-background-iframe="images/sensor_map_d.png">
+				<aside class="notes">
+
+				</aside>
 			</section>
 			<section data-background-iframe="images/sensor_map_c.png">
 			</section>
@@ -156,7 +206,7 @@
 
 	<script src="dist/reveal.js"></script>
 	<script src="plugin/notes/notes.js"></script>
-	<script src="plugin/markdown/markdown.js"></script>
+	<script src="p.js"></script>
 	<script src="plugin/highlight/highlight.js"></script>
 	<script>
 		// More info about initialization & config:
@@ -171,9 +221,10 @@
 			transition: 'slide', // none/fade/slide/convex/concave/zoom
 			transitionSpeed: 'default', // default/fast/slow
 			preloadIframes: true,
+			// showNotes: true,
 
 			// Learn about plugins: https://revealjs.com/plugins/
-			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+			plugins: [RevealNotes]
 		});
 	</script>
 </body>
