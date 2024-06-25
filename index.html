@@ -54,160 +54,160 @@
 				<h4>Nowcasting at Scale</h4>
 				<p class="fragment">Requires 'quality awareness'</p>
 				<p class="fragment">No room for manual calibration of sensors</p>
+			</section>
+			<!-- Data Assimilation Slide -->
+			<section data-auto-animate>
+				<h4>Once confident in the real-time data...</h4>
 
-				<!-- Data Assimilation Slide -->
-				<section data-auto-animate>
-					<h4>Once confident in the real-time data...</h4>
+			</section>
+			<section data-auto-animate>
+				<h4>Once confident in the real-time data...</h4>
+				<img src="images/data_assimilation.png" height="600">
+				<aside class="notes">
+					kristina issues around real-time data
+					comparison to weather forecasting
+					cosimulation aspect
+				</aside>
+			</section>
 
-				</section>
-				<section data-auto-animate>
-					<h4>Once confident in the real-time data...</h4>
-					<img src="images/data_assimilation.png" height="600">
-					<aside class="notes">
-						kristina issues around real-time data
-						comparison to weather forecasting
-						cosimulation aspect
-					</aside>
-				</section>
+			<!-- Applications Slide -->
+			<section data-transition="slide-in fade-out" data-auto-animate>
+				<h4>Real-Time Prediction of Pedestrians at Scale</h4>
+			</section>
+			<section data-transition="slide-in fade-out" data-auto-animate>
+				<h4>Real-Time Prediction of Pedestrians at Scale</h4>
+				<ul>
+					<li class="fragment">Emergency response</li>
+					<li class="fragment">Monitoring transportation infrastructure</li>
+					<li class="fragment">Optimising resource use</li>
+				</ul>
+				<aside class="notes">
+					move towards a scalable system for example use cases (city scale)
+					require real-time data
+				</aside>
+			</section>
 
-				<!-- Applications Slide -->
-				<section data-transition="slide-in fade-out" data-auto-animate>
-					<h4>Real-Time Prediction of Pedestrians at Scale</h4>
-				</section>
-				<section data-transition="slide-in fade-out" data-auto-animate>
-					<h4>Real-Time Prediction of Pedestrians at Scale</h4>
-					<ul>
-						<li class="fragment">Emergency response</li>
-						<li class="fragment">Monitoring transportation infrastructure</li>
-						<li class="fragment">Optimising resource use</li>
-					</ul>
-					<aside class="notes">
-						move towards a scalable system for example use cases (city scale)
-						require real-time data
-					</aside>
-				</section>
+			<section data-auto-animate>
+				<box-icon name='mobile-alt' color='#FFFFFF' size="100px"></box-icon>
+				<box-icon name='buildings' color='#FFFFFF' size="100px"></box-icon>
+				<box-icon name='edit' color='#FFFFFF' size="100px"></box-icon>
+				<box-icon data-id="cctv" name='cctv' color='#FFFFFF' size="100px"></box-icon>
+				<aside class="notes">
+					lots of ways of understanding pedestrian fllows
+					mobile phone data
+					data from private companies
+					open sources repositories like the urban observatory
+				</aside>
+			</section>
 
-				<section data-auto-animate>
-					<box-icon name='mobile-alt' color='#FFFFFF' size="100px"></box-icon>
-					<box-icon name='buildings' color='#FFFFFF' size="100px"></box-icon>
-					<box-icon name='edit' color='#FFFFFF' size="100px"></box-icon>
-					<box-icon data-id="cctv" name='cctv' color='#FFFFFF' size="100px"></box-icon>
-					<aside class="notes">
-						lots of ways of understanding pedestrian fllows
-						mobile phone data
-						data from private companies
-						open sources repositories like the urban observatory
-					</aside>
-				</section>
+			<!-- Data Sources Slide -->
+			<section data-auto-animate>
+				<box-icon data-id="cctv" name='cctv' color='#FFFFFF' size="120px"></box-icon>
+				<aside class="notes">
+					only option for real-time is cctv data from urban observatory
+					(mostly because of data protection guidelines)
+				</aside>
+			</section>
 
-				<!-- Data Sources Slide -->
-				<section data-auto-animate>
-					<box-icon data-id="cctv" name='cctv' color='#FFFFFF' size="120px"></box-icon>
-					<aside class="notes">
-						only option for real-time is cctv data from urban observatory
-						(mostly because of data protection guidelines)
-					</aside>
-				</section>
+			<!-- Data Quality Slide -->
+			<section data-background-iframe="videos/computer_vision.mp4">
+				<aside class="notes">
+					talk about how the sensors work
+				</aside>
+			</section>
 
-				<!-- Data Quality Slide -->
-				<section data-background-iframe="videos/computer_vision.mp4">
-					<aside class="notes">
-						talk about how the sensors work
-					</aside>
-				</section>
+			<!-- Data Issues Slide -->
+			<section>
+				<h4>Issues with Data Quality</h4>
 
-				<!-- Data Issues Slide -->
-				<section>
-					<h4>Issues with Data Quality</h4>
+				<p class="fragment">Incomplete / Inconsistent</p>
+				<p class="fragment">(Sometimes) Unknown Accuracy</p>
+				<p class="fragment">Timeliness</p>
+				</ul>
+				<aside class="notes">
+					faulty weather sensors
+					sensors shut off
+					depending on the context of sensor - blocking objects
+					variable frequency of recording
+				</aside>
+			</section>
 
-					<p class="fragment">Incomplete / Inconsistent</p>
-					<p class="fragment">(Sometimes) Unknown Accuracy</p>
-					<p class="fragment">Timeliness</p>
-					</ul>
-					<aside class="notes">
-						faulty weather sensors
-						sensors shut off
-						depending on the context of sensor - blocking objects
-						variable frequency of recording
-					</aside>
-				</section>
+			<!-- Dashboard Slide -->
+			<section>
+				<h4>Dashboard v Alpha</h4>
+			</section>
+			<section data-background-iframe="images/sensor_map_a.png">
+				<aside class="notes">
+					completeness
+					records per day (pilgrim street green)
+					follows a noisy but consistent pattern
+				</aside>
+			</section>
+			<section data-background-iframe="images/sensor_map_b.png">
+				<aside class="notes">
+					pull up different stages of the machine learning pipeline
+				</aside>
+			</section>
+			<section data-background-iframe="images/sensor_map_d.png">
+				<aside class="notes">
 
-				<!-- Dashboard Slide -->
-				<section>
-					<h4>Dashboard v Alpha</h4>
-				</section>
-				<section data-background-iframe="images/sensor_map_a.png">
-					<aside class="notes">
-						completeness
-						records per day (pilgrim street green)
-						follows a noisy but consistent pattern
-					</aside>
-				</section>
-				<section data-background-iframe="images/sensor_map_b.png">
-					<aside class="notes">
-						pull up different stages of the machine learning pipeline
-					</aside>
-				</section>
-				<section data-background-iframe="images/sensor_map_d.png">
-					<aside class="notes">
+				</aside>
+			</section>
+			<section data-background-iframe="images/sensor_map_c.png">
+			</section>
 
-					</aside>
-				</section>
-				<section data-background-iframe="images/sensor_map_c.png">
-				</section>
+			<!-- Time Series Slide -->
+			<section>
+				<h4>Predictive Modelling</h4>
+			</section>
+			<section>
+				<h4>Univariate Linear Model</h4>
+				<img src="images/univariate_linear.png" height="500">
+			</section>
+			<section>
+				<h4>Univariate LSTM Model</h4>
+				<img src="images/univariate_lstm.png" height="500">
+			</section>
+			<section>
+				<h4>Multivariate Linear Model</h4>
+				<img src="images/univariate_linear.png" height="500">
+			</section>
+			<section>
+				<h4>Multivariate LSTM Model</h4>
+				<img src="images/multivariate_lstm.png" height="500">
+			</section>
 
-				<!-- Time Series Slide -->
-				<section>
-					<h4>Predictive Modelling</h4>
-				</section>
-				<section>
-					<h4>Univariate Linear Model</h4>
-					<img src="images/univariate_linear.png" height="500">
-				</section>
-				<section>
-					<h4>Univariate LSTM Model</h4>
-					<img src="images/univariate_lstm.png" height="500">
-				</section>
-				<section>
-					<h4>Multivariate Linear Model</h4>
-					<img src="images/univariate_linear.png" height="500">
-				</section>
-				<section>
-					<h4>Multivariate LSTM Model</h4>
-					<img src="images/multivariate_lstm.png" height="500">
-				</section>
+			<section>
+				<img data-id="road" src="images/roads.png" height="700" style="width: 100%;">
+				<box-icon data-id="cctv_a" name='cctv' type="solid" color='#FFFFFF' size="100px"
+					style="position: absolute; top: 20%; left: 30%;"></box-icon>
+				<box-icon data-id="cctv_b" name='cctv' type="solid" color='#FFFFFF' size="100px"
+					style="position: absolute; top: 40%; left: 50%;"></box-icon>
+				<box-icon data-id="cctv_c" name='cctv' type="solid" color='#FFFFFF' size="100px"
+					style="position: absolute; top: 60%; left: 30%;"></box-icon>
+				<box-icon data-id="cctv_d" name='cctv' type="solid" color='#FFFFFF' size="100px"
+					style="position: absolute; top: 30%; left: 60%;"></box-icon>
+				<box-icon data-id="cctv_e" name='cctv' type="solid" color='#FFFFFF' size="100px"
+					style="position: absolute; top: 10%; left: 50%;"></box-icon>
+				<box-icon data-id="cctv_f" name='cctv' type="solid" color='#FFFFFF' size="100px"
+					style="position: absolute; top: 30%; left: 40%;"></box-icon>
+				<box-icon data-id="cctv_g" name='cctv' type="solid" color='#FFFFFF' size="100px"
+					style="position: absolute; top: 40%; left: 20%;"></box-icon>
+				<box-icon class="fragment" data-id="cctv_c" name='cctv' type="solid" color='#D5112D' size="100px"
+					style="position: absolute; top: 60%; left: 30%;"></box-icon>
+				<box-icon class="fragment" data-id="cctv_d" name='cctv' type="solid" color='#D5112D' size="100px"
+					style="position: absolute; top: 30%; left: 60%;"></box-icon>
+				<box-icon class="fragment" data-id="cctv_e" name='cctv' type="solid" color='#D5112D' size="100px"
+					style="position: absolute; top: 10%; left: 50%;"></box-icon>
+			</section>
 
-				<section>
-					<img data-id="road" src="images/roads.png" height="700" style="width: 100%;">
-					<box-icon data-id="cctv_a" name='cctv' type="solid" color='#FFFFFF' size="100px"
-						style="position: absolute; top: 20%; left: 30%;"></box-icon>
-					<box-icon data-id="cctv_b" name='cctv' type="solid" color='#FFFFFF' size="100px"
-						style="position: absolute; top: 40%; left: 50%;"></box-icon>
-					<box-icon data-id="cctv_c" name='cctv' type="solid" color='#FFFFFF' size="100px"
-						style="position: absolute; top: 60%; left: 30%;"></box-icon>
-					<box-icon data-id="cctv_d" name='cctv' type="solid" color='#FFFFFF' size="100px"
-						style="position: absolute; top: 30%; left: 60%;"></box-icon>
-					<box-icon data-id="cctv_e" name='cctv' type="solid" color='#FFFFFF' size="100px"
-						style="position: absolute; top: 10%; left: 50%;"></box-icon>
-					<box-icon data-id="cctv_f" name='cctv' type="solid" color='#FFFFFF' size="100px"
-						style="position: absolute; top: 30%; left: 40%;"></box-icon>
-					<box-icon data-id="cctv_g" name='cctv' type="solid" color='#FFFFFF' size="100px"
-						style="position: absolute; top: 40%; left: 20%;"></box-icon>
-					<box-icon class="fragment" data-id="cctv_c" name='cctv' type="solid" color='#D5112D' size="100px"
-						style="position: absolute; top: 60%; left: 30%;"></box-icon>
-					<box-icon class="fragment" data-id="cctv_d" name='cctv' type="solid" color='#D5112D' size="100px"
-						style="position: absolute; top: 30%; left: 60%;"></box-icon>
-					<box-icon class="fragment" data-id="cctv_e" name='cctv' type="solid" color='#D5112D' size="100px"
-						style="position: absolute; top: 10%; left: 50%;"></box-icon>
-				</section>
-
-				<!-- Conclusion Slide -->
-				<section>
-					<h4>Future Work</h4>
-					<ul>
-						<li class="fragment">Scale Anomaly Detection City-Wide</li>
-						<li class="fragment">Build an AI Model To Predict Spatial Dependencies</li>
-						<li class="fragment">Develop a Real-Time Emulator</li>
+			<!-- Conclusion Slide -->
+			<section>
+				<h4>Future Work</h4>
+				<ul>
+					<li class="fragment">Scale Anomaly Detection City-Wide</li>
+					<li class="fragment">Build an AI Model To Predict Spatial Dependencies</li>
+					<li class="fragment">Develop a Real-Time Emulator</li>
 		</div>
 	</div>
 
