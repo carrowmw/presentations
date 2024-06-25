@@ -24,12 +24,17 @@
 			<!-- Title Slide -->
 			<section data-state="make-it-pop" data-transition="slide-in fade-out">
 				<h3>Towards Situational Awareness of Urban Pedestrian Flows: Data Quality Issues</h3>
+				<i>Carrow Morris-Wiltshire</i>
+				<p>Supervised by Stuart Barr and Phil James</p>
+				<img src="images/dstl.png" height="50px" color='#FFFFFF'>
+				<img src="images/newcastle.png" height="50px" color='#FFFFFF'>
+				<img src="images/cdt.png" height="50px" color='#FFFFFF'>
 				<aside class="notes">
-					name
-					10 months in
-					geospatial system cdt
-					supervised by stuart barr, phil james
-					dstl
+					name -
+					10 months in -
+					geospatial system cdt -
+					supervised by stuart barr, phil james -
+					dstl -
 				</aside>
 			</section>
 
@@ -41,11 +46,11 @@
 				<p class="fragment">Apply the method to a case study of pedestrian flow data in Newcastle</p>
 
 				<aside class="notes">
-					start at end
-					work backwards
-					(nowcasting = real-time)
-					during mres looked at identifying anomalous data
-					get onto later
+					start at end -
+					work backwards -
+					(nowcasting = real-time) -
+					during mres looked at identifying anomalous data -
+					get onto later -
 
 				</aside>
 			</section>
@@ -64,9 +69,9 @@
 				<h4>Once confident in the real-time data...</h4>
 				<img src="images/data_assimilation.png" height="600">
 				<aside class="notes">
-					kristina issues around real-time data
-					comparison to weather forecasting
-					cosimulation aspect
+					kristina issues around real-time data -
+					comparison to weather forecasting -
+					cosimulation aspect -
 				</aside>
 			</section>
 
@@ -82,8 +87,8 @@
 					<li class="fragment">Optimising resource use</li>
 				</ul>
 				<aside class="notes">
-					move towards a scalable system for example use cases (city scale)
-					require real-time data
+					move towards a scalable system for example use cases (city scale) -
+					require real-time data -
 				</aside>
 			</section>
 
@@ -93,10 +98,10 @@
 				<box-icon name='edit' color='#FFFFFF' size="100px"></box-icon>
 				<box-icon data-id="cctv" name='cctv' color='#FFFFFF' size="100px"></box-icon>
 				<aside class="notes">
-					lots of ways of understanding pedestrian fllows
-					mobile phone data
-					data from private companies
-					open sources repositories like the urban observatory
+					lots of ways of understanding pedestrian fllows -
+					mobile phone data -
+					data from private companies -
+					open sources repositories like the urban observatory -
 				</aside>
 			</section>
 
@@ -104,8 +109,8 @@
 			<section data-auto-animate>
 				<box-icon data-id="cctv" name='cctv' color='#FFFFFF' size="120px"></box-icon>
 				<aside class="notes">
-					only option for real-time is cctv data from urban observatory
-					(mostly because of data protection guidelines)
+					only option for real-time is cctv data from urban observatory -
+					(mostly because of data protection guidelines) -
 				</aside>
 			</section>
 
@@ -125,10 +130,10 @@
 				<p class="fragment">Timeliness</p>
 				</ul>
 				<aside class="notes">
-					faulty weather sensors
-					sensors shut off
-					depending on the context of sensor - blocking objects
-					variable frequency of recording
+					faulty weather sensors -
+					sensors shut off -
+					depending on the context of sensor - blocking objects -
+					variable frequency of recording -
 				</aside>
 			</section>
 
@@ -163,6 +168,15 @@
 			<section data-auto-animate>
 				<h4>Predictive Modelling</h4>
 				<img src="images/lstm_architecture.png"></img>
+				<aside class="notes">
+					takes the current input element and combines it with previous information - allows the RNN to have a
+					"memory" of what it has seen before in the sequence -
+
+					produces an output based on the current input and the previous information -
+
+					output can be used to make predictions or generate next element in the sequence -
+
+				</aside>
 			</section>
 
 			<section>
