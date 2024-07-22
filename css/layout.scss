@@ -106,7 +106,8 @@
 	/* Set the distance from the bottom of the screen */
 	width: 100%;
 	z-index: 10;
-	/* Ensure it is above other elements */
+	height: 4vh
+		/* Ensure it is above other elements */
 }
 
 .footer-images img {
