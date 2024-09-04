@@ -76,10 +76,7 @@
 				<h3>Research Themes</h3>
 				<img src="images/annual-assembly/research_themes_wordcloud.png">
 			</section>
-			<section data-auto-animate>
-				<h3>Research Themes</h3>
-				<img src="images/annual-assembly/plot_themes.png">
-			</section>
+
 			<!-- Year In Review Slide -->
 			<section data-auto-animate>
 				<h2>Year In Review</h2>
@@ -195,12 +192,19 @@
 			</section>
 			<section data-auto-animate>
 				<img src="images/annual-assembly/day_two.png" height="650">
+				<aside class="notes">
+					Welcome just coffee
+				</aside>
 			</section>
 			<section>
 				<img src="images/annual-assembly/cohort_5.jpg" height="650">
 				<aside class="notes">
 					Exciting cohort 5 presentations
 				</aside>
+			</section>
+			<section data-auto-animate>
+				<h3>Research Themes</h3>
+				<img src="images/annual-assembly/plot_themes.png">
 			</section>
 			<section>
 				<h2>Lets Begin!</h2>
@@ -213,15 +217,13 @@
 				</aside>
 			</section>
 
-
-
 			<!-- Footer Images Container (Hidden by default) -->
-			<div id="footer-images" class="footer-images hidden">
+			<!-- <div id="footer-images" class="footer-images hidden">
 				<img src="images/white_logos/ukri.png" style="color: #FFFFFF;">
 				<img src="images/white_logos/newcastle.png" style="color: #FFFFFF;">
 				<img src="images/white_logos/nottingham.png" style="color: #FFFFFF;">
 				<img src="images/white_logos/cdt_long.png" style="color: #FFFFFF;">
-			</div>
+			</div> -->
 
 			<script src="dist/reveal.js"></script>
 			<script src="plugin/notes/notes.js"></script>
@@ -243,41 +245,41 @@
 					}
 				});
 
-				// Function to hide footer on title slide
-				function toggleFooterVisibility() {
-					var currentSlide = Reveal.getCurrentSlide();
-					var footer = document.getElementById('footer-images');
+				// // Function to hide footer on title slide
+				// function toggleFooterVisibility() {
+				// 	var currentSlide = Reveal.getCurrentSlide();
+				// 	var footer = document.getElementById('footer-images');
 
-					if (currentSlide.classList.contains('title-slide')) {
-						footer.classList.add('hidden');
-					} else {
-						footer.classList.remove('hidden');
-					}
-				}
+				// 	if (currentSlide.classList.contains('title-slide')) {
+				// 		footer.classList.add('hidden');
+				// 	} else {
+				// 		footer.classList.remove('hidden');
+				// 	}
+				// }
 
-				// Add event listeners
-				Reveal.on('slidechanged', function (event) {
-					toggleFooterVisibility();
-				});
+				// // Add event listeners
+				// Reveal.on('slidechanged', function (event) {
+				// 	toggleFooterVisibility();
+				// });
 
-				document.addEventListener('DOMContentLoaded', function () {
-					toggleFooterVisibility();
-				});
+				// document.addEventListener('DOMContentLoaded', function () {
+				// 	toggleFooterVisibility();
+				// });
 
 				// Fetch and display JSON content
-				fetch('docs/pipeline.json')
-					.then(response => response.json())
-					.then(data => {
-						// Convert JSON object to pretty-printed JSON string
-						const jsonString = JSON.stringify(data, null, 2);
+				// fetch('docs/pipeline.json')
+				// 	.then(response => response.json())
+				// 	.then(data => {
+				// 		// Convert JSON object to pretty-printed JSON string
+				// 		const jsonString = JSON.stringify(data, null, 2);
 
-						// Set JSON content to the code block
-						document.getElementById('json-content').textContent = jsonString;
+				// 		// Set JSON content to the code block
+				// 		document.getElementById('json-content').textContent = jsonString;
 
-						// Apply syntax highlighting
-						hljs.highlightAll();
-					})
-					.catch(error => console.error('Error fetching JSON:', error));
+				// 		// Apply syntax highlighting
+				// 		hljs.highlightAll();
+				// 	})
+				// 	.catch(error => console.error('Error fetching JSON:', error));
 			</script>
 </body>
 
