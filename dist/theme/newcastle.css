@@ -357,3 +357,51 @@ section.has-light-background, section.has-light-background h1, section.has-light
     background-color: var(--r-background-color);
   }
 }
+.cdt-title {
+  line-height: 0;
+  /* Adjust this value to control the spacing between lines */
+}
+
+.cdt-title p {
+  margin: 0;
+  /* Remove default paragraph margins */
+}
+
+.emphasised {
+  font: "Derailed", Helvetica, sans-serif;
+  font-size: 1.8em;
+  /* Adjust as needed for desired text size */
+  font-style: italic;
+  /* Optional: for emphasis */
+}
+
+.cdt-logo {
+  position: absolute;
+  top: 270px;
+  /* Adjust this value to move the image up or down */
+  right: 140px;
+  /* Adjust this value to move the image left or right */
+  height: 130px;
+  width: auto;
+  /* Maintains aspect ratio */
+}
+
+.image-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.image-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  /* Adjust this negative margin to reduce vertical spacing */
+}
+
+.image-row img {
+  margin: 0 5px;
+  /* Adjust horizontal spacing between images if needed */
+}
