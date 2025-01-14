@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>reveal.js</title>
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/alan_turing_institute.css">
+	<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	<style>
+		/* Ensure code blocks have correct color */
+		pre code {
+			color: #fff;
+			/* Default text color for code blocks */
+		}
+
+		.hljs {
+			background: #272822;
+			/* Background color for code blocks */
+		}
+
+		/* Create triple column flex */
+		.flex-container {
+			display: flex;
+			/* justify-content: space-between; */
+			gap: 20px;
+			width: 100%;
+		}
+
+		.flex-box {
+			flex: 1;
+			padding: 0px;
+			/* border: #272822, 1px solid; */
+			height: 400px;
+			width: 400px;
+		}
+
+		.flex-iframe {
+			height: 100%;
+			width: 100%;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+
+			<section class="title-slide">
+				<h1><b>Interview Exercise</b></h1>
+				<p>By <b>Carrow Morris-Wiltshire</b></p>
+			</section>
+
+			<section class="slide">
+				<p class="fragment" style="color:red"><b>Key challenge: production line downtime</b></p>
+				<br>
+				<h3 class="fragment">Basic Assumptions</h3>
+				<ul>
+					<li class="fragment">Atleast one factory has data 'fit for purpose'</li>
+					<li class="fragment">Sensors are IoT sensors</li>
+					<li class="fragment">Maintenance teams will adopt and trust the new system</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Proposed Solution</h2>
+				<p>3 Phases</p>
+			</section>
+
+			<section class="slide">
+				<h4>Phase 1: Data Integration and Standardisation</h4>
+				<ul>
+					<li class="fragment">Standardise sensor measurement frequencies</li>
+					<li class="fragment">Create a structured failure reporting template</li>
+					<li class="fragment">Implement automated data validation</li>
+					<li class="fragment">Centralised data lake</li>
+					<li class="fragment">Real-time sensor data pipeline</li>
+				</ul>
+				</ol>
+				<aside class="notes">
+					<p>Ensure standardised template</p>
+					<p> Range checks, missing data detection, sampling rate verification, cross-validation between
+						sensor types - make sure the sensors are working.</p>
+					<p>Ambient temperature and humidity, load
+						variations, machine startup/shutdown cycles, product type being manufactured</p>
+			</section>
+
+			<section class="slide">
+				<h4>Phase 2: MVP Development</h4>
+
+				<p style="color:red">Target: Single factory pilot program</p>
+				<ol>
+					<li class="fragment">Feature Engineering</li>
+					<ul>
+						<li class="fragment">Rolling statistics on sensor data</li>
+						<li class="fragment">Text mining on historical work orders</li>
+						<li class="fragment">Domain specific indicators (e.g. MTBF)</li>
+					</ul>
+					<li class="fragment">Initial Model Development</li>
+					<ul>
+						<li class="fragment">Simple anomaly detection (isolation forest)</li>
+						<li class="fragment">Basic time-series forecasting (ARIMA)</li>
+						<li class="fragment">Performance baseline establishment</li>
+					</ul>
+				</ol>
+				<aside class="notes">
+					<p>Moving averages of sensor readings, rolling standard deviation, rate of change calculation</p>
+					<p>Establishing a baseline for "normal" failure frequency, identifying if failures are becoming more
+						frequent (decreasing MTBF)</p>
+				</aside>
+			</section>
+
+			<section class="slide">
+				<h4>Phase 3: Advanced Analytics</h4>
+				<ol>
+					<li class="fragment">Hybrid Model Architecture</li>
+					<ul>
+						<li class="fragment">Deep learning for sensor patterns (LSTM)</li>
+						<li class="fragment">Physics informed contraints</li>
+						<li class="fragment">Multi-sensor fusion</li>
+					</ul>
+					<li class="fragment">Evaluation Framework</li>
+					<ul>
+						<li class="fragment">False positive / negative analysis</li>
+						<li class="fragment">Repair lead time optimisation</li>
+						<li class="fragment">Cost / benefit analysis</li>
+					</ul>
+				</ol>
+				<aside class="notes">
+					<p>Capturing long-term temporal dependencies</p>
+					<p>Heat transfer equations governing motor temperature evolution, mechanical equations for bearing
+						dynamics and vibrations, conservation of energy relating input power to output work</p>
+					<p>LSTM learns physically realistic failure progressions, reducing false positives, physics loss
+						term penalises violations during training</p>
+					<p>Correlations between different sensor types, cascade failure prediction</p>
+				</aside>
+			</section>
+
+			<section class="slide">
+				<h2>Implementation Strategy</h2>
+				<ol>
+					<li class="fragment">Start with the highest-volume factory</li>
+					<li class="fragment">Continuous validation with maintenance teams</li>
+					<li class="fragment">Iterative improvement based on feedback</li>
+					<li class="fragment">Gradual rollout to other factories</li>
+				</ol>
+			</section>
+			<section class="slide">
+				<h2>Many additional considerations...</h2>
+				<br>
+				<h4>Some sources</h4>
+				<div class="flex-container">
+					<div class="flex-box">
+						<iframe src="pdf/alan_turing_interview/Fault_Diagnosis_of_Motors.pdf"
+							class="flex-iframe"></iframe>
+					</div>
+					<div class="flex-box">
+						<iframe src="pdf/alan_turing_interview/LSTM_RUL_Prediction.pdf" class="flex-iframe"></iframe>
+					</div>
+					<div class="flex-box">
+						<iframe src="pdf/alan_turing_interview/Fault_Detection_Autoencoders.pdf"
+							class="flex-iframe"></iframe>
+					</div>
+				</div>
+			</section>
+
+
+		</div>
+	</div>
+
+
+	<!-- Footer Images Container (Hidden by default) -->
+	<!-- <div id="footer-images" class="footer-images hidden">
+		<img src="images/white_logos/newcastle.png" style="color: #FFFFFF;">
+		<img src="images/white_logos/dstl.png" style="color: #FFFFFF;">
+		<img src="images/white_logos/cdt_long.png" style="color: #FFFFFF;">
+	</div> -->
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		Reveal.initialize({
+			controls: true,
+			controlsLayout: 'edges',
+			hash: true,
+			progress: true,
+			autoAnimate: true,
+			transition: 'slide', // none/fade/slide/convex/concave/zoom
+			transitionSpeed: 'default', // default/fast/slow
+			preloadIframes: true,
+			plugins: [RevealNotes],
+			math: {
+				mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+				config: 'TeX-AMS_HTML-full'
+			}
+		});
+
+		// Function to hide footer on title slide
+		function toggleFooterVisibility() {
+			var currentSlide = Reveal.getCurrentSlide();
+			var footer = document.getElementById('footer-images');
+
+			if (currentSlide.classList.contains('title-slide')) {
+				footer.classList.add('hidden');
+			} else {
+				footer.classList.remove('hidden');
+			}
+		}
+
+		// Add event listeners
+		Reveal.on('slidechanged', function (event) {
+			toggleFooterVisibility();
+		});
+
+		document.addEventListener('DOMContentLoaded', function () {
+			toggleFooterVisibility();
+		});
+		// Fetch and display JSON content
+		fetch('docs/pipeline.json')
+			.then(response => response.json())
+			.then(data => {
+				// Convert JSON object to pretty-printed JSON string
+				const jsonString = JSON.stringify(data, null, 2);
+
+				// Set JSON content to the code block
+				document.getElementById('json-content').textContent = jsonString;
+
+				// Apply syntax highlighting
+				hljs.highlightAll();
+			})
+			.catch(error => console.error('Error fetching JSON:', error));
+	</script>
+</body>
+
+</html>

@@ -31,7 +31,7 @@
 		<div class="slides">
 			<!-- Title Slide -->
 			<section data-state="make-it-pop" data-transition="slide-in fade-out" class="title-slide">
-				<h2>Nowcasting Urban Mobility</h2>
+				<h2>Annual Progression Presentation</h2>
 				<br>
 				<b>Carrow Morris-Wiltshire</b>
 				<br>
@@ -39,9 +39,9 @@
 				<small>Supervised by Stuart Barr, Phil James and Keith Hermiston</small>
 				<br>
 				<br>
-				<img src="images/white_logos/newcastle.png" height="50px" color='#FFFFFF'>
-				<img src="images/white_logos/dstl.png" height="50px" color='#FFFFFF'>
-				<img src="images/white_logos/cdt_long.png" height="50px" color='#FFFFFF'>
+				<img src="images/newcastle.png" height="50px" color='#FFFFFF'>
+				<img src="images/dstl.png" height="50px" color='#FFFFFF'>
+				<img src="images/cdt_long.png" height="50px" color='#FFFFFF'>
 				<aside class="notes"></aside>
 			</section>
 
@@ -59,59 +59,55 @@
 				<box-icon class='fragment' name='traffic' type='solid' color='#FFFFFF' size='100px'></box-icon>
 				<box-icon class='fragment' name='lock' type='solid' color='#FFFFFF' size='100px'></box-icon>
 
-				<aside class="notes markdown">
-					<li>
-						because it is useful for a number of applications
-					</li>
-					<li>
-						urban planning - understanding how people move around the city with high accuracy allow cities
-						to be built around people
-					</li>
-					<li>
-						traffic management - short term predictions allow for better traffic management such as
-						rerouting or smart traffic lights
-					</li>
-					<li>
-						security - understanding how people move around the city allows for better security measures to
-						be put in place and more effective emergency response
-					</li>
-
-
-
-				</aside>
-			</section>
-
-			<!-- Problem Slide -->
-			<section>
-				<h3>Problem Statement</h3>
-				<p class="fragment">Urban mobility systems exhibit complex behaviour
-					which makes them difficult to predict.</p>
-				<p class="fragment">
-			</section>
-			<!-- Complex System Slide-->
-
-			<section>
-
-				<h3>Complex Systems Have Certain Characteristics</h3>
-				<ul>
-					<li class="fragment">Non-linearity</li>
-					<li class="fragment">Emergence</li>
-					<li class="fragment">Adaptivity</li>
-					<li class="fragment">Some others...</li>
-				</ul>
-				<p class="fragment">Basically everything that makes a systems behaviour difficult to predict...
-				</p>
-				<p class="fragment">
 				<aside class="notes">
-					An change in one part of the system can have a large effect on the system as a whole.
-					More than the sum of its parts - the system has properties that the individual parts do not -
-					the behaviour of a crowd is different to the behaviour of an individual.
-					Just because a system behaves a certain way now does not mean it will behave the same way in the
-					future - the system adapts to changes in the environment - for example a new road being built,
-					or a global pandemic changing individual travel patterns.
+					because it is useful for a number of applications -
+					urban planning - understanding how people move around the city with high accuracy allow cities
+					to be
+					built around people -
+					traffic management - short term predictions allow for better traffic management such as
+					rerouting or
+					smart traffic lights -
+					security - understanding how people move around the city allows for better security measures to
+					be
+					put in place and more effective emergency response -
+
 				</aside>
 			</section>
 
+			<!-- Complex System Slide-->
+			<section>
+				<section>
+
+					<h3>Complex Systems Have Certain Characteristics</h3>
+					<ul>
+						<li class="fragment">Non-linearity</li>
+						<li class="fragment">Emergence</li>
+						<li class="fragment">Adaptivity</li>
+						<li class="fragment">Some others...</li>
+					</ul>
+					<p class="fragment">Basically everything that makes a systems behaviour difficult to predict...
+					</p>
+					<p class="fragment">
+				</section>
+				<section data-background-iframe="pdf/JDN_1_23_ISR_web.pdf" data-background-interactive>
+				</section>
+				<section data-transition="slide-in fade-out" data-markdown>
+					<h3>1.19 ISR and the information environment</h3>
+					<ul>
+
+						<li class="fragement">
+							<b>Velocity</b> - The rate at which data is created, mutated and erased,
+							and the resulting latency between point of collection and point of
+							receipt.
+						</li>
+
+						<li class="fragment">
+							<b>Veracity</b> - The increasing ambiguity of data and difficulty in
+							determining its accuracy and validity due to its variety, volume and
+							velocity.
+						</li>
+				</section>
+			</section>
 
 			<!-- Nowcasting Slide -->
 			<section>
@@ -133,10 +129,6 @@
 					Data assimilation is the process of combining observations of a system with a
 					model of the system to produce an estimate of the current state of the system.
 				</p>
-				<aside class="notes">
-					last bit of technical information accurate predictions can be made, in part, thanks to data
-					assimilation methods
-				</aside>
 			</section>
 			<section data-auto-animate>
 				<h3>Data Assimilation Is Used To Generate Predictions</h3>
@@ -154,19 +146,16 @@
 					level
 					of complexity to meteorological systems. Agent-based models (<b>ABMs</b>) are able to capture
 					the
-					complex behaviour of mobility systems more effectively.
+					complex behaviour of mobility systems more effictively.
 				</p>
 			</section>
 			<section data-auto-animate>
 				<h3>The Basic Principle Is...</h3>
-				<box-icon name='cctv' type='' color='#FFFFFF' size="150px"></box-icon>
+				<box-icon name='cctv' type='solid' color='#FFFFFF' size="150px"></box-icon>
 				<box-icon name='plus' type='solid' color='#FFFFFF' size="150px"></box-icon>
-				<box-icon name='brain' type='' color='#FFFFFF' size="150px"></box-icon>
+				<box-icon name='brain' type='solid' color='#FFFFFF' size="150px"></box-icon>
 				<box-icon name='right-arrow-alt' color='#FFFFFF' size="150px"></box-icon>
 				<box-icon name='line-chart' color='#FFFFFF' size="150px"></box-icon>
-				<aside class="notes">
-					uncertain data about the environment combined with an uncertain model of the environment produces a
-				</aside>
 			</section>
 
 			<!-- Sensor Data Quality for Mobility Sensors -->
@@ -178,14 +167,6 @@
 					data
 					quality.
 				</p>
-				<aside class="notes">
-
-					<li>With a large number of sensors, manual assessment is impractical, therefore the sensors need to
-						be able to understand why they are not producing high quality data in order to tell us when this
-						is.
-
-						Data quality is difficult to define and very subjective..</li>
-				</aside>
 			</section>
 
 			<!-- Data Quality Dimensions Slide -->
@@ -202,12 +183,6 @@
 					<li class="fragment">Consistency</li>
 					<li class="fragment">Usability</li>
 				</ul>
-				<aside class="notes">
-					Fortunately there are existing taxonomies that broadly describe the dimensions of data quality.
-
-					<li>consistency - how the data is presented - same names for sensor in different datasets</li>
-				</aside>
-
 			</section>
 			<section data-auto-animate="">
 				<small>
@@ -271,6 +246,7 @@
 				<h3>Rule-based methods can be used for some dimensions</h3>
 				<p class="fragment">Freshness</p>
 				<p class="fragment">$$ t_{current} - t_{last} $$</p>
+				<p class="fragment">Could use clustering</p>
 			</section>
 			<section data-auto-animate="">
 				<h3>Rule-based methods can be used for some dimensions</h3>
@@ -294,7 +270,7 @@
 			<section data-auto-animate="">
 				Can get an idea of accuracy from modelling normal behaviour which allows us to identify anomalies.
 
-				One way is through combining suspected anomalies rate with other metrics.
+				Only way is through combining suspected anomalies rate with other metrics.
 			</section>
 
 			<section data-auto-animate>
@@ -306,37 +282,45 @@
 
 			<!--MLOps Architecture Slide-->
 			<section data-auto-animate="">
-				<h3>System Architecture</h3>
+				<h3>MLOps Architecture</h3>
 			</section>
 			<section data-auto-animate="">
 				<img src="images/dstl-presentation-july-24/mlops_flowchart.png" height="600vh"></img>
-				<aside class="notes">
-					to be able to monitor data quality in real-time, a system architecture is needed that can both
-					monitor the incoming data, and also update the model as new data comes in, patterns change, and the
-					system adapts.
-				</aside>
 			</section>
+
+			<!--Config Slide-->
+			<section>
+				<h3>Config Driven Development</h3>
+				<pre><code class="json" id="json-content"></code></pre> <!-- Ensure the class is correct -->
+			</section>
+
 
 
 			<!-- Embedded Dashboard Slide -->
 			<section data-auto-animate="">
-				<h3>Integrated Dashboard</h3>
+				<h3>Integrated Dashboard to Make Data AI Ready</h3>
 			</section>
 
 			<section data-auto-animate="" data-background-iframe="http://127.0.0.1:8050/"></iframe>
 			</section>
 
-			<section data-auto-animate="" data-background-iframe="http://127.0.0.1:8060/"></iframe>
+			<!--MLFLow UI Slide-->
+			<section data-auto-animate="">
+				<h3>MLFlow for Orchestrating Experiments</h3>
 			</section>
-
+			<section data-auto-animate=""
+				data-background-iframe="http://0.0.0.0:5001/#/experiments/0?searchFilter=&orderByKey=attributes.start_time&orderByAsc=false&startTime=ALL&lifecycleFilter=Active&modelVersionFilter=All+Runs&datasetsFilter=W10%3D">
+			</section>
 			<!--Next Steps Slide-->
 			<section>
 				<h3>Next Steps</h3>
 				<ul>
-					<li class="fragment">Stakeholder engagement</li>
-					<li class="fragment">Model development</li>
+					<li class="fragment">Run experiments</li>
+					<li class="fragment">Write up into paper</li>
+					<li class="fragment">Submit paper to Environment and Planning B</li>
+					<li class="fragment">Begin RO2</li>
 				</ul>
-			</section>
+
 		</div>
 	</div>
 
@@ -344,9 +328,9 @@
 
 	<!-- Footer Images Container (Hidden by default) -->
 	<div id="footer-images" class="footer-images hidden">
-		<img src="images/white_logos/newcastle.png" style="color: #FFFFFF;">
-		<img src="images/white_logos/dstl.png" style="color: #FFFFFF;">
-		<img src="images/white_logos/cdt_long.png" style="color: #FFFFFF;">
+		<img src="images/newcastle.png" style="color: #FFFFFF;">
+		<img src="images/dstl.png" style="color: #FFFFFF;">
+		<img src="images/cdt_long.png" style="color: #FFFFFF;">
 	</div>
 
 	<script src="dist/reveal.js"></script>
@@ -389,6 +373,7 @@
 		document.addEventListener('DOMContentLoaded', function () {
 			toggleFooterVisibility();
 		});
+
 		// Fetch and display JSON content
 		fetch('docs/pipeline.json')
 			.then(response => response.json())
