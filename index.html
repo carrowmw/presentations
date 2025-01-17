@@ -46,299 +46,237 @@
 			</section>
 
 
-			<!-- PROBLEM SECTION -->
-
-			<!-- Aim Slide -->
+			<!-- Hook and Context -->
+			<!-- Emergency Response Scenario -->
 			<section data-state="make-it-pop" data-transition="slide-in fade-out">
-				<h3>PhD Aim</h3>
-				<p class="fragment">To <b>develop</b> an AI system for the <b>prediction</b> of spatiotemporal
-					<b>dynamics</b> in
-					the built environment using near <b>real-time</b> geospatial IoT sensor data.
-				</p>
-				<box-icon class='fragment' name='city' type='solid' color='#FFFFFF' size='100px'></box-icon>
-				<box-icon class='fragment' name='traffic' type='solid' color='#FFFFFF' size='100px'></box-icon>
-				<box-icon class='fragment' name='lock' type='solid' color='#FFFFFF' size='100px'></box-icon>
+				<h3 style="padding-bottom: 100px">Scenario</h3>
+				<box-icon class="fragment" data-fragment-index="1" name='party' type='solid' color='#fdc82f'
+					size='120px'></box-icon>
+				<box-icon class="fragment" data-fragment-index="2" name='right-arrow-alt' type='solid' color='#ffffff'
+					size='120px'></box-icon>
+				<box-icon class="fragment" data-fragment-index="2" name="hot" type="solid" color="#da1a35"
+					size="120px"></box-icon>
+				<box-icon class="fragment" data-fragment-index="3" name='right-arrow-alt' type='solid' color='#ffffff'
+					size='120px'></box-icon>
+				<box-icon class="fragment" data-fragment-index="3" name="alarm-exclamation" type="solid" color="#000000"
+					size="120px"></box-icon>
+				<box-icon class="fragment" data-fragment-index="4" name='right-arrow-alt' type='solid' color='#ffffff'
+					size='120px'></box-icon>
+				<box-icon class="fragment" data-fragment-index="4" name="plus-medical" type="solid" color="#00a39b"
+					size="120px"></box-icon>
 
 				<aside class="notes markdown">
-					<li>
-						because it is useful for a number of applications
-					</li>
-					<li>
-						urban planning - understanding how people move around the city with high accuracy allow cities
-						to be built around people
-					</li>
-					<li>
-						traffic management - short term predictions allow for better traffic management such as
-						rerouting or smart traffic lights
-					</li>
-					<li>
-						security - understanding how people move around the city allows for better security measures to
-						be put in place and more effective emergency response
-					</li>
-
-
-
 				</aside>
 			</section>
 
-			<!-- Problem Slide -->
-			<section>
-				<h3>Problem Statement</h3>
-				<p class="fragment">Urban mobility systems exhibit complex behaviour
-					which makes them difficult to predict.</p>
-				<p class="fragment">
+
+			<!-- Broader Challenge -->
+			<section data-state="make-it-pop" data-transition="slide-in fade-out">
+				<h3>Challenge</h3>
+				<p class="fragment" data-fragment-index="1">Cities are complex systems that need real-time monitoring
+					for effective emergency
+					response and resource management.</p>
+				</p>
+				<box-icon class='fragment' data-fragment-index="1" name='city' type='solid' color='#FFFFFF'
+					size='120px'></box-icon>
+
+				<aside class="notes markdown">
+				</aside>
 			</section>
-			<!-- Complex System Slide-->
 
+			<!-- The Data Challenge -->
+			<!-- Why Sensors -->
 			<section>
-
-				<h3>Complex Systems Have Certain Characteristics</h3>
+				<h3>Data Sources</h3>
 				<ul>
-					<li class="fragment">Non-linearity</li>
-					<li class="fragment">Emergence</li>
-					<li class="fragment">Adaptivity</li>
-					<li class="fragment">Some others...</li>
+					<li class="fragment">Emergency calls (999)</li>
+					<li class="fragment">Mobile Data Terminals</li>
+					<li class="fragment">Traffic camera feeds</li>
+					<li class="fragment">Weather stations</li>
+					<li class="fragment">CCTV networks</li>
+					<li class="fragment">Satellite imagery</li>
 				</ul>
-				<p class="fragment">Basically everything that makes a systems behaviour difficult to predict...
-				</p>
-				<p class="fragment">
-				<aside class="notes">
-					An change in one part of the system can have a large effect on the system as a whole.
-					More than the sum of its parts - the system has properties that the individual parts do not -
-					the behaviour of a crowd is different to the behaviour of an individual.
-					Just because a system behaves a certain way now does not mean it will behave the same way in the
-					future - the system adapts to changes in the environment - for example a new road being built,
-					or a global pandemic changing individual travel patterns.
+				<aside class="notes markdown">
 				</aside>
 			</section>
 
-
-			<!-- Nowcasting Slide -->
+			<!-- Why Sensors -->
 			<section>
-				<h3>Short-Term Predictions Can Be Made For Complex Systems</h3>
-
-				<p class="fragment">
-					Nowcasting is the prediction of the present, the very near future, and the very recent past.
+				<h3></h3>
+				<p class="fragment" style="font-style: italic">
+					Real-time information enables reactive decision-making.
 				</p>
 				<p class="fragment">
-					With enough real-time data, we can predict the present and the future with a high degree of
-					accuracy for certain complex systems such as meteorological systems.
+					Proactive (predictive) decision-making requires reliable models that can differentiate between high
+					and low quality data without human intervention.
 				</p>
-			</section>
-
-			<!-- Data Assimilation Slide -->
-			<section data-auto-animate>
-				<h3>Data Assimilation Is Used To Generate Predictions</h3>
-				<p class="fragment">
-					Data assimilation is the process of combining observations of a system with a
-					model of the system to produce an estimate of the current state of the system.
-				</p>
-				<aside class="notes">
-					last bit of technical information accurate predictions can be made, in part, thanks to data
-					assimilation methods
-				</aside>
-			</section>
-			<section data-auto-animate>
-				<h3>Data Assimilation Is Used To Generate Predictions</h3>
-				<p class="fragment">
-					For example, in weather forecasting, data assimilation is used to combine real-time weather
-					<b>observations</b> with ensemble predictions from physics-based models (<b>PBMs</b>) to produce
-					a
-					short-term forecast.
-				</p>
-			</section>
-			<section data-auto-animate>
-				<h3>Data Assimilation Is Used To Generate Predictions</h3>
-				<p class="fragment">
-					Mobility systems cannot be predicted effectively using PBMs because they exists at a different
-					level
-					of complexity to meteorological systems. Agent-based models (<b>ABMs</b>) are able to capture
-					the
-					complex behaviour of mobility systems more effectively.
-				</p>
-			</section>
-			<section data-auto-animate>
-				<h3>The Basic Principle Is...</h3>
-				<box-icon name='cctv' type='' color='#FFFFFF' size="150px"></box-icon>
-				<box-icon name='plus' type='solid' color='#FFFFFF' size="150px"></box-icon>
-				<box-icon name='brain' type='' color='#FFFFFF' size="150px"></box-icon>
-				<box-icon name='right-arrow-alt' color='#FFFFFF' size="150px"></box-icon>
-				<box-icon name='line-chart' color='#FFFFFF' size="150px"></box-icon>
-				<aside class="notes">
-					uncertain data about the environment combined with an uncertain model of the environment produces a
+				<aside class="notes markdown">
 				</aside>
 			</section>
 
-			<!-- Sensor Data Quality for Mobility Sensors -->
-			<section>
-				<h3>Sensor Data Needs To Be Reliable</h3>
-				<p>In the same way that a faulty weather sensors predictions are not used in the forecast, a faulty
-					mobility sensor must first be identified and then removed. This requires an '<b>awareness</b>'
-					of
-					data
-					quality.
-				</p>
-				<aside class="notes">
-
-					<li>With a large number of sensors, manual assessment is impractical, therefore the sensors need to
-						be able to understand why they are not producing high quality data in order to tell us when this
-						is.
-
-						Data quality is difficult to define and very subjective..</li>
-				</aside>
-			</section>
-
-			<!-- Data Quality Dimensions Slide -->
-			<section data-auto-animate="">
-				<h3>Data Quality Can Be Defined Using A Taxonomy</h3>
-				<p>11 Data Quality Dimensions Are Defined In 5 Categories:</p>
-			</section>
-			<section data-auto-animate="">
-				<h3>Data Quality Can Be Defined Using A Taxonomy</h3>
-				<ul>
-					<li class="fragment">Accuracy</li>
-					<li class="fragment">Timeliness</li>
-					<li class="fragment">Completeness</li>
-					<li class="fragment">Consistency</li>
-					<li class="fragment">Usability</li>
-				</ul>
-				<aside class="notes">
-					Fortunately there are existing taxonomies that broadly describe the dimensions of data quality.
-
-					<li>consistency - how the data is presented - same names for sensor in different datasets</li>
-				</aside>
-
-			</section>
-			<section data-auto-animate="">
-				<small>
-					<ul>
-						<li>Preciseness</li>
-						<li>Certainty</li>
-						<li>Confidence</li>
-						<li>Freshness</li>
-						<li>Frequency</li>
-						<li>Availability</li>
-						<li>Coverage</li>
-						<li>Uniqueness</li>
-						<li>Integrity</li>
-						<li>Interpretability</li>
-						<li>Ease of manipulation</li>
-					</ul>
-				</small>
-			</section>
-
-
-			<!-- Data Quality Issues Slide -->
-			<section>
-				<h3>Some Data Quality Dimensions Are Easier Than Others...</h3>
-			</section>
-
-
-			<!-- STRATEGY SECTION -->
-
-			<!-- Quantifying Data Quality For Pedestrian Sensors -->
-			<section>
-				<h3>A Case Study Using Pedestrian Data Is Investigated</h3>
-				<p class="fragment">All data quality monitoring starts with event detection.</p>
-				<p class="fragment">An event is a pattern in the data that is of significant interest.</p>
-			</section>
-
-			<!-- UO Sensors Slide -->
+			<!-- Example Data Challenge -->
 			<section data-background-iframe="videos/computer_vision.mp4" data-auto-animate="">
 				<aside class="notes">
 				</aside>
+				<aside class="notes markdown">
+					<p>sensor block - a lorry, some temporary construction fencing, adverse weather
+						conditions</p>
+					<p>human able to interpret</p>
+					<p>computer not be able to</p>
+				</aside>
 			</section>
 
-			<!-- Event Detection Slide -->
+			<!-- Key Question -->
 			<section>
-				<h3>There are a number of methods for event detection</h3>
-				<ul>
-					<li class="fragment">Rule-Based</li>
-					<li class="fragment">Machine Learning</li>
-					<li class="fragment">Deep learning</li>
-					<li class="fragment">Statistical</li>
-					<li class="fragment">Hybrid</li>
-				</ul>
+				<h3>Key Question</h3>
+				<p class="fragment" style="font-style: italic">How can we make reliable decisions based on predictive
+					modelling where the model
+					has an "awareness" of data quality?</p>
+				<aside class="notes markdown">
+				</aside>
 			</section>
 
-			<!-- Rule-Based Slide -->
+			<!-- Investigation and Findings -->
 			<section data-auto-animate="">
-				<h3>Rule-based methods can be used for some dimensions</h3>
-				<p class="fragment">Completeness</p>
-				<p class="fragment">$$ n_{existing} / n_{expected} $$</p>
-			</section>
-			<section data-auto-animate="">
-				<h3>Rule-based methods can be used for some dimensions</h3>
-				<p class="fragment">Freshness</p>
-				<p class="fragment">$$ t_{current} - t_{last} $$</p>
+				<h3>Investigation</h3>
+				<img src="images/airbus/simple_map_of_sensors.png" height="500px" color='#FFFFFF'>
+				<aside class="notes markdown">
+				</aside>
 			</section>
 			<section data-auto-animate="">
-				<h3>Rule-based methods can be used for some dimensions</h3>
-				<br>
-				<p class="fragment">if \(dimension\) \(<\) \(threshold\) then \(action\)</p>
+				<h3>Investigation</h3>
+				<img src="images/airbus/hyperparameter_tuning.png" height="500px" color='#FFFFFF'>
+				<aside class="notes markdown">
+				</aside>
 			</section>
 
-			<!--Difficult Dimensions Slide-->
+			<!-- Results -->
 			<section data-auto-animate="">
-				<h3>Accuracy Difficult To Quantify</h3>
-				<ul>
-					<li class="fragment">Difficult to know 'true' values (aggregated data). </li>
-					<li class="fragment">Detection algorithim ~98% accurate (under normal operating conditions).</li>
-					<ul>
-						<li class="fragment">Crowded scenes accuracy drops.</li>
-						<li class="fragment">Poor visibility accuracy drops.</li>
-					</ul>
-				</ul>
-			</section>
-
-			<section data-auto-animate="">
-				Can get an idea of accuracy from modelling normal behaviour which allows us to identify anomalies.
-
-				One way is through combining suspected anomalies rate with other metrics.
-			</section>
-
-			<section data-auto-animate>
-				<img src="images/dstl-presentation-july-24/data_quality_event_flowchart.png" height="600vh"></img>
-			</section>
-
-
-			<!--SOLUTION SECTION-->
-
-			<!--MLOps Architecture Slide-->
-			<section data-auto-animate="">
-				<h3>System Architecture</h3>
+				<h3>Model Performance</h3>
+				<img src="images/airbus/rmse_completeness_bar.png" height="500px" color='#FFFFFF'>
+				<aside class="notes markdown">
+				</aside>
 			</section>
 			<section data-auto-animate="">
-				<img src="images/dstl-presentation-july-24/mlops_flowchart.png" height="600vh"></img>
-				<aside class="notes">
-					to be able to monitor data quality in real-time, a system architecture is needed that can both
-					monitor the incoming data, and also update the model as new data comes in, patterns change, and the
-					system adapts.
+				<h3>Model Performance</h3>
+				<img src="images/airbus/rmse_ave_sequences_bar.png" height="500px" color='#FFFFFF'>
+				<aside class="notes markdown">
+				</aside>
+			</section>
+			<section data-auto-animate="">
+				<h3>Interpretation</h3>
+				<img src="images/airbus/preprocessed_data_example_timeseries_short.png" height="500px" color='#FFFFFF'>
+				<aside class="notes markdown">
+				</aside>
+			</section>
+			<section data-auto-animate="">
+				<h3>Interpretation</h3>
+				<img src="images/airbus/preprocessed_data_example_timeseries.png" height="500px" color='#FFFFFF'>
+				<aside class="notes markdown">
+				</aside>
+			</section>
+			<section data-auto-animate="">
+				<h3>Interpretation</h3>
+				<img src="images/airbus/preprocessed_data_example_timeseries_intact.png" height="500px" color='#FFFFFF'>
+				<aside class="notes markdown">
+				</aside>
+			</section>
+			<section data-auto-animate="">
+				<h3>Interpretation</h3>
+				<img src="images/airbus/periodograms.png" height="500px" color='#FFFFFF'>
+				<aside class="notes markdown">
+				</aside>
+			</section>
+			<section data-auto-animate="">
+				<h3>Interpretation</h3>
+				<img src="images/airbus/feature_importance.png" height="500px" color='#FFFFFF'>
+				<aside class="notes markdown">
+				</aside>
+			</section>
+
+			<!-- Looking Forward -->
+			<section data-auto-animate="">
+				<h3>Looking Forward</h3>
+				<p class="fragment">Machine understanding of DQ is critical in enabling reliable prediction-based
+					decision-making.</p>
+				<p class="fragment">What the research suggests is that training on real-world data is currently not good
+					enough.</p>
+				<p class="fragment">Can we enhance training with data "virtual sensors" embedded in agent based models?
+				</p>
+				<aside class="notes markdown">
+				</aside>
+			</section>
+			<section data-auto-animate="">
+				<p>Implementing virtual sensors could serve two purposes:
+				<aside class="notes markdown">
+				</aside>
+			</section>
+			<section data-auto-animate="">
+				<p>Implementing virtual sensors could serve two purposes:
+				<ol>
+					<li>Gaining a more accurate understanding of the systems dynamics
+						can help to identify erroneous results.</li>
+				</ol>
+				<aside class="notes markdown">
+				</aside>
+			</section>
+			<section data-auto-animate="">
+				<p>Implementing virtual sensors could serve two purposes:
+				<ol>
+					<li>Gaining a more accurate understanding of the systems dynamics
+						can help to identify erroneous results.</li>
+					<li>Allows real-world data to be fed into the model for more accurate real-time
+						predictions.</li>
+				</ol>
+				<aside class="notes markdown">
 				</aside>
 			</section>
 
 
-			<!-- Embedded Dashboard Slide -->
-			<section data-auto-animate="">
-				<h3>Integrated Dashboard</h3>
-			</section>
-
-			<section data-auto-animate="" data-background-iframe="http://127.0.0.1:8050/"></iframe>
-			</section>
-
-			<section data-auto-animate="" data-background-iframe="http://127.0.0.1:8060/"></iframe>
-			</section>
-
 			<!--Next Steps Slide-->
+			<section data-auto-animate>
+				<h3>Relevance to SAFEcommand</h3>
+			</section>
+			<!--Next Steps Slide-->
+			<section data-auto-animate>
+				<h3>Relevance to SAFEcommand</h3>
+				<p>When an incident occurs, responders don't just know the current situation - they can see how it's
+					likely to unfold:</p>
+			</section>
+			<!--Next Steps Slide-->
+			<section data-auto-animate>
+				<p>When an incident occurs, responders don't just know the current situation - they can see how it's
+					likely to unfold:</p>
+				<p>Instead of discovering traffic bottlenecks en route, they know which routes will become
+					congested in the next 15 minutes.</p>
+			</section>
+
+			<section data-auto-animate>
+				<p>Instead of discovering traffic bottlenecks en route, they know which routes will become
+					congested in the next 15 minutes.</p>
+				<p>Rather than reacting to crowd buildups, they can predict where people will congregate based on
+					real-time movement patterns.</p>
+			</section>
+
+			<section data-auto-animate>
+				<p>Rather than reacting to crowd buildups, they can predict where people will congregate based on
+					real-time movement patterns.</p>
+				<p>Instead of responding to incidents one at a time, they can anticipate cascade effects across the
+					city's systems.</p>
+			</section>
+
+			<section data-auto-animate>
+				<p>Instead of responding to incidents one at a time, they can anticipate cascade effects across the
+					city's systems.</p>
+				<p>Rather than making decisions based on static information, they have a dynamic view of how the
+					situation will evolve.</p>
+			</section>
+
 			<section>
-				<h3>Next Steps</h3>
-				<ul>
-					<li class="fragment">Stakeholder engagement</li>
-					<li class="fragment">Model development</li>
-				</ul>
+				<h4>It's a long road but hopefully worth it...</h4>
 			</section>
 		</div>
-	</div>
+	</div> -->
 
 
 
