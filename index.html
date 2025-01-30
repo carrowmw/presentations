@@ -31,12 +31,10 @@
 		<div class="slides">
 			<!-- Title Slide -->
 			<section data-state="make-it-pop" data-transition="slide-in fade-out" class="title-slide">
-				<h2>Nowcasting Urban Mobility</h2>
+				<h2>Quarterly DSTL Report</h2>
 				<br>
-				<b>Carrow Morris-Wiltshire</b>
+				<medium>January 2025</medium>
 				<br>
-				<br>
-				<small>Supervised by Stuart Barr, Phil James and Keith Hermiston</small>
 				<br>
 				<br>
 				<img src="images/white_logos/newcastle.png" height="50px" color='#FFFFFF'>
@@ -45,241 +43,51 @@
 				<aside class="notes"></aside>
 			</section>
 
-
-			<!-- Hook and Context -->
-			<!-- Emergency Response Scenario -->
-			<section data-state="make-it-pop" data-transition="slide-in fade-out">
-				<h3 style="padding-bottom: 100px">Scenario</h3>
-				<box-icon class="fragment" data-fragment-index="1" name='party' type='solid' color='#fdc82f'
-					size='120px'></box-icon>
-				<box-icon class="fragment" data-fragment-index="2" name='right-arrow-alt' type='solid' color='#ffffff'
-					size='120px'></box-icon>
-				<box-icon class="fragment" data-fragment-index="2" name="hot" type="solid" color="#da1a35"
-					size="120px"></box-icon>
-				<box-icon class="fragment" data-fragment-index="3" name='right-arrow-alt' type='solid' color='#ffffff'
-					size='120px'></box-icon>
-				<box-icon class="fragment" data-fragment-index="3" name="alarm-exclamation" type="solid" color="#000000"
-					size="120px"></box-icon>
-				<box-icon class="fragment" data-fragment-index="4" name='right-arrow-alt' type='solid' color='#ffffff'
-					size='120px'></box-icon>
-				<box-icon class="fragment" data-fragment-index="4" name="plus-medical" type="solid" color="#00a39b"
-					size="120px"></box-icon>
-
-				<aside class="notes markdown">
-				</aside>
-			</section>
-
-
-			<!-- Broader Challenge -->
-			<section data-state="make-it-pop" data-transition="slide-in fade-out">
-				<h3>Challenge</h3>
-				<p class="fragment" data-fragment-index="1">Cities are complex systems that need real-time monitoring
-					for effective emergency
-					response and resource management.</p>
-				</p>
-				<box-icon class='fragment' data-fragment-index="1" name='city' type='solid' color='#FFFFFF'
-					size='120px'></box-icon>
-
-				<aside class="notes markdown">
-				</aside>
-			</section>
-
-			<!-- The Data Challenge -->
-			<!-- Why Sensors -->
 			<section>
-				<h3>Data Sources</h3>
+				<h3>Successes</h3>
 				<ul>
-					<li class="fragment">Emergency calls (999)</li>
-					<li class="fragment">Mobile Data Terminals</li>
-					<li class="fragment">Traffic camera feeds</li>
-					<li class="fragment">Satellite imagery</li>
+					<li>Environment and Planning B: Urban Analytics and City Science</li>
+					<li>19th International Conference on Computational Urban Planning and Urban Management</li>
+					<li>Airbus Presentation</li>
 				</ul>
-				<aside class="notes markdown">
-				</aside>
 			</section>
 
-			<!-- Why Sensors -->
-			<section>
-				<h3></h3>
-				<p class="fragment" style="font-style: italic">
-					Real-time information enables reactive decision-making.
-				</p>
-				<p class="fragment">
-					Predictive decision-making requires reliable models that can differentiate between high
-					and low quality data without human intervention.
-				</p>
-				<aside class="notes markdown">
-				</aside>
+			<section data-background-iframe="docs/epb.pdf">
 			</section>
 
-			<!-- Example Data Challenge -->
-			<section data-background-iframe="videos/computer_vision.mp4" data-auto-animate="">
-				<aside class="notes">
-				</aside>
-				<aside class="notes markdown">
-					<p>sensor block - a lorry, some temporary construction fencing, adverse weather
-						conditions</p>
-					<p>human able to interpret</p>
-					<p>computer not be able to</p>
-				</aside>
-			</section>
-
-			<!-- Key Question -->
-			<section>
-				<h3>Key Question</h3>
-				<p class="fragment" style="font-style: italic">How can we build predictive
-					models where the model has an "awareness" of the underlying data quality? </p>
-				<aside class="notes markdown">
-					<p>contrainsts on data quality - what is the minimum level of dq required?</p>
-				</aside>
-			</section>
-
-			<!-- Investigation and Findings -->
-			<section data-auto-animate="">
-				<h3>Investigation</h3>
-				<img src="images/airbus/simple_map_of_sensors.png" height="550px" color='#FFFFFF'>
-				<aside class="notes markdown">
-				</aside>
-			</section>
-			<section data-auto-animate="">
-				<h3>Investigation</h3>
-				<img src="images/airbus/hyperparameter_tuning.png" height="500px" color='#FFFFFF'>
-				<aside class="notes markdown">
-				</aside>
-			</section>
-
-			<!-- Results -->
-			<section data-auto-animate="">
-				<h3>Model Performance</h3>
-				<img src="images/airbus/rmse_completeness_bar.png" height="500px" color='#FFFFFF'>
-				<aside class="notes markdown">
-				</aside>
-			</section>
-			<section data-auto-animate="">
-				<h3>Model Performance</h3>
-				<img src="images/airbus/rmse_ave_sequences_bar.png" height="500px" color='#FFFFFF'>
-				<aside class="notes markdown">
-				</aside>
-			</section>
-			<section data-auto-animate="">
-				<h3>Interpretation</h3>
-				<img src="images/airbus/preprocessed_data_example_timeseries_short.png" height="500px" color='#FFFFFF'>
-				<aside class="notes markdown">
-				</aside>
-			</section>
-			<section data-auto-animate="">
-				<h3>Interpretation</h3>
-				<img src="images/airbus/preprocessed_data_example_timeseries.png" height="500px" color='#FFFFFF'>
-				<aside class="notes markdown">
-				</aside>
-			</section>
-			<section data-auto-animate="">
-				<h3>Interpretation</h3>
-				<img src="images/airbus/preprocessed_data_example_timeseries_intact.png" height="500px" color='#FFFFFF'>
-				<aside class="notes markdown">
-				</aside>
-			</section>
-			<section data-auto-animate="">
-				<h3>Interpretation</h3>
-				<img src="images/airbus/periodograms.png" height="500px" color='#FFFFFF'>
-				<aside class="notes markdown">
-				</aside>
-			</section>
-			<section data-auto-animate="">
-				<h3>Interpretation</h3>
-				<img src="images/airbus/feature_importance.png" height="500px" color='#FFFFFF'>
-				<aside class="notes markdown">
-				</aside>
-			</section>
-
-			<!-- Looking Forward -->
-			<section data-auto-animate="">
-				<h3>Looking Forward</h3>
-				<p class="fragment">Machine understanding of DQ is critical in enabling reliable prediction-based
-					decision-making.</p>
-				<p class="fragment">What the research suggests is that training on real-world data is currently not good
-					enough.</p>
-				<p class="fragment">Can we enhance training with data "virtual sensors" embedded in agent based models?
-				</p>
-				<aside class="notes markdown">
-				</aside>
-			</section>
-			<section data-auto-animate="">
-				<p>Implementing virtual sensors could serve two purposes:
-				<aside class="notes markdown">
-				</aside>
-			</section>
-			<section data-auto-animate="">
-				<p>Implementing virtual sensors could serve two purposes:
-				<ol>
-					<li>Gaining a more accurate understanding of the systems dynamics
-						can help to identify erroneous results.</li>
-				</ol>
-				<aside class="notes markdown">
-				</aside>
-			</section>
-			<section data-auto-animate="">
-				<p>Implementing virtual sensors could serve two purposes:
-				<ol>
-					<li>Gaining a more accurate understanding of the systems dynamics
-						can help to identify erroneous results.</li>
-					<li>Real-time sensor data assimilated into the model for more
-						robust real-time predictions.</li>
-				</ol>
-				<aside class="notes markdown">
-					robust - able to predict events that have not appeared in the real-sensor data but have been
-					simulated in the agent-based model
-				</aside>
-			</section>
-
-
-			<!--Next Steps Slide-->
-			<section data-auto-animate>
-				<h3>Future Scenario</h3>
-			</section>
-			<!--Next Steps Slide-->
-			<section data-auto-animate>
-				<h3>Future Scenario</h3>
-				<p>When an incident occurs, responders don't just know the current situation - they can see how it's
-					likely to unfold:</p>
-			</section>
-			<!--Next Steps Slide-->
-			<section data-auto-animate>
-				<p>When an incident occurs, responders don't just know the current situation - they can see how it's
-					likely to unfold:</p>
-				<p>Instead of discovering traffic bottlenecks en route, they know which routes will become
-					congested in the next 15 minutes.</p>
-			</section>
-
-			<section data-auto-animate>
-				<p>Instead of discovering traffic bottlenecks en route, they know which routes will become
-					congested in the next 15 minutes.</p>
-				<p>Rather than reacting to crowd buildups, they can predict where people will congregate based on
-					real-time movement patterns.</p>
-			</section>
-
-			<section data-auto-animate>
-				<p>Rather than reacting to crowd buildups, they can predict where people will congregate based on
-					real-time movement patterns.</p>
-				<p>Instead of responding to incidents one at a time, they can anticipate cascade effects across the
-					city's systems.</p>
-			</section>
-
-			<section data-auto-animate>
-				<p>Instead of responding to incidents one at a time, they can anticipate cascade effects across the
-					city's systems.</p>
-				<p>Rather than making decisions based on static information, they have a dynamic view of how the
-					situation will evolve.</p>
+			<section data-background-iframe="docs/cupum.pdf">
 			</section>
 
 			<section>
-				<h3>Thanks for listening.</h3>
-				<img src="images/qr_codes/website_qr.png" height="400px">
+				<h3>Airbus Presentation</h3>
+				<ul>
+					<li>Friday 17th </li>
+					<li>SAFECommand</li>
+					<li>Showed interest in data sharing</li>
+				</ul>
 			</section>
+
+			<section data-background-iframe="docs/ro2.pdf">
+			</section>
+
+			<section>
+				<h3>New Opportunities Needed</h3>
+				<ul>
+					<li>Turing Internship Network Data Science and Engineering Team</li>
+					<li>DSTL Internship</li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>Soon To Find Out</h3>
+				<ul>
+					<li>Complex Systems Summer School at the Santa Fe Institute</li>
+				</ul>
+			</section>
+
+
 		</div>
-	</div> -->
-
-
+	</div>
 
 	<!-- Footer Images Container (Hidden by default) -->
 	<div id="footer-images" class="footer-images hidden">
