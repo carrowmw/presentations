@@ -13,15 +13,30 @@
 	<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 	<link rel="stylesheet" href="plugin/highlight/monokai.css">
 	<style>
-		/* Ensure code blocks have correct color */
-		pre code {
-			color: #fff;
-			/* Default text color for code blocks */
+		.reveal section img {
+			border: none;
+			box-shadow: none;
+			background: none;
 		}
 
-		.hljs {
-			background: #272822;
-			/* Background color for code blocks */
+		.grid {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 20px;
+		}
+
+		.fade-in {
+			animation: fadeIn 2s;
+		}
+
+		@keyframes fadeIn {
+			0% {
+				opacity: 0;
+			}
+
+			100% {
+				opacity: 1;
+			}
 		}
 	</style>
 </head>
@@ -30,127 +45,226 @@
 	<div class="reveal">
 		<div class="slides">
 			<!-- Title Slide -->
-			<section data-state="make-it-pop" data-transition="slide-in fade-out" class="title-slide">
-				<h2>Quarterly DSTL Report</h2>
+			<section>
+				<h3>Responsible Research & Innovation Plan</h3>
 				<br>
-				<medium>January 2025</medium>
+				<p>
+					<b>Real-Time Prediction of Spatiotemporal Dynamics:</b> An AI and Internet of Things Approach
+				</p>
+				<p>
+					<medium></medium>
+				</p>
 				<br>
-				<br>
-				<br>
-				<img src="images/white_logos/newcastle.png" height="50px" color='#FFFFFF'>
-				<img src="images/white_logos/dstl.png" height="50px" color='#FFFFFF'>
-				<img src="images/white_logos/cdt_long.png" height="50px" color='#FFFFFF'>
-				<aside class="notes"></aside>
+				<p><small>by Carrow Morris-Wiltshire</small></p>
 			</section>
 
+			<!-- Vision -->
 			<section>
-				<h3>Successes</h3>
+				<div class="grid">
+					<div>
+						<h3 class="highlight">Smart Cities</h3>
+						<ul>
+							<li>Inclusive</li>
+							<li>Safe</li>
+							<li>Resilient</li>
+							<li>Sustainable</li>
+						</ul>
+					</div>
+					<div>
+						<img src="/images/RRI/cities.jpg 768w" alt="Smart city visualization">
+					</div>
+				</div>
+			</section>
+
+			<!-- Key Objectives -->
+			<section data-auto-animate>
+				<h2>Research Objectives</h2>
 				<ul>
-					<li>Environment and Planning B: Urban Analytics and City Science</li>
-					<li>19th International Conference on Computational Urban Planning and Urban Management</li>
-					<li>Airbus Presentation</li>
+					<li class="fragment">Develop computationally efficient models</li>
+					<li class="fragment">Enable real-time monitoring of complex systems</li>
+					<li class="fragment">Facilitate faster anomaly detection</li>
+					<li class="fragment">Optimise resource allocation</li>
 				</ul>
 			</section>
 
-			<section data-background-iframe="docs/epb.pdf">
-			</section>
-
-			<section data-background-iframe="docs/cupum.pdf">
-			</section>
-
+			<!-- Stakeholder Ecosystem -->
 			<section>
-				<h3>Airbus Presentation</h3>
-				<ul>
-					<li>Friday 17th </li>
-					<li>SAFECommand</li>
-					<li>Showed interest in data sharing</li>
-				</ul>
+				<h2>Stakeholder Ecosystem</h2>
+				<div class="grid">
+					<div>
+						<h4>Key Partners</h4>
+						<ul>
+							<li>Digital Twin Hub</li>
+							<li>Alan Turing Institute</li>
+							<li>DAFNI</li>
+						</ul>
+					</div>
+					<div>
+						<h4>Beneficiaries</h4>
+						<ul>
+							<li>Urban Residents</li>
+							<li>City Planners</li>
+							<li>Policy Makers</li>
+						</ul>
+					</div>
+				</div>
 			</section>
 
-			<section data-background-iframe="docs/ro2.pdf">
-			</section>
-
+			<!-- AREA Framework -->
 			<section>
-				<h3>New Opportunities Needed</h3>
-				<ul>
-					<li>Turing Internship Network Data Science and Engineering Team</li>
-					<li>DSTL Internship</li>
-				</ul>
+				<h2>AREA Framework</h2>
+				<div class="fragment fade-in">
+					<span>
+						<p><b>A</b>nticipate research pathways and implications</p>
+					</span>
+				</div>
+				<div class="fragment fade-in">
+					<span>
+						<p><b>R</b>eflect on objectives and methodologies</p>
+					</span>
+				</div>
+				<div class="fragment fade-in">
+					<span>
+						<p><b>E</b>ngage with diverse stakeholders</p>
+					</span>
+				</div>
+				<div class="fragment fade-in">
+					<span></span>
+					<p><b>A</b>ct on insights and feedback</p></span>
+				</div>
 			</section>
 
+			<!-- Ethics & Governance -->
 			<section>
-				<h3>Soon To Find Out</h3>
-				<ul>
-					<li>Complex Systems Summer School at the Santa Fe Institute</li>
-				</ul>
+				<h2>Ethics & Governance</h2>
+				<div class="grid">
+					<div>
+						<h4>Key Principles</h4>
+						<ul>
+							<li>Privacy by Design</li>
+							<li>GDPR Compliance</li>
+							<li>FAIR Data Principles</li>
+						</ul>
+					</div>
+					<div>
+						<h4>Commitments</h4>
+						<ul>
+							<li>Transparent Decision Making</li>
+							<li>Equitable Access</li>
+							<li>Public Engagement</li>
+						</ul>
+					</div>
+				</div>
 			</section>
 
+			<!-- Impact -->
+			<section>
+				<h2>Expected Impact</h2>
+				<div class="grid">
+					<div class="fragment fade-left">
+						<h4>Environmental</h4>
+						<ul>
+							<li>Efficient Resource Use</li>
+							<li>Reduced Carbon Footprint</li>
+							<li>Sustainable Urban Planning</li>
+						</ul>
+					</div>
+					<div class="fragment fade-right">
+						<h4>Societal</h4>
+						<ul>
+							<li>Enhanced Public Safety</li>
+							<li>Improved Quality of Life</li>
+							<li>Digital Inclusion</li>
+						</ul>
+					</div>
+				</div>
+			</section>
 
+			<!-- Thank You -->
+			<section>
+				<h2>Thank You</h2>
+				<p>Questions?</p>
+			</section>
 		</div>
 	</div>
 
-	<!-- Footer Images Container (Hidden by default) -->
-	<div id="footer-images" class="footer-images hidden">
-		<img src="images/white_logos/newcastle.png" style="color: #FFFFFF;">
-		<img src="images/white_logos/dstl.png" style="color: #FFFFFF;">
-		<img src="images/white_logos/cdt_long.png" style="color: #FFFFFF;">
-	</div>
-
-	<script src="dist/reveal.js"></script>
-	<script src="plugin/notes/notes.js"></script>
-	<script src="plugin/highlight/highlight.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
 	<script>
 		Reveal.initialize({
 			controls: true,
-			controlsLayout: 'edges',
-			hash: true,
 			progress: true,
-			autoAnimate: true,
-			transition: 'slide', // none/fade/slide/convex/concave/zoom
-			transitionSpeed: 'default', // default/fast/slow
-			preloadIframes: true,
-			plugins: [RevealNotes],
-			math: {
-				mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
-				config: 'TeX-AMS_HTML-full'
-			}
+			center: true,
+			hash: true,
+			transition: 'slide',
+			backgroundTransition: 'fade'
 		});
-
-		// Function to hide footer on title slide
-		function toggleFooterVisibility() {
-			var currentSlide = Reveal.getCurrentSlide();
-			var footer = document.getElementById('footer-images');
-
-			if (currentSlide.classList.contains('title-slide')) {
-				footer.classList.add('hidden');
-			} else {
-				footer.classList.remove('hidden');
-			}
-		}
-
-		// Add event listeners
-		Reveal.on('slidechanged', function (event) {
-			toggleFooterVisibility();
-		});
-
-		document.addEventListener('DOMContentLoaded', function () {
-			toggleFooterVisibility();
-		});
-		// Fetch and display JSON content
-		fetch('docs/pipeline.json')
-			.then(response => response.json())
-			.then(data => {
-				// Convert JSON object to pretty-printed JSON string
-				const jsonString = JSON.stringify(data, null, 2);
-
-				// Set JSON content to the code block
-				document.getElementById('json-content').textContent = jsonString;
-
-				// Apply syntax highlighting
-				hljs.highlightAll();
-			})
-			.catch(error => console.error('Error fetching JSON:', error));
 	</script>
+</body>
+
+</html>
+
+<!-- Footer Images Container (Hidden by default) -->
+<div id="footer-images" class="footer-images hidden">
+	<img src="images/white_logos/newcastle.png" style="color: #FFFFFF;">
+	<img src="images/white_logos/dstl.png" style="color: #FFFFFF;">
+	<img src="images/white_logos/cdt_long.png" style="color: #FFFFFF;">
+</div>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script>
+	Reveal.initialize({
+		controls: true,
+		controlsLayout: 'edges',
+		hash: true,
+		progress: true,
+		autoAnimate: true,
+		transition: 'slide', // none/fade/slide/convex/concave/zoom
+		transitionSpeed: 'default', // default/fast/slow
+		preloadIframes: true,
+		plugins: [RevealNotes],
+		math: {
+			mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+			config: 'TeX-AMS_HTML-full'
+		}
+	});
+
+	// Function to hide footer on title slide
+	function toggleFooterVisibility() {
+		var currentSlide = Reveal.getCurrentSlide();
+		var footer = document.getElementById('footer-images');
+
+		if (currentSlide.classList.contains('title-slide')) {
+			footer.classList.add('hidden');
+		} else {
+			footer.classList.remove('hidden');
+		}
+	}
+
+	// Add event listeners
+	Reveal.on('slidechanged', function (event) {
+		toggleFooterVisibility();
+	});
+
+	document.addEventListener('DOMContentLoaded', function () {
+		toggleFooterVisibility();
+	});
+	// Fetch and display JSON content
+	fetch('docs/pipeline.json')
+		.then(response => response.json())
+		.then(data => {
+			// Convert JSON object to pretty-printed JSON string
+			const jsonString = JSON.stringify(data, null, 2);
+
+			// Set JSON content to the code block
+			document.getElementById('json-content').textContent = jsonString;
+
+			// Apply syntax highlighting
+			hljs.highlightAll();
+		})
+		.catch(error => console.error('Error fetching JSON:', error));
+</script>
 </body>
 
 </html>
