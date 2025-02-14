@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>reveal.js</title>
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/newcastle.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+    <style>
+        /* Ensure code blocks have correct color */
+        pre code {
+            color: #fff;
+            /* Default text color for code blocks */
+        }
+
+        .hljs {
+            background: #272822;
+            /* Background color for code blocks */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Title Slide -->
+            <section data-state="make-it-pop" data-transition="slide-in fade-out" class="title-slide">
+                <h2>Quarterly DSTL Report</h2>
+                <br>
+                <medium>January 2025</medium>
+                <br>
+                <br>
+                <br>
+                <img src="images/white_logos/newcastle.png" height="50px" color='#FFFFFF'>
+                <img src="images/white_logos/dstl.png" height="50px" color='#FFFFFF'>
+                <img src="images/white_logos/cdt_long.png" height="50px" color='#FFFFFF'>
+                <aside class="notes"></aside>
+            </section>
+
+            <section>
+                <h3>Successes</h3>
+                <ul>
+                    <li>Environment and Planning B: Urban Analytics and City Science</li>
+                    <li>19th International Conference on Computational Urban Planning and Urban Management</li>
+                    <li>Airbus Presentation</li>
+                </ul>
+            </section>
+
+            <section data-background-iframe="docs/epb.pdf">
+            </section>
+
+            <section data-background-iframe="docs/cupum.pdf">
+            </section>
+
+            <section>
+                <h3>Airbus Presentation</h3>
+                <ul>
+                    <li>Friday 17th </li>
+                    <li>SAFECommand</li>
+                    <li>Showed interest in data sharing</li>
+                </ul>
+            </section>
+
+            <section data-background-iframe="docs/ro2.pdf">
+            </section>
+
+            <section>
+                <h3>New Opportunities Needed</h3>
+                <ul>
+                    <li>Turing Internship Network Data Science and Engineering Team</li>
+                    <li>DSTL Internship</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Soon To Find Out</h3>
+                <ul>
+                    <li>Complex Systems Summer School at the Santa Fe Institute</li>
+                </ul>
+            </section>
+
+
+        </div>
+    </div>
+
+    <!-- Footer Images Container (Hidden by default) -->
+    <div id="footer-images" class="footer-images hidden">
+        <img src="images/white_logos/newcastle.png" style="color: #FFFFFF;">
+        <img src="images/white_logos/dstl.png" style="color: #FFFFFF;">
+        <img src="images/white_logos/cdt_long.png" style="color: #FFFFFF;">
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            controls: true,
+            controlsLayout: 'edges',
+            hash: true,
+            progress: true,
+            autoAnimate: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            transitionSpeed: 'default', // default/fast/slow
+            preloadIframes: true,
+            plugins: [RevealNotes],
+            math: {
+                mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+                config: 'TeX-AMS_HTML-full'
+            }
+        });
+
+        // Function to hide footer on title slide
+        function toggleFooterVisibility() {
+            var currentSlide = Reveal.getCurrentSlide();
+            var footer = document.getElementById('footer-images');
+
+            if (currentSlide.classList.contains('title-slide')) {
+                footer.classList.add('hidden');
+            } else {
+                footer.classList.remove('hidden');
+            }
+        }
+
+        // Add event listeners
+        Reveal.on('slidechanged', function (event) {
+            toggleFooterVisibility();
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            toggleFooterVisibility();
+        });
+        // Fetch and display JSON content
+        fetch('docs/pipeline.json')
+            .then(response => response.json())
+            .then(data => {
+                // Convert JSON object to pretty-printed JSON string
+                const jsonString = JSON.stringify(data, null, 2);
+
+                // Set JSON content to the code block
+                document.getElementById('json-content').textContent = jsonString;
+
+                // Apply syntax highlighting
+                hljs.highlightAll();
+            })
+            .catch(error => console.error('Error fetching JSON:', error));
+    </script>
+</body>
+
+</html>
