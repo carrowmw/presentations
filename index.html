@@ -65,6 +65,60 @@
 				</div>
 			</section>
 
+			<!-- Key Objectives -->
+			<section data-auto-animate>
+				<h3>Motivation</h3>
+				</section>
+				<section data-auto-animate>
+				<h3>Motivation</h3>
+				<p>Support local councils in growing need for housing.
+				</p>
+				<ul>
+					<li class="fragment">1198 houses in Doncaster (128% increase)
+					</li>
+					<li class="fragment">1080 houses in Rotherham (98% increase)
+					</li>
+				</ul>
+				</section>
+				<section data-auto-animate>
+					<h3>Motivation</h3>
+					<p>Ambitions for more affordable housing for everyone.
+					</p>
+				</section>
+				<section data-auto-animate>
+					<h3>Motivation</h3>
+					<p>Making targeted decisions about housing supply and infrastructure investment.
+					</p>
+				</section>
+				<section data-auto-animate>
+					<h3>Motivation</h3>
+					<p>Taking advantage of existing developments.
+					</p>
+				</section>
+			</section>
+
+			<!-- Challenges -->
+			<section data-auto-animate>
+				<h3>Objectives</h3>
+			  </section>
+			  <section data-auto-animate>
+				<h3>Objectives</h3>
+				<br>
+				<ol>
+				<li>Develop a comprehensive submarket classification for housing markets that can be applied across England and Wales.
+				</li>
+				</ol>
+			 	</section>
+			  <section data-auto-animate>
+				<h3>Objectives</h3>
+				<br>
+				<ol>
+				<li>Develop a comprehensive submarket classification for housing markets that can be applied across England and Wales.
+				</li>
+				<li>Identify areas of grey-belt land in England and Wales that holds potential for redevelopment.
+				</li>
+				</ol>
+			 </section>
 
 			<!-- Challenge 1 -->
 			<section data-auto-animate>
@@ -88,22 +142,36 @@
 				</p>
 			 </section>
 
-			<!-- Key Objectives -->
-			<section data-auto-animate>
-				<h3>Motivation</h3>
-				</section>
-				<section data-auto-animate>
-				<h3>Motivation</h3>
-				<ul>
-					<li class="fragment">Develop computationally efficient models</li>
-					<li class="fragment">Enable real-time monitoring of complex systems</li>
-					<li class="fragment">Facilitate faster anomaly detection</li>
-					<li class="fragment">Optimise resource allocation</li>
-				</ul>
-			</section>
-
-			<!-- Video -->
-			<section data-background-iframe="videos/computer_vision.mp4">
+			<!-- Methods - Challenge 2 -->
+			<section data-background-iframe="images/challenge_week/challenge_2/EO_flowchart-data.png">
+				<div class="mermaid">
+					<pre>
+						---
+						config:
+						theme: mc
+						---
+						flowchart LR
+							subgraph Analysis
+								direction TB
+								NDVI["NDVI"]
+								ML_Segmentation["ML Segmentation"]
+								NDVI -- Pixel Identification + Land Use/Land Cover --> RoadFiltering["Road Filtering"]
+								ML_Segmentation -- Segmentation: SAM --> FinalData
+								RoadFiltering --> Validation
+								Validation -- Quality Check: Grey belt points by client --> FinalData["Potential Grey Belt"]
+							end
+							subgraph EO TEAM
+								direction LR
+								EO["Earth Observation"] -- Airbus Satellite Imagery --> Imagery["Satellite Imagery"]
+								EO -- OS Green Belt --> Vector["Vector Data"]
+								Imagery -- "SPOT (1.5m RGB)" --> Spot["SPOT"]
+								Imagery -- "Pleiades (0.5m RGB)" --> Pleiades["Pleiades"]
+								Vector --> DATA["DATA"]
+								Pleiades --> DATA
+								Spot --> DATA
+							end
+					</pre>
+				</div>
 			</section>
 
 			<!-- Stakeholder Ecosystem -->
@@ -208,6 +276,7 @@
 	</div>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@11.4.1/plugin/mermaid/mermaid.js"></script>
 
 </body>
 
@@ -231,6 +300,8 @@
 		controlsLayout: 'edges',
 		hash: true,
 		progress: true,
+		center: ture,
+		hash: true,
 		autoAnimate: true,
 		transition: 'slide', // none/fade/slide/convex/concave/zoom
 		transitionSpeed: 'default', // default/fast/slow
@@ -240,6 +311,26 @@
 			mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
 			config: 'TeX-AMS_HTML-full'
 		}
+		// mermaid initialize config
+		mermaid: {
+      		flowchart: {
+        	curve: 'linear',
+      },
+    },
+
+    // this plugin config
+    mermaidPlugin: {
+      beforeRender(el) {
+        console.log(el);
+        // if return false this element will not call mermaid render
+      },
+
+      afterRender(el) {
+        console.log(el);
+      },
+    },
+
+    plugins: [RevealMermaid],
 	});
 
 	// Function to hide footer on title slide
