@@ -219,35 +219,13 @@
 			 </section>
 
 			<!-- Methods - Challenge 2 -->
-			<section data-background-iframe="images/challenge_week/challenge_2/EO_flowchart-data.png">
-				<div class="mermaid">
-					<pre>
-						---
-						config:
-						theme: mc
-						---
-						flowchart LR
-							subgraph Analysis
-								direction TB
-								NDVI["NDVI"]
-								ML_Segmentation["ML Segmentation"]
-								NDVI -- Pixel Identification + Land Use/Land Cover --> RoadFiltering["Road Filtering"]
-								ML_Segmentation -- Segmentation: SAM --> FinalData
-								RoadFiltering --> Validation
-								Validation -- Quality Check: Grey belt points by client --> FinalData["Potential Grey Belt"]
-							end
-							subgraph EO TEAM
-								direction LR
-								EO["Earth Observation"] -- Airbus Satellite Imagery --> Imagery["Satellite Imagery"]
-								EO -- OS Green Belt --> Vector["Vector Data"]
-								Imagery -- "SPOT (1.5m RGB)" --> Spot["SPOT"]
-								Imagery -- "Pleiades (0.5m RGB)" --> Pleiades["Pleiades"]
-								Vector --> DATA["DATA"]
-								Pleiades --> DATA
-								Spot --> DATA
-							end
-					</pre>
-				</div>
+			<section data-background-color="white">
+				<img src="images/challenge_week/challenge_2/EO_flowchart-data.png"></img>
+			</section>
+
+			<section>
+				<h3>Methods - Challenge 2</h3>
+				<p>Data Collection and Processing</p>
 			</section>
 
 			<!-- Stakeholder Ecosystem -->
