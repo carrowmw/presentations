@@ -144,6 +144,37 @@
 
 			<!-- Methods - Challenge 2 -->
 			<section data-background-iframe="images/challenge_week/challenge_2/EO_flowchart-data.png">
+				<div class="mermaid">
+					<pre>
+						---
+config:
+  theme: mc
+---
+flowchart LR
+    subgraph Analysis
+        direction TB
+        NDVI["NDVI"]
+        ML_Segmentation["ML Segmentation"]
+        NDVI -- Pixel Identification + Land Use/Land Cover --> RoadFiltering["Road Filtering"]
+        ML_Segmentation -- Segmentation: SAM --> FinalData
+        RoadFiltering --> Validation
+        Validation -- Quality Check: Grey belt points by client --> FinalData["Potential Grey Belt"]
+    end
+    subgraph EO TEAM
+        direction LR
+        EO["Earth Observation"] -- Airbus Satellite Imagery --> Imagery["Satellite Imagery"]
+        EO -- OS Green Belt --> Vector["Vector Data"]
+        Imagery -- "SPOT (1.5m RGB)" --> Spot["SPOT"]
+        Imagery -- "Pleiades (0.5m RGB)" --> Pleiades["Pleiades"]
+        Vector --> DATA["DATA"]
+        Pleiades --> DATA
+        Spot --> DATA
+    end
+
+
+					</pre>
+
+				</div>
 			</section>
 
 			<!-- Stakeholder Ecosystem -->
@@ -248,6 +279,7 @@
 	</div>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@11.4.1/plugin/mermaid/mermaid.js"></script>
 
 </body>
 
