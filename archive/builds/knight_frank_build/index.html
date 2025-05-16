@@ -1,0 +1,1305 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>reveal.js</title>
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/knight-blood.css">
+  <link rel="stylesheet" href="css/boxicons.min.css">
+	<script src="plugin/notes/notes.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	<style>
+		.reveal section img {
+			border: none;
+			box-shadow: none;
+			background: none;
+		}
+
+		.grid {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 20px;
+		}
+
+		.fade-in {
+			animation: fadeIn 2s;
+		}
+
+		@keyframes fadeIn {
+			0% {
+				opacity: 0;
+			}
+
+			100% {
+				opacity: 1;
+			}
+		}
+        .reveal .slides section {
+			box-sizing: border-box; /* Important to include padding within the section's defined height */
+			padding-bottom: 80px;   /* Adjust 80px to be a bit more than your footer's actual height */
+		}
+		/* If you want to exclude title slides from this padding: */
+		/*
+		.reveal .slides section:not(.title-slide) {
+		box-sizing: border-box;
+		padding-bottom: 80px;
+		}
+		*/
+        /* ---- CSS FOR LOGO INVERSION ---- */
+        #footer-images img { /* Default state for logos (on dark backgrounds) */
+          filter: none; /* Or, if your white logos need a filter to look pure white, apply it here */
+        }
+        #footer-images.footer-logos-inverted img {
+          filter: invert(1); /* Simplest inversion: white becomes black. Test this first! */
+          /* If invert(1) alone doesn't make them solid black, you can try more complex filters: */
+          /* filter: brightness(0%) invert(100%); */
+          /* filter: invert(1) grayscale(1) brightness(0.3) contrast(3); */
+        }
+        /* ---- END OF ADDITION ---- */
+    </style>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<!-- Title Slide -->
+			<section>
+				<h1>Challenge Week 2025</h1>
+				<h6>Identifying housing redevelopment opportunities in Doncaster and Rotherham</h6>
+				<p>by Geospatial Systems CDT</p>
+			</section>
+
+			<!-- Content -->
+			<section data-background-image="images/challenge_week/backgrounds/doncaster_houses.jpg" data-auto-animate>
+				<div data-id="box" style="background: #d10737; padding: 25px; border-radius: 30px; opacity: 0.75; display: inline-block; min-width: 500px; min-height: 300px;">
+					<h3 class="highlight" data-id="content-title">Content</h3>
+					<ol>
+						<li class="fragment">Motivation</li>
+						<li class="fragment">Objectives</li>
+						<li class="fragment">Challenge 1</li>
+						<li class="fragment">Challenge 2</li>
+						<li class="fragment">Summary</li>
+					</ol>
+				</div>
+			</section>
+
+			<!-- Background -->
+			<section data-auto-animate>
+				<h3>Background</h3>
+				</section>
+				<section data-auto-animate>
+				<h3>Background</h3>
+				<ul>
+					<li>~ 24.9m homes in England.
+					</li>
+					<li class="fragment">1.33m  households on local authority housing registers, highest in 10 years.
+					</li>
+					<li class="fragment">UK population projected to reach 72.5m by 2032
+					</li>
+				</ul>
+				</section>
+
+			<!-- Population -->
+			<section data-background-color="white">
+				<h2>Population Change</h2>
+				<div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+				  <div style="flex: 1;">
+					<img src="images/challenge_week/challenge_2/doncaster_pop_map.png" alt="First Image" style="width: 100%;">
+				  </div>
+				  <div style="flex: 1;">
+					<img src="images/challenge_week/challenge_2/rotherham_pop_map.png" alt="Second Image" style="width: 100%;">
+				  </div>
+				</div>
+			  </section>
+
+			<!-- Households -->
+			<section data-auto-animate data-background-color="white">
+				<h2>Household Tenure</h2>
+				<div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+				  <div style="flex: 1;">
+					<img src="images/challenge_week/challenge_2/doncaster_housing.png" alt="First Image" style="width: 100%;">
+				  </div>
+				  <div style="flex: 1;">
+					<img src="images/challenge_week/challenge_2/rotherham_housing.png" alt="Second Image" style="width: 100%;">
+				  </div>
+				</div>
+			  </section>
+			<section data-auto-animate data-background-color="white">
+				<h2>Household Tenure</h2>
+				<div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+				  <div style="flex: 1;">
+					<img src="images/challenge_week/challenge_2/doncaster_housing.png" alt="First Image" style="width: 100%;">
+				  </div>
+				  <div style="flex: 1;">
+					<img src="images/challenge_week/challenge_2/rotherham_housing.png" alt="Second Image" style="width: 100%;">
+				  </div>
+				</div>
+				<p><b>The rise in privately rented homes between 2011 and 2021 is likely attributed to:</b>
+				</p>
+				<ul>
+				<li class="fragment">Declining homeownership affordability</li>
+				<li class="fragment">Reduction in social housing supply</li>
+				</ul>
+			</section>
+
+			<!-- Motivation -->
+			<section data-auto-animate>
+				<h3>Motivation</h3>
+				</section>
+				<section data-auto-animate>
+				<h3>Motivation</h3>
+				<p><b>UK government committed to building 1.5m new homes by 2029.</b>
+				</p>
+				</section>
+				<section data-auto-animate>
+					<h3>Motivation</h3>
+					<p><b>UK government committed to building 1.5m new homes by 2029.</b>
+					</p>
+				<p>Local council's targets:
+				</p>
+				<ul>
+					<li class="fragment">1198 houses in Doncaster (128% increase)
+					</li>
+					<li class="fragment">1080 houses in Rotherham (98% increase)
+					</li>
+				</ul>
+				</section>
+				<section data-auto-animate>
+					<h3>Motivation</h3>
+					<p><b>UK government committed to building 1.5m new homes by 2029.</b>
+					</p>
+				<p>Local council's targets:
+				</p>
+				<ul>
+					<li>1198 houses in Doncaster (128% increase)
+					</li>
+					<li>1080 houses in Rotherham (98% increase)
+					</li>
+				</ul>
+				<p><b>Ambitions for more affordable housing for everyone.</b>
+				</p>
+				</section>
+				<section data-auto-animate>
+					<h3>Motivation</h3>
+					<p><b>UK government committed to building 1.5m new homes by 2029.</b>
+					</p>
+				<p>Local council's targets:
+				</p>
+				<ul>
+					<li>1198 houses in Doncaster (128% increase)
+					</li>
+					<li>1080 houses in Rotherham (98% increase)
+					</li>
+				</ul>
+				<p><b>Ambitions for more affordable housing for everyone.</b>
+				</p>
+				<p><b>Making targeted decisions about housing supply and infrastructure investment.</b>
+				</p>
+				</section>
+				<section data-auto-animate>
+					<h3>Motivation</h3>
+					<p><b>UK government committed to building 1.5m new homes by 2029.</b>
+					</p>
+				<p>Local council's targets:
+				</p>
+				<ul>
+					<li>1198 houses in Doncaster (128% increase)
+					</li>
+					<li>1080 houses in Rotherham (98% increase)
+					</li>
+				</ul>
+				<p><b>Ambitions for more affordable housing for everyone.</b>
+				</p>
+				<p><b>Making targeted decisions about housing supply and infrastructure investment.</b>
+				</p>
+				<p><b>Taking advantage of existing developments.</b>
+				</p>
+			</section>
+			</section>
+
+			<!-- Challenges -->
+			<section data-auto-animate>
+				<h3>Objectives</h3>
+			  </section>
+			  <section data-auto-animate>
+				<h3>Objectives</h3>
+				<ol>
+				<li>Develop a comprehensive submarket classification for housing markets that can be applied across England and Wales.
+				</li>
+				</ol>
+			 	</section>
+			  <section data-auto-animate>
+				<h3>Objectives</h3>
+				<ol>
+				<li>Develop a comprehensive submarket classification for housing markets that can be applied across England and Wales.
+				</li>
+				<li>Identify areas of grey-belt land in England and Wales that holds potential for redevelopment.
+				</li>
+				</ol>
+			 </section>
+
+
+			<!-- Challenge 1 -->
+			<section data-auto-animate>
+				<h3>Challenge 1</h3>
+			  </section>
+			  <section data-auto-animate>
+				<h3>Challenge 1</h3>
+				<p>Develop a comprehensive submarket classification for housing markets that can be applied across England and Wales.
+				</p>
+			 	</section>
+			 <section data-auto-animate>
+				<h3>Challenge 1</h3>
+				<p>Develop a comprehensive submarket classification for housing markets that can be applied across England and Wales.
+				</p>
+				<h4>Objectives</h4>
+			  </section>
+			<section data-auto-animate>
+				<h3>Challenge 1</h3>
+				<p>Develop a comprehensive submarket classification for housing markets that can be applied across England and Wales.
+				</p>
+				<h4>Objectives</h4>
+				<ol>
+				<li>Identify datasets and remote sensing imagery to classify the housing submarket.</li>
+				<li class="fragment">Select optimal methods to analyse housing characteristics, density, and market trends.</li>
+				<li class="fragment">Develop effective ways to present submarket classification results.</li>
+				</ol>
+			 </section>
+
+			<!-- Challenge 1 Dataset 1 -->
+			<section data-auto-animate>
+				<h3>Dataset Identification - Variable Selection</h3>
+			</section>
+			<section data-auto-animate>
+				<h3>Dataset Identification - Variable Selection</h3>
+				<p><i class='bx bxs-bar-chart-alt-2' style='color: #ffffff;'></i> Structural Features</p>
+				<ul><li>(For example: land area, number of bedrooms, house price)</li></ul>
+			</section>
+			<section data-auto-animate>
+				<h3>Dataset Identification - Variable Selection</h3>
+				<p><i class='bx bxs-bar-chart-alt-2' style='color: #ffffff;'></i> Structural Features</p>
+				<ul><li>(For example: land area, number of bedrooms, house price)</li></ul>
+				<p><i class='bx bx-male-female' style='color: #ffffff;'></i> Socio-Demographic Characteristics</p>
+				<ul><li>(For example: household income, household size, ethnicity)</li></ul>
+			</section>
+			<section data-auto-animate>
+				<h3>Dataset Identification - Variable Selection</h3>
+				<p><i class='bx bxs-bar-chart-alt-2' style='color: #ffffff;'></i> Structural Features</p>
+				<ul><li>(For example: land area, number of bedrooms, house price)</li></ul>
+				<p><i class='bx bx-male-female' style='color: #ffffff;'></i> Socio-Demographic Characteristics</p>
+				<ul><li>(For example: household income, household size, ethnicity)</li></ul>
+				<p><i class='bx bx-home' style='color: #ffffff;'></i> Neighbourhood Characteristics</p>
+				<ul><li>(For example: crime rates, schools)</li></ul>
+			</section>
+			<section data-auto-animate>
+				<h3>Dataset Identification - Variable Selection</h3>
+				<p><i class='bx bxs-bar-chart-alt-2' style='color: #ffffff;'></i> Structural Features</p>
+				<ul><li>(For example: land area, number of bedrooms, house price)</li></ul>
+				<p><i class='bx bx-male-female' style='color: #ffffff;'></i> Socio-Demographic Characteristics</p>
+				<ul><li>(For example: household income, household size, ethnicity)</li></ul>
+				<p><i class='bx bx-home' style='color: #ffffff;'></i> Neighbourhood Characteristics</p>
+				<ul><li>(For example: crime rates, schools)</li></ul>
+				<p><i class='bx bx-map' style='color: #ffffff;'></i> Location</p>
+				<ul><li>(For example: distance to parks, access to transport)</li></ul>
+			</section>
+
+			<!-- Challenge 1 Dataset 2 -->
+<section>
+        <h3 style="text-align: left; margin-bottom: 40px;">Dataset Identification – Acquisition & Preprocessing</h3>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+          <div style="display: flex; flex-direction: column; align-items: center; margin-right: 30px; width: 150px;">
+            <div style="font-weight: bold; font-size: 32px; margin-bottom: 10px;">Basic</div>
+
+            <div style="width: 135px; height: 400px; display: flex; justify-content: center; align-items: center;">
+              <img src="images/challenge_week/general/arrow.png" alt="Arrow" style="width: 100%; height: 80%;">
+            </div>
+
+            <div style="font-weight: bold; font-size: 32px; margin-top: 10px;">Complex</div>
+          </div>
+
+          <div style="flex: 1;">
+            <ul style="list-style-type: none; padding: 0;">
+              <li style="display: flex; align-items: center; margin-bottom: 40px;">
+                <div style="margin-right: 20px; width: 50px; height: 50px; display: flex; justify-content: center; align-items: center;">
+                  <i class='bx bx-paperclip' style='color: #ffffff; font-size: 40px;'></i>
+                </div>
+                <div style="flex: 1;">
+                  <h3 style="font-size: 28px; margin-bottom: 5px;">Clipping</h3>
+                  <p style="font-size: 22px; margin: 0;">(For example: flood risk, road noise...)</p>
+                </div>
+              </li>
+
+              <li style="display: flex; align-items: center; margin-bottom: 40px;">
+                <div style="margin-right: 20px; width: 50px; height: 50px; display: flex; justify-content: center; align-items: center;">
+                  <i class='bx bxs-shapes' style='color: #ffffff; font-size: 40px;'></i>
+                </div>
+                <div style="flex: 1;">
+                  <h3 style="font-size: 28px; margin-bottom: 5px;">Segmentation & Joining</h3>
+                  <p style="font-size: 22px; margin: 0;">(For example: census data, property sold price...)</p>
+                </div>
+              </li>
+
+              <li style="display: flex; align-items: center; margin-bottom: 40px;">
+                <div style="margin-right: 20px; width: 50px; height: 50px; display: flex; justify-content: center; align-items: center;">
+                  <i class='bx bx-recycle' style='color: #ffffff; font-size: 40px;'></i>
+                </div>
+                <div style="flex: 1;">
+                  <h3 style="font-size: 28px; margin-bottom: 5px;">Reformatting & Transformation</h3>
+                  <p style="font-size: 22px; margin: 0;">(For example: school performance...)</p>
+                </div>
+              </li>
+
+              <li style="display: flex; align-items: center;">
+                <div style="margin-right: 20px; width: 50px; height: 50px; display: flex; justify-content: center; align-items: center;">
+                  <i class='bx bx-ruler' style='color: #ffffff; font-size: 40px;'></i>
+                </div>
+                <div style="flex: 1;">
+                  <h3 style="font-size: 28px; margin-bottom: 5px;">Feature Engineering</h3>
+                  <p style="font-size: 22px; margin: 0;">(For example: building footprint to garden size ratio...)</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+
+				<!-- Challenge 1 Selection Methods 3 -->
+				<section>
+					<h3>Earth Observation</h3>
+					<div style="display:grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+					<img src="images/challenge_week/challenge_1/EOdata.png" alt="First Image" style="width: 100%;">
+					<img src="images/challenge_week/challenge_1/EOdata2.png" alt="First Image" style="width: 100%;">
+					</div>
+				</section>
+
+			<!-- Challenge 1 Selection Methods 1 -->
+			<section>
+				<h3>H3 300m Hex Grid</h3>
+				<img src="images/challenge_week/challenge_1/selectingmethods.png" alt="First Image" height="400">
+				</section>
+
+			<!-- Challenge 1 Selection Methods 2 -->
+			<section data-background-color="#FFFFFF">
+				<h3>Clustering Algorithm</h3>
+				<!-- <img src="images/challenge_week/challenge_1/clustering.png" alt="First Image" style="width: 100%;"> -->
+				<p><a href="https://medium.com/data-science/understanding-dbscan-and-implementation-with-python-5de75a786f9f">
+					<img src="images/challenge_week/challenge_1/clustering.png" alt="W3Schools.com" height="300">
+					</a></p>
+				</section>
+
+			<!-- Challenge 1 Selection Methods 2 -->
+			<section data-background-color="#f5f5f5">
+				<h2 style="color: #d10737; margin-bottom: 20px;">Dimensionality Reduction</h2>
+
+				<div style="background-color: #2c3e50; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 25px; width: 90%; margin: 0 auto;">
+					<p style="font-size: 1.2em; margin-bottom: 30px; text-align: left; color: #FFFFFF;">
+					<strong>Reduce the feature dimensions while maintaining greater than 90% variance.</strong>
+					</p>
+
+					<!-- Image placeholder -->
+
+					<img src="images/challenge_week/challenge_1/variable_results.png" alt="PCA Image" style="max-width: 100%; max-height: 100%; border-radius: 5px; z-index: 1;">
+
+				</div>
+				</section>
+
+
+
+
+				<!-- PCA Feature Importance -->
+
+<section data-background-color="#f5f5f5">
+          <h3 style="color: #d10737; margin: 50px 50px 0px 30px;" >PCA – Feature Importance and Demographic Character</h2>
+
+          <div style="display: flex; justify-content: space-between; width: 95%; margin: 0 auto; padding-top: 30px;">
+            <div style="width: 48%; background-color: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); overflow: hidden;">
+              <div style="background-color: #14556e; color: white; padding: 12px 15px; font-size: 1.2em; text-align: center;">
+                Global Feature Importance
+              </div>
+              <div style="height: auto;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.75em;">
+                  <thead>
+                    <tr style="background-color: #14556e; color: white;">
+                      <th style="padding: 10px; text-align: left; border: 1px solid #0c3442; width: 70%;">Feature</th>
+                      <th style="padding: 10px; text-align: center; border: 1px solid #0c3442; width: 30%;">Score</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="background-color: rgba(20, 85, 110, 0.1);">
+                      <td style="padding: 5px 10px; border: 1px solid #d6e9f2;">Exposure to Road Noise</td>
+                      <td style="padding: 5px 10px; text-align: center; border: 1px solid #d6e9f2;">3.019</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 5px 10px; border: 1px solid #d6e9f2;">Drive Time to Blue Space</td>
+                      <td style="padding: 5px 10px; text-align: center; border: 1px solid #d6e9f2;">2.812</td>
+                    </tr>
+                    <tr style="background-color: rgba(20, 85, 110, 0.1);">
+                      <td style="padding: 5px 10px; border: 1px solid #d6e9f2;">Proximity to Shops</td>
+                      <td style="padding: 5px 10px; text-align: center; border: 1px solid #d6e9f2;">2.784</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 5px 10px; border: 1px solid #d6e9f2;">Age (Adult)</td>
+                      <td style="padding: 5px 10px; text-align: center; border: 1px solid #d6e9f2;">2.693</td>
+                    </tr>
+                    <tr style="background-color: rgba(20, 85, 110, 0.1);">
+                      <td style="padding: 5px 10px; border: 1px solid #d6e9f2;">Primary School Performance</td>
+                      <td style="padding: 5px 10px; text-align: center; border: 1px solid #d6e9f2;">2.677</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 5px 10px; border: 1px solid #d6e9f2;">Age (Child)</td>
+                      <td style="padding: 5px 10px; text-align: center; border: 1px solid #d6e9f2;">2.608</td>
+                    </tr>
+                    <tr style="background-color: rgba(20, 85, 110, 0.1);">
+                      <td style="padding: 5px 10px; border: 1px solid #d6e9f2;">Crime Rates</td>
+                      <td style="padding: 5px 10px; text-align: center; border: 1px solid #d6e9f2;">2.607</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 5px 10px; border: 1px solid #d6e9f2;">Flood Risk Rating</td>
+                      <td style="padding: 5px 10px; text-align: center; border: 1px solid #d6e9f2;">2.577</td>
+                    </tr>
+                    <tr style="background-color: rgba(20, 85, 110, 0.1);">
+                      <td style="padding: 5px 10px; border: 1px solid #d6e9f2;">Secondary School Performance</td>
+                      <td style="padding: 5px 10px; text-align: center; border: 1px solid #d6e9f2;">2.446</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 5px 10px; border: 1px solid #d6e9f2;">Location (Easting)</td>
+                      <td style="padding: 5px 10px; text-align: center; border: 1px solid #d6e9f2;">2.352</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div style="width: 48%; display: flex; flex-direction: column; justify-content: flex-start;">
+              <div style="background-color: #222; color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.75em;">
+                  <thead>
+                    <tr>
+                      <th style="padding: 12px 15px; text-align: center; border-bottom: 1px solid #444; width: 20%;">Cluster</th>
+                      <th style="padding: 12px 15px; text-align: left; border-bottom: 1px solid #444; width: 80%;">Name</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="padding: 3px 15px; text-align: center; border-bottom: 1px solid #333;">0</td>
+                      <td style="padding: 3px 15px; text-align: left; border-bottom: 1px solid #333;">Deprived rural workers</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 3px 15px; text-align: center; border-bottom: 1px solid #333;">1</td>
+                      <td style="padding: 3px 15px; text-align: left; border-bottom: 1px solid #333;">Town centre workers</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 3px 15px; text-align: center; border-bottom: 1px solid #333;">2</td>
+                      <td style="padding: 3px 15px; text-align: left; border-bottom: 1px solid #333;">Quiet, rural communities</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 3px 15px; text-align: center; border-bottom: 1px solid #333;">3</td>
+                      <td style="padding: 3px 15px; text-align: left; border-bottom: 1px solid #333;">Planespotters</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 3px 15px; text-align: center; border-bottom: 1px solid #333;">4</td>
+                      <td style="padding: 3px 15px; text-align: left; border-bottom: 1px solid #333;">Deprived satellite communities</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 3px 15px; text-align: center; border-bottom: 1px solid #333;">5</td>
+                      <td style="padding: 3px 15px; text-align: left; border-bottom: 1px solid #333;">Town centre families</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 3px 15px; text-align: center; border-bottom: 1px solid #333;">6</td>
+                      <td style="padding: 3px 15px; text-align: left; border-bottom: 1px solid #333;">Independent town centres</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 3px 15px; text-align: center; border-bottom: 1px solid #333;">7</td>
+                      <td style="padding: 3px 15px; text-align: left; border-bottom: 1px solid #333;">Rural, elderly communities</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 3px 15px; text-align: center; border-bottom: 1px solid #333;">8</td>
+                      <td style="padding: 3px 15px; text-align: left; border-bottom: 1px solid #333;">Elderly middle-class countryside</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 3px 15px; text-align: center; border-bottom: 1px solid #333;">9</td>
+                      <td style="padding: 3px 15px; text-align: left; border-bottom: 1px solid #333;">Rural workers</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 3px 15px; text-align: center; border-bottom: 1px solid #333;">10</td>
+                      <td style="padding: 3px 15px; text-align: left; border-bottom: 1px solid #333;">Deprived Commuters</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 3px 15px; text-align: center; border-bottom: 1px solid #333;">11</td>
+                      <td style="padding: 3px 15px; text-align: left; border-bottom: 1px solid #333;">Isolated retirees</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 3px 15px; text-align: center; border-bottom: 1px solid #333;">12</td>
+                      <td style="padding: 3px 15px; text-align: left; border-bottom: 1px solid #333;">Non-residential commercial</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 3px 15px; text-align: center; border-bottom: 1px solid #333;">13</td>
+                      <td style="padding: 3px 15px; text-align: left; border-bottom: 1px solid #333;">Affluent rural</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 3px 15px; text-align: center; border-bottom: 1px solid #333;">14</td>
+                      <td style="padding: 3px 15px; text-align: left; border-bottom: 1px solid #333;">Deprived town centre workers</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+							<!-- Challenge 1 ArcGIS storymap iframe -->
+<section data-background-color="#f5f5f5">
+        <h3 style="color: #d10737; margin-bottom: 20px;">Presenting Submarkets Classification StoryMap</h2> <div style="background-color: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 20px; width: 80%; margin: 0 auto; text-align: center; max-height: 70vh; overflow-y: auto;">
+          <div style="margin-bottom: 15px;"> <img src="images/challenge_week/general/storymap-icon.png" alt="StoryMap Icon" style="width: 80px; height: 80px; object-fit: contain;" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22100%22%20height%3D%22100%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M9%2020.5L3.5%2015L9%209.5%22%20stroke%3D%22%23d10737%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M20.5%204v7a4%204%200%2001-4%204H3.5%22%20stroke%3D%22%23d10737%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E';"> </div>
+
+          <h3 style="margin-bottom: 15px; color: #2c3e50;">Interactive Submarkets Analysis</h3> <p style="margin-bottom: 20px; font-size: 1em; color: #555;"> Explore our interactive StoryMap showing submarkets analysis in Doncaster and Rotherham.
+          </p>
+
+          <a href="https://storymaps.arcgis.com/stories/2a3b60c55d9b4ad9b37f65ccf6403d34" target="_blank" style="text-decoration: none;">
+            <div style="background-color: #d10737; color: white; padding: 12px 25px; border-radius: 8px; display: inline-block; font-size: 1.1em; font-weight: bold; transition: background-color 0.3s ease; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"> Open StoryMap
+            </div>
+          </a>
+
+          <p style="margin-top: 20px; font-size: 0.8em; color: #777;"> <strong>Note:</strong> ArcGIS credentials may be required to view this content.
+          </p>
+        </div>
+      </section>
+
+
+			<!-- Main Challenge 1 Future Work Slide -->
+<section data-background-color="#f5f5f5">
+        <h3 style="color: #d10737;">Challenge 1: Future Work</h3>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px;">
+        <div style="background-color: white; border-radius: 10px; padding: 25px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #2c3e50; margin-top: 0; display: flex; align-items: center;">
+            <i class='bx bxs-data' style='color: #3498db; margin-right: 10px; font-size: 1.1em;'></i>
+            Data Enhancements
+          </h4>
+          <ul>
+          <li class="fragment">Higher resolution data where possible</li>
+          <li class="fragment">Data disaggregation for finer analysis</li>
+          <li class="fragment">Additional preprocessing (e.g., house price trends)</li>
+          <li class="fragment">Extend 2015 dataset with energy data</li>
+          </ul>
+        </div>
+
+        <div style="background-color: white; border-radius: 10px; padding: 25px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #2c3e50; margin-top: 0; display: flex; align-items: center;">
+            <i class='bx bxs-analyse' style='color: #9b59b6; margin-right: 10px; font-size: 1.1em;'></i>
+            Analysis Refinements
+          </h4>
+          <ul>
+          <li class="fragment">Try alternative clustering methods</li>
+          <li class="fragment">Extend temporal analysis for trend identification</li>
+          <li class="fragment">Weight features by % variance explained</li>
+          <li class="fragment">Assess additional locations (Sheffield, London)</li>
+          </ul>
+        </div>
+        </div>
+      </section>
+
+			<!-- Challenge 1 Conclusions -->
+            <section data-auto-animate>
+                <h3>Conclusions</h3>
+            </section>
+            <section data-auto-animate>
+                <h3>Conclusions</h3>
+                <ul>
+                    <li>Determine which variables are most important for creating clusters.</li>
+                </ul>
+            </section>
+            <section data-auto-animate>
+                <h3>Conclusions</h3>
+                <ul>
+                    <li>Determine which variables are most important for creating clusters.</li>
+                    <li>Clusters demonstrate similar areas across Doncaster and Rotherham.</li>
+                    <ul><li class="fragment">Use to direct clients to areas of interest.</li></ul>
+                </ul>
+            </section>
+            <section data-auto-animate>
+                <h3>Conclusions</h3>
+                <ul>
+                    <li>Determine which variables are most important for creating clusters.</li>
+                    <li>Clusters demonstrate similar areas across Doncaster and Rotherham.</li>
+                    <ul><li>Use to direct clients to areas of interest.</li></ul>
+                    <li>Potential to assess temporal changes in variable importance, relating to different requirements across the area.</li>
+                </ul>
+            </section>
+            <section data-auto-animate>
+                <h3>Conclusions</h3>
+                <ul>
+                    <li>Determine which variables are most important for creating clusters.</li>
+                    <li>Clusters demonstrate similar areas across Doncaster and Rotherham.</li>
+                    <ul><li>Use to direct clients to areas of interest.</li></ul>
+                    <li>Potential to assess temporal changes in variable importance, relating to different requirements across the area.</li>
+                    <li>The framework can be adapted to accommodate more variables.</li>
+                </ul>
+            </section>
+
+
+			<!-- Challenge 2 -->
+			<section data-auto-animate>
+				<h3>Challenge 2</h3>
+			  </section>
+			  <section data-auto-animate>
+				<h3>Challenge 2</h3>
+				<p>Identify areas of grey-belt land in England and Wales that holds potential for redevelopment.
+				</p>
+			 	</section>
+			 <section data-auto-animate>
+				<h3>Challenge 2</h3>
+				<p>Identify areas of grey-belt land in England and Wales that holds potential for redevelopment.
+				</p>
+				<h4>Objectives</h4>
+			  </section>
+			<section data-auto-animate>
+				<h3>Challenge 2</h3>
+				<p>Identify areas of grey-belt land in England and Wales that holds potential for redevelopment.
+				</p>
+				<h4>Objectives</h4>
+				<ol>
+				<li>Identify suitable satellite imagery techniques for Grey Belt recognition.</li>
+				<li class="fragment">Develop a framework for identifying grey belt areas.</li>
+				<li class="fragment">Integrate with additional data sources for deeper insights.</li>
+				</ol>
+			 </section>
+
+
+			<!-- Main Grey Belt Definition Slide -->
+			<section data-background-color="#f5f5f5">
+				<h3 style="color: #d10737;">What is Grey Belt Land?</h3>
+
+				<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px;">
+				<!-- Left Column: Definition -->
+				<div style="background-color: white; border-radius: 10px; padding: 25px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+					<h4 style="color: #2c3e50; margin-top: 0;">Definition</h4>
+					<p>Land within the green belt that:</p>
+					<ul>
+					<li class="fragment">Contains <strong>brownfield sites</strong></li>
+					<li class="fragment">Has <strong>low ecological value</strong></li>
+					<li class="fragment">Is <strong>previously developed</strong> or underutilised</li>
+					</ul>
+				</div>
+
+				<!-- Right Column: Purpose -->
+				<div style="background-color: white; border-radius: 10px; padding: 25px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+					<h4 style="color: #2c3e50; margin-top: 0;">Key Characteristics</h4>
+					<p>Does not strongly contribute to:</p>
+					<ul>
+					<li class="fragment">Prevention of urban sprawl</li>
+					<li class="fragment">Separation of neighboring towns</li>
+					<li class="fragment">Preservation of historic town settings</li>
+					</ul>
+				</div>
+				</div>
+			</section>
+
+			<!-- Exclusions and Requirements Slide -->
+<section data-background-color="#f5f5f5">
+        <h3 style="color: #d10737;">Grey Belt Planning Considerations</h3>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px;">
+        <div style="background-color: white; border-radius: 10px; padding: 25px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #2c3e50; margin-top: 0; display: flex; align-items: center;">
+            <i class='bx bxs-x-circle' style='color: #d10737; margin-right: 10px; font-size: 1.1em;'></i>
+            Protected Exclusions
+          </h4>
+          <ul>
+          <li class="fragment">Flood zones</li>
+          <li class="fragment">Conservation areas</li>
+          <li class="fragment">Sites of Special Scientific Interest</li>
+          <li class="fragment">Ancient woodland & protected habitats</li>
+          </ul>
+        </div>
+
+        <div style="background-color: white; border-radius: 10px; padding: 25px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+          <h4 style="color: #2c3e50; margin-top: 0; display: flex; align-items: center;">
+            <i class='bx bxs-check-circle' style='color: #27ae60; margin-right: 10px; font-size: 1.1em;'></i>
+            Development Requirements
+          </h4>
+          <ul>
+          <li class="fragment">Appropriate transport connections</li>
+          <li class="fragment">Meeting demonstrable housing needs</li>
+          <li class="fragment">Preserving remaining Green Belt purpose</li>
+          </ul>
+        </div>
+        </div>
+      </section>
+
+			<!-- Golden Rules Slide -->
+<section data-background-color="#f5f5f5">
+        <h3 style="color: #d10737;">Grey Belt "Golden Rules"</h3>
+
+        <div style="display: flex; justify-content: space-around; margin-top: 40px;">
+        <div class="fragment" style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 30%;">
+          <div style="background-color: #e74c3c; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px auto;">
+            <i class='bx bxs-home-heart' style='color: white; font-size: 36px;'></i>
+          </div>
+          <h4 style="color: #2c3e50; text-align: center;">Affordable Housing</h4>
+          <p style="text-align: center; font-size: 0.9em;">Development must include provision for affordable housing options</p>
+        </div>
+
+        <div class="fragment" style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 30%;">
+          <div style="background-color: #3498db; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px auto;">
+            <i class='bx bxs-train' style='color: white; font-size: 36px;'></i>
+          </div>
+          <h4 style="color: #2c3e50; text-align: center;">Infrastructure</h4>
+          <p style="text-align: center; font-size: 0.9em;">Projects must contribute to improving local infrastructure</p>
+        </div>
+
+        <div class="fragment" style="background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 30%;">
+          <div style="background-color: #27ae60; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px auto;">
+            <i class='bx bxs-tree' style='color: white; font-size: 36px;'></i>
+          </div>
+          <h4 style="color: #2c3e50; text-align: center;">Green Spaces</h4>
+          <p style="text-align: center; font-size: 0.9em;">Development must enhance and improve access to green spaces</p>
+        </div>
+        </div>
+      </section>
+
+
+			<!-- Earth Obervation Data -->
+<section style="margin-bottom: 80px;">
+        <h2>Data Sources</h2>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; font-size: 0.9em; text-align: left; margin: 30px auto auto auto; max-width: 95%;">
+        <div style="background-color: rgba(44, 62, 80, 0.05); border-left: 4px solid #d10737; padding: 20px; border-radius: 5px;">
+          <h4 style="margin-top: 0; display: flex; align-items: center;">
+            <i class='bx bxs-map' style='color: #d10737; margin-right: 10px; font-size: 1.1em;'></i>
+            OS
+          </h4>
+          <ul style="padding-left: 20px; margin-top: 10px;">
+          <li>Topography Master Map</li>
+          <li>Points of Interest</li>
+          <li>Open Roads</li>
+          </ul>
+
+          <h4 style="margin-top: 20px; display: flex; align-items: center;">
+            <i class='bx bxs-buildings' style='color: #d10737; margin-right: 10px; font-size: 1.1em;'></i>
+            Gov Planning
+          </h4>
+          <ul style="padding-left: 20px; margin-top: 10px;">
+          <li>Brownfield Land</li>
+          </ul>
+
+          <h4 style="margin-top: 20px; display: flex; align-items: center;">
+            <i class='bx bxs-landmark' style='color: #d10737; margin-right: 10px; font-size: 1.1em;'></i>
+            MHCLG
+          </h4>
+          <ul style="padding-left: 20px; margin-top: 10px;">
+          <li>Green Belt Regions</li>
+          <li>Local Authority Boundaries</li>
+          </ul>
+        </div>
+
+        <div style="background-color: rgba(44, 62, 80, 0.05); border-left: 4px solid #d10737; padding: 20px; border-radius: 5px;">
+          <h4 style="margin-top: 0; display: flex; align-items: center;">
+            <i class='bx bxs-leaf' style='color: #d10737; margin-right: 10px; font-size: 1.1em;'></i>
+            Nat Eng
+          </h4>
+          <ul style="padding-left: 20px; margin-top: 10px;">
+          <li>Sites of Special Scientific Interest</li>
+          <li>Nature Reserves</li>
+          <li>Special Protection Areas</li>
+          <li>Special Areas of Conservation</li>
+          </ul>
+
+          <h4 style="margin-top: 20px; display: flex; align-items: center;">
+            <i class='bx bxs-tree' style='color: #d10737; margin-right: 10px; font-size: 1.1em;'></i>
+            EA
+          </h4>
+          <ul style="padding-left: 20px; margin-top: 10px;">
+          <li>Flood Zones</li>
+          </ul>
+
+          <h4 style="margin-top: 20px; display: flex; align-items: center;">
+            <i class='bx bxs-world' style='color: #d10737; margin-right: 10px; font-size: 1.1em;'></i>
+            Hydrosheds
+          </h4>
+          <ul style="padding-left: 20px; margin-top: 10px;">
+          <li>Water Features</li>
+          </ul>
+        </div>
+
+        <div style="background-color: rgba(44, 62, 80, 0.05); border-left: 4px solid #d10737; padding: 20px; border-radius: 5px;">
+          <h4 style="margin-top: 0; display: flex; align-items: center;">
+            <i class='bx bxs-rocket' style='color: #d10737; margin-right: 10px; font-size: 1.1em;'></i>
+            Airbus
+          </h4>
+          <ul style="padding-left: 20px; margin-top: 10px;">
+          <li>Pleiades (0.5m resolution)</li>
+          <li>SPOT (1.5m resolution)</li>
+          </ul>
+
+          <h4 style="margin-top: 20px; display: flex; align-items: center;">
+            <i class='bx bx-globe' style='color: #d10737; margin-right: 10px; font-size: 1.1em;'></i>
+            ESA
+          </h4>
+          <ul style="padding-left: 20px; margin-top: 10px;">
+          <li>Sentinel-2 (10m resolution)</li>
+          </ul>
+
+          <h4 style="margin-top: 20px; display: flex; align-items: center;">
+            <i class='bx bx-water' style='color: #d10737; margin-right: 10px; font-size: 1.1em;'></i>
+            UKCEH
+          </h4>
+          <ul style="padding-left: 20px; margin-top: 10px;">
+          <li>Land Use/Land Cover (LULC)</li>
+          </ul>
+        </div>
+        </div>
+      </section>
+
+			<!-- Challenge 2 Methodology 1 -->
+            <section data-background-color="white">
+                <h3>Methodology</h3>
+                <img src="images/challenge_week/challenge_2/c2flowchart.png" alt="Methodology" style="width: 100%;">
+            </section>
+
+            <!-- Challenge 2 Methodology 2 -->
+            <section data-background-color="white">
+                <h3>Methodology</h3>
+                <img src="images/challenge_week/challenge_2/EOflowchartzoom1.jfif" alt="Methodology" style="width: 100%;">
+            </section>
+
+            <!-- Challenge 2 Methodology 3 -->
+            <section data-background-color="white">
+                <h3>Methodology</h3>
+                <img src="images/challenge_week/challenge_2/EOflowchartzoom2.jfif" alt="Methodology" style="width: 100%;">
+            </section>
+
+
+			<!-- Challenge 2 ArcGIS storymap iframe -->
+<section data-background-color="#f5f5f5">
+        <h2 style="color: #d10737; margin-bottom: 20px;">Grey Belt Analysis StoryMap</h2>
+
+        <div style="background-color: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 20px; width: 80%; margin: 0 auto; text-align: center; max-height: 70vh; overflow-y: auto;">
+          <div style="margin-bottom: 15px;">
+            <img src="images/challenge_week/general/storymap-icon.png" alt="StoryMap Icon" style="width: 80px; height: 80px; object-fit: contain;" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22100%22%20height%3D%22100%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M9%2020.5L3.5%2015L9%209.5%22%20stroke%3D%22%23d10737%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M20.5%204v7a4%204%200%2001-4%204H3.5%22%20stroke%3D%22%23d10737%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E';">
+          </div>
+
+          <h3 style="margin-bottom: 15px; color: #2c3e50;">Interactive Grey Belt Analysis</h3>
+
+          <p style="margin-bottom: 20px; font-size: 1em; color: #555;">
+            Explore our interactive StoryMap showing potential Grey Belt development opportunities in Doncaster and Rotherham.
+          </p>
+
+          <a href="https://storymaps.arcgis.com/stories/314279739fe9468ca87f08099dcdced9" target="_blank" style="text-decoration: none;">
+            <div style="background-color: #d10737; color: white; padding: 12px 25px; border-radius: 8px; display: inline-block; font-size: 1.1em; font-weight: bold; transition: background-color 0.3s ease; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+              Open StoryMap
+            </div>
+          </a>
+
+          <p style="margin-top: 20px; font-size: 0.8em; color: #777;">
+            <strong>Note:</strong> ArcGIS credentials may be required to view this content.
+          </p>
+        </div>
+      </section>
+
+			<!-- Challenge 2 Scenario Based Analysis -->
+			<section data-background-color="#f5f5f5">
+				<h2 style="color: #d10737; margin-bottom: 30px;">Scenario Based Analysis</h2>
+
+				<div style="background-color: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 20px; width: 90%; margin: 0 auto;">
+				  <table style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
+					<thead>
+					  <tr>
+						<th style="padding: 15px; text-align: center; border-bottom: 2px solid #d10737; font-size: 1.1em;">Scenario/<br>Criteria</th>
+						<th style="padding: 15px; text-align: center; border-bottom: 2px solid #d10737; font-size: 1.1em;">S1</th>
+						<th style="padding: 15px; text-align: center; border-bottom: 2px solid #d10737; font-size: 1.1em;">S2</th>
+						<th style="padding: 15px; text-align: center; border-bottom: 2px solid #d10737; font-size: 1.1em;">S3</th>
+						<th style="padding: 15px; text-align: center; border-bottom: 2px solid #d10737; font-size: 1.1em;">S4</th>
+					  </tr>
+					</thead>
+					<tbody>
+					  <tr style="background-color: rgba(209, 7, 55, 0.05);">
+						<td style="padding: 15px; text-align: left; font-weight: bold; border-bottom: 1px solid #ddd;">Road Buffer</td>
+						<td style="padding: 15px; text-align: center; border-bottom: 1px solid #ddd;">150m</td>
+						<td style="padding: 15px; text-align: center; border-bottom: 1px solid #ddd;">250m</td>
+						<td style="padding: 15px; text-align: center; border-bottom: 1px solid #ddd;">500m</td>
+						<td style="padding: 15px; text-align: center; border-bottom: 1px solid #ddd;">No roads buffer</td>
+					  </tr>
+					  <tr>
+						<td style="padding: 15px; text-align: left; font-weight: bold; border-bottom: 1px solid #ddd;">River/Drainage<br>Buffer</td>
+						<td style="padding: 15px; text-align: center; border-bottom: 1px solid #ddd;">250m</td>
+						<td style="padding: 15px; text-align: center; border-bottom: 1px solid #ddd;">150m</td>
+						<td style="padding: 15px; text-align: center; border-bottom: 1px solid #ddd;">50m</td>
+						<td style="padding: 15px; text-align: center; border-bottom: 1px solid #ddd;">5m</td>
+					  </tr>
+					  <tr style="background-color: rgba(209, 7, 55, 0.05);">
+						<td style="padding: 15px; text-align: left; font-weight: bold; border-bottom: 1px solid #ddd;">Building holes</td>
+						<td style="padding: 15px; text-align: center; border-bottom: 1px solid #ddd;">No fill</td>
+						<td style="padding: 15px; text-align: center; border-bottom: 1px solid #ddd;">Fill buildings<br>< 200sqm</td>
+						<td style="padding: 15px; text-align: center; border-bottom: 1px solid #ddd;">Fill buildings<br>< 500sqm</td>
+						<td style="padding: 15px; text-align: center; border-bottom: 1px solid #ddd;">Fill all buildings</td>
+					  </tr>
+					  <tr>
+						<td style="padding: 15px; text-align: left; font-weight: bold;">Sites of interest</td>
+						<td style="padding: 15px; text-align: center;">SSSI + SPA + SCA</td>
+						<td style="padding: 15px; text-align: center;">SSSI + SPA + SCA</td>
+						<td style="padding: 15px; text-align: center;">SSSI</td>
+						<td style="padding: 15px; text-align: center;">SSSI</td>
+					  </tr>
+					</tbody>
+				  </table>
+				</div>
+			  </section>
+
+
+
+			<!-- Challenge 2 Results -->
+
+			<!-- Interactive results html -->
+			<section data-background-iframe="html/challenge-week/grey_belt_scenarios_map.html" width="100%" height="100%" frameborder="0"></iframe>
+			</section>
+
+
+
+			<!-- Challenge 2 results graph image -->
+			<section data-background-color="white">
+				<h3>Results</h3>
+				<img src="images/challenge_week/challenge_2/results.png" alt="Results Graph" height="400">
+			</section>
+
+
+			<!-- Challenge 2 Limitations -->
+            <section data-auto-animate>
+                <h3>Limitations</h3>
+            </section>
+            <section data-auto-animate>
+                <h3>Limitations</h3>
+                <ul>
+                    <li>Dependent on data availability and quality.</li>
+                </ul>
+            </section>
+            <section data-auto-animate>
+                <h3>Limitations</h3>
+                <ul>
+                    <li>Dependent on data availability and quality.</li>
+                    <li>Unclear guidance from local planning policy.</li>
+                </ul>
+            </section>
+            <section data-auto-animate>
+                <h3>Limitations</h3>
+                <ul>
+                    <li>Dependent on data availability and quality.</li>
+                    <li>Unclear guidance from local planning policy.</li>
+                    <li>Using average house size – unrealistic house shape.</li>
+                </ul>
+            </section>
+            <section data-auto-animate>
+                <h3>Limitations</h3>
+                <ul>
+                    <li>Dependent on data availability and quality.</li>
+                    <li>Unclear guidance from local planning policy.</li>
+                    <li>Using average house size – unrealistic house shape.</li>
+                    <li></li>
+                </ul>
+            </section>
+            <section data-auto-animate>
+                <h3>Limitations</h3>
+                <ul>
+                    <li>Dependent on data availability and quality.</li>
+                    <li>Unclear guidance from local planning policy.</li>
+                    <li>Using average house size – unrealistic house shape.</li>
+					<li>High-resolution imagery vs. computational costs.</li>
+				</ul>
+			</section>
+			<section data-auto-animate>
+				<h3>Limitations</h3>
+				<ul>
+					<li>Dependent on data availability and quality.</li>
+					<li>Unclear guidance from local planning policy.</li>
+					<li>Using average house size – unrealistic house shape.</li>
+					<li>High-resolution imagery vs. computational costs.</li>
+					<li>No guarantee for planning permission.</li>
+				</ul>
+			</section>
+			<section data-auto-animate>
+				<h3>Limitations</h3>
+				<ul>
+					<li>Dependent on data availability and quality.</li>
+					<li>Unclear guidance from local planning policy.</li>
+					<li>Using average house size – unrealistic house shape.</li>
+					<li>High-resolution imagery vs. computational costs.</li>
+					<li>No guarantee for planning permission.</li>
+					<li>Unable to provide a definitive number of potential newbuilds.</li>
+				</ul>
+			</section>
+
+			<!-- EO Challenge 2 Future Work -->
+			<section>
+				<h3>Segmentation Analysis Refinements</h3>
+
+				<div style="background-color: rgba(209, 7, 55, 0.05); border-left: 4px solid #d10737; padding: 20px; border-radius: 5px; margin: 20px auto; max-width: 90%;">
+				  <h4 style="color: #d10737; margin-top: 0;">Constraints</h4>
+				  <ul>
+					<li>High resolution satellite imagery is expensive</li>
+					<li>High computational costs for training</li>
+				  </ul>
+				</div>
+
+				<div style="background-color: rgba(44, 62, 80, 0.05); border-left: 4px solid #2c3e50; padding: 20px; border-radius: 5px; margin: 20px auto; max-width: 90%;">
+				  <h4 style="color: #2c3e50; margin-top: 0;">Approach</h4>
+				  <ul>
+					<li>Process specific grey belt polygons with Segment Anything Model</li>
+					<li>Focus on smaller image segments to optimise processing</li>
+					<li>Refine detection by segmenting objects within land use parcels</li>
+				  </ul>
+				</div>
+
+				<div class="fragment" style="display: flex; justify-content: space-around; margin-top: 20px;">
+				  <div style="text-align: center; width: 30%;">
+					<div style="background-color: #e67e22; height: 70px; display: flex; align-items: center; justify-content: center; border-radius: 5px;">
+					  <h5 style="color: white; margin: 0;">Industrial</h5>
+					</div>
+				  </div>
+
+				  <div style="text-align: center; width: 30%;">
+					<div style="background-color: #27ae60; height: 70px; display: flex; align-items: center; justify-content: center; border-radius: 5px;">
+					  <h5 style="color: white; margin: 0;">Agricultural</h5>
+					</div>
+				  </div>
+
+				  <div style="text-align: center; width: 30%;">
+					<div style="background-color: #3498db; height: 70px; display: flex; align-items: center; justify-content: center; border-radius: 5px;">
+					  <h5 style="color: white; margin: 0;">Housing</h5>
+					</div>
+				  </div>
+				</div>
+			  </section>
+
+
+			<!-- Image Segmentation -->
+			<section>
+				<h3>Transformation High-Resolution Imagery</h3>
+
+				<!-- First row of images - appears first -->
+				<div class="fragment fade-in" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 20px auto; max-width: 90%;">
+				<div style="text-align: center;">
+					<img src="images/challenge_week/challenge_2/a_raw.png" alt="Input Image 1" style="width: 100%; height: 150px; object-fit: cover; border: 2px solid #d10737; border-radius: 5px;">
+					<p style="font-size: 0.8rem; margin-top: 0px;">Input 1</p>
+				</div>
+				<div style="text-align: center;">
+					<img src="images/challenge_week/challenge_2/b_raw.png" alt="Input Image 2" style="width: 100%; height: 150px; object-fit: cover; border: 2px solid #d10737; border-radius: 5px;">
+					<p style="font-size: 0.8rem; margin-top: 0px;">Input 2</p>
+				</div>
+				<div style="text-align: center;">
+					<img src="images/challenge_week/challenge_2/c_raw.png" alt="Input Image 3" style="width: 100%; height: 150px; object-fit: cover; border: 2px solid #d10737; border-radius: 5px;">
+					<p style="font-size: 0.8rem; margin-top: 0px;">Input 3</p>
+				</div>
+				<div style="text-align: center;">
+					<img src="images/challenge_week/challenge_2/d_raw.png" alt="Input Image 4" style="width: 100%; height: 150px; object-fit: cover; border: 2px solid #d10737; border-radius: 5px;">
+					<p style="font-size: 0.8rem; margin-top: 0px;">Input 4</p>
+				</div>
+				</div>
+
+				<!-- Arrow pointing down - appears second -->
+				<div class="fragment fade-in" style="text-align: center; margin: 5px 0;">
+				<svg width="50" height="40" viewBox="0 0 24 24" style="margin: 0;">
+					<path d="M12 4v16m-6-6l6 6 6-6" stroke="#d10737" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+				</div>
+
+				<!-- Second row of images - appears last -->
+				<div class="fragment fade-in" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 15px auto 80px auto; max-width: 90%;">
+				<!-- Added bottom margin (60px) here ↑ to provide space for the logos -->
+				<div style="text-align: center;">
+					<img src="images/challenge_week/challenge_2/a_seg.png" alt="Output Image 1" style="width: 100%; height: 150px; object-fit: cover; border: 2px solid #2c3e50; border-radius: 5px;">
+					<p style="font-size: 0.8rem; margin-top: 0px;">Output 1</p>
+				</div>
+				<div style="text-align: center;">
+					<img src="images/challenge_week/challenge_2/b_seg.png" alt="Output Image 2" style="width: 100%; height: 150px; object-fit: cover; border: 2px solid #2c3e50; border-radius: 5px;">
+					<p style="font-size: 0.8rem; margin-top: 0px;">Output 2</p>
+				</div>
+				<div style="text-align: center;">
+					<img src="images/challenge_week/challenge_2/c_seg.png" alt="Output Image 3" style="width: 100%; height: 150px; object-fit: cover; border: 2px solid #2c3e50; border-radius: 5px;">
+					<p style="font-size: 0.8rem; margin-top: 0px;">Output 3</p>
+				</div>
+				<div style="text-align: center;">
+					<img src="images/challenge_week/challenge_2/d_seg.png" alt="Output Image 4" style="width: 100%; height: 150px; object-fit: cover; border: 2px solid #2c3e50; border-radius: 5px;">
+					<p style="font-size: 0.8rem; margin-top: 0px;">Output 4</p>
+				</div>
+				</div>
+			</section>
+
+			<!-- Challenge 2 - Future Work -->
+			<section>
+
+				<div style="background-color: rgba(44, 62, 80, 0.05); border-left: 4px solid #2c3e50; padding: 20px; border-radius: 5px; margin: 20px auto; max-width: 90%;">
+				  <h4 style="color: #ffffff; margin-top: 0;">Future Work</h4>
+				  <ul>
+					<li class="fragment">Refine grey-belt delineation</li>
+					<li class="fragment">Further analysis – e.g. accessibility</li>
+					<li class="fragment">Test in broader contexts</li>
+					<li class="fragment">Explore alternative models</li>
+					<li class="fragment">More validation required</li>
+					<li class="fragment">Develop a user-friendly Graphical User Interface (GUI)</li>
+				  </ul>
+				</div>
+			</section>
+
+			<!-- Challenge 2 Summary -->
+			<section data-background-gradient="linear-gradient(to bottom right, #2c3e50, #4a6572)">
+				<div style="background-color: rgba(255, 255, 255, 0.1); padding: 50px; border-radius: 10px; max-width: 80%; margin: 0 auto; backdrop-filter: blur(5px);">
+				  <blockquote style="font-size: 1.8rem; line-height: 1.5; color: #ffffff; font-style: italic; text-align: left; border-left: 4px solid #d10737; padding-left: 30px; margin-bottom: 30px;">
+					"So, is the grey belt a good thing? It isn't black and white, but depends to a great extent on how effectively the government manages the transition to strategic planning."
+				  </blockquote>
+
+				  <div style="text-align: right; font-size: 1.2rem; color: #e6e6e6;">
+					<strong>Dr Daniel Slade</strong>
+					<p style="margin-top: 5px; font-size: 1rem; opacity: 0.8;">Head of Practice and Research at the RTPI</p>
+					<p style="margin-top: 5px; font-size: 0.8rem; opacity: 0.6;">
+					  <a href="https://www.rtpi.org.uk/blog/2024/september/daniel-slade-is-the-introduction-of-the-grey-belt-a-good-thing/" style="color: #e6e6e6; text-decoration: underline;">RTPI Blog, September 2024</a>
+					</p>
+				  </div>
+				</div>
+			  </section>
+
+			<!-- Final Conclusion -->
+            <section>
+                <h3>Conclusion</h3>
+                <img src="images/challenge_week/general/Final_Conclusion.png" alt="First Image" style="width: 100%;">
+            </section>
+
+			<!-- Thank you slide with image-->
+			<section>
+				<img src="images/challenge_week/general/group.jpg" alt="Thank You" style="width: 100%; max-width: 600px; margin: 0 auto;">
+			</section>
+
+
+			<!-- Webmap Embedded -->
+			<section>
+				<h6>Free vs Paid Comparison </h6>
+				<iframe src="html/challenge-week/free_paid_comparison.html" width="100%" height="500px" frameborder="0"></iframe>
+				<p style="text-align: center; font-size: 0.8rem; margin-top: 10px;">Click the image to view the interactive map</p>
+			</section>
+		</div>
+	</div>
+
+</body>
+
+</html>
+
+<!-- Footer Images Container (Hidden by default) -->
+<div id="footer-images" class="footer-images hidden">
+	<img src="images/white_logos/newcastle.png" style="color: #FFFFFF;">
+	<img src="images/white_logos/nottingham.png" style="color: #FFFFFF;">
+	<img src="images/white_logos/cdt_long.png" style="color: #FFFFFF;">
+	<img src="images/white_logos/knight_frank.png" style="color: #FFFFFF;">
+
+</div>
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script>
+	Reveal.initialize({
+		controls: true,
+		controlsLayout: 'edges',
+		hash: true,
+		progress: true,
+		autoAnimate: true,
+		transition: 'slide', // none/fade/slide/convex/concave/zoom
+		transitionSpeed: 'default', // default/fast/slow
+		preloadIframes: true,
+		plugins: [RevealNotes],
+		math: {
+			mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+			config: 'TeX-AMS_HTML-full'
+		}
+
+
+	});
+
+// NEW Function to handle footer visibility and logo style
+    function updateFooterState() {
+        var currentSlide = Reveal.getCurrentSlide();
+        var footer = document.getElementById('footer-images');
+
+        if (!currentSlide || !footer) {
+            return; // Exit if Reveal.js isn't ready or footer doesn't exist
+        }
+
+        // --- 1. Handle Visibility ---
+        if (currentSlide.classList.contains('title-slide')) {
+            footer.classList.add('hidden');
+        } else {
+            footer.classList.remove('hidden');
+        }
+
+        // --- 2. Handle Logo Color Inversion ---
+        let isLightBg = false;
+        const slideBgColorAttr = currentSlide.getAttribute('data-background-color');
+
+        if (slideBgColorAttr) {
+            const color = slideBgColorAttr.toLowerCase().trim();
+            // Add more light color variations if you use them
+            const lightColors = [
+                'white', '#fff', '#ffffff',
+                '#f5f5f5', '#f0f0f0', '#e0e0e0', '#f8f9fa',
+                'rgb(255,255,255)', 'rgba(255,255,255,1)'
+                // You can add more specific RGB/RGBA values if needed
+            ];
+            if (lightColors.includes(color)) {
+                isLightBg = true;
+            } else if (color.startsWith('rgb')) {
+                // Basic check for RGB values where components are generally high
+                try {
+                    const rgbValues = color.match(/\d+/g);
+                    if (rgbValues && rgbValues.length >= 3) {
+                        const r = parseInt(rgbValues[0]);
+                        const g = parseInt(rgbValues[1]);
+                        const b = parseInt(rgbValues[2]);
+                        // If the sum is high or average is high, consider it light
+                        if ((r + g + b) > 600 || (r > 200 && g > 200 && b > 200)) {
+                            isLightBg = true;
+                        }
+                    }
+                } catch (e) { /* Parsing error, do nothing */ }
+            }
+        } else {
+            // If no explicit background color, assume the default theme (knight-blood is dark)
+            // unless a class indicates otherwise
+            if (currentSlide.classList.contains('light-background-slide')) {
+                 isLightBg = true;
+            }
+        }
+
+        // If you manually add 'light-background-slide' class to a <section>
+        if (currentSlide.classList.contains('light-background-slide')) {
+            isLightBg = true;
+        }
+
+        if (isLightBg) {
+            footer.classList.add('footer-logos-inverted');
+        } else {
+            footer.classList.remove('footer-logos-inverted');
+        }
+    }
+
+    // Add event listeners for the new function
+    Reveal.on('slidechanged', function (event) {
+        updateFooterState();
+    });
+
+    Reveal.on('ready', function(event) { // Use 'ready' event for initial setup
+        updateFooterState();
+    });
+
+    // Fallback for DOMContentLoaded if Reveal is already ready
+    document.addEventListener('DOMContentLoaded', function () {
+        if (Reveal.isReady()) {
+            updateFooterState();
+        }
+    });
+</script>
+</body>
+
+</html>
