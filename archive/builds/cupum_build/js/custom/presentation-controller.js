@@ -41,11 +41,11 @@ function handleStateChanges(event) {
       footer.classList.remove("footer-logos-inverted");
     }
 
-    // Logic to hide footer on title slide
-    if (currentSlide.classList.contains("title-slide")) {
-      footer.style.opacity = "0";
-    } else {
-      footer.style.opacity = "1";
-    }
+    // // Logic to hide footer on title slide
+    // if (currentSlide.classList.contains("title-slide")) {
+    //   footer.style.opacity = "0";
+    // } else {
+    //   footer.style.opacity = "1";
+    // }
   }
 }

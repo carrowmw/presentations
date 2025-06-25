@@ -447,7 +447,7 @@
 		<h2>Finding 1: The Network Learns Real-World Dependencies</h2>
 
 		<!-- This container will be filled by our new JavaScript function -->
-		<div data-viz="attention-map" id="attention-viz-1" style="width: 95%; height: 750px; margin: auto;">
+		<div data-viz="attention-map" id="attention-viz-1" style="width: 90%; height: 750px; margin: auto;">
 			<!-- The JS will create a selector and map inside this div -->
 		</div>
 
@@ -470,33 +470,32 @@
 		</aside>
 		</section>
 
-
     <section data-auto-animate class="visualization-slide">
-    <h2>Finding 2: Model Performance on Individual Sensors</h2>
-    <!-- UPDATED: Increased height from 600px to 750px -->
-    <div data-viz="forecast-chart" id="forecast-viz-1" style="width: 95%; height: 750px; margin: auto;">
-        <!-- The JS will create a selector and chart inside this div -->
-    </div>
+      <h2>Finding 2: Model Performance on Individual Sensors</h2>
+      <!-- UPDATED: Increased height from 600px to 750px -->
+      <div data-viz="forecast-chart" id="forecast-viz-1" style="width: 90%; height: 750px; margin: auto;">
+          <!-- The JS will create a selector and chart inside this div -->
+      </div>
 
-    <aside class="notes">
-        <ul>
-        <li>
-            This slide allows for a granular inspection of the model's performance.
-        </li>
-        <li>
-            Use the dropdown to select different sensors. Highlight how the model performs on both 'sensor' (blue) and 'target' (red) nodes.
-        </li>
-        <li>
-            Point out how the forecast (dashed red line) closely tracks the ground truth (solid blue line), especially during the test period.
-        </li>
-        </ul>
-    </aside>
+      <aside class="notes">
+          <ul>
+          <li>
+              This slide allows for a granular inspection of the model's performance.
+          </li>
+          <li>
+              Use the dropdown to select different sensors. Highlight how the model performs on both 'sensor' (blue) and 'target' (red) nodes.
+          </li>
+          <li>
+              Point out how the forecast (dashed red line) closely tracks the ground truth (solid blue line), especially during the test period.
+          </li>
+          </ul>
+      </aside>
     </section>
 
 	<!-- NEW: Slide for Failure Simulation -->
     <section data-auto-animate class="visualization-slide">
         <h2>Finding 3: Resilience to Sensor Failure</h2>
-        <div data-viz="failure-simulation-chart" id="failure-viz-1" style="width: 95%; height: 750px; margin: auto;">
+        <div data-viz="failure-simulation-chart" id="failure-viz-1" style="width: 90%; height: 750px; margin: auto;">
             <!-- The JS will create a selector and chart inside this div -->
         </div>
 
@@ -509,13 +508,12 @@
         </aside>
     </section>
 
-
     <!-- NEW SLIDE: Key Metrics -->
     <section>
         <h2>Some Numbers: Key Metrics</h2>
         <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; margin-top: 2em;">
             <div class="metric-box" style="background: rgba(0,0,0,0.2); padding: 2em; border-radius: 12px; text-align: center;">
-                <h3>Context Sensors (Training Fit)</h3>
+                <h3>Context Sensors (Test Fit)</h3>
                 <p style="font-size: 1.5em; margin-top: 1em;">MAE: <span style="font-weight: bold; color: #4cd137;">~3.0</span> people</p>
                 <p style="font-size: 1.5em;">MSE: <span style="font-weight: bold; color: #4cd137;">19.0</span></p>
             </div>

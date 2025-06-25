@@ -42,10 +42,10 @@ function handleStateChanges(event) {
     }
 
     // Logic to hide footer on title slide
-    if (currentSlide.classList.contains("title-slide")) {
-      footer.style.opacity = "0";
-    } else {
-      footer.style.opacity = "1";
-    }
+    // if (currentSlide.classList.contains("title-slide")) {
+    //   footer.style.opacity = "0";
+    // } else {
+    //   footer.style.opacity = "1";
+    // }
   }
 }
