@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Resilient Nowcasting Presentation</title>
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/newcastle-enchanced.css" />
+    <link rel="stylesheet" href="css/boxicons.min.css" />
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+
+    <!-- Libraries -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <style>
+      .viz-container {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 20px;
+        height: 100%;
+      }
+      .viz-column {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      .viz-full {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+      }
+      .v-center-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%; /* Make sure the container fills the grid cell's height */
+      }
+      .h-center-content {
+        display: flex;
+        justify-content: center; /* This is the key for horizontal centering */
+        align-items: center; /* This will also handle vertical centering */
+        width: 100%;
+      }
+      .viz-container [data-viz],
+      .viz-full [data-viz] {
+        width: 100%;
+        min-height: 800px; /* Allow the container to grow taller if needed */
+        height: auto; /* Let the content determine the final height */
+        border-radius: 12px;
+      }
+      #particles-js {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        display: none;
+      }
+      #architecture-flowchart {
+        width: 100%;
+        height: 100%;
+        display: flex; /* Optional: Helps center the SVG if it doesn't fill the space perfectly */
+        align-items: center;
+        justify-content: center;
+      }
+      /* Add this new rule here */
+      #architecture-flowchart .node span {
+        font-size: 15px !important;
+        line-height: 1 !important;
+        font-weight: normal !important;
+      }
+
+      .attention-controls,
+      .forecast-controls,
+      .failure-controls {
+        margin-bottom: 15px;
+        text-align: center;
+      }
+      .attention-controls label,
+      .forecast-controls label,
+      .failure-controls label {
+          margin-right: 10px;
+          font-size: 0.8em;
+      }
+      .attention-controls select,
+      .forecast-controls select,
+      .failure-controls select {
+          padding: 8px 12px;
+          border-radius: 8px;
+          border: 1px solid #555;
+          background-color: #333;
+          color: #fff;
+          font-family: inherit;
+          font-size: 0.7em;
+      }
+      .attention-map-container {
+          height: calc(100% - 50px); /* Adjust height to account for controls */
+          width: 100%;
+          border-radius: 12px;
+      }
+
+      /*
+        Force the SVG element itself to scale to the full height of its container.
+      */
+      #architecture-flowchart svg {
+        height: 100%;
+        /* The width is already handled by the `useMaxWidth: true` mermaid config,
+          but being explicit doesn't hurt. */
+        width: 100%;
+      }
+
+      /* Styling for the icon list on the motivation slide */
+      .icon-list {
+          list-style-type: none; /* Remove default bullets */
+          padding-left: 0;
+          margin-top: 1em;
+      }
+      .icon-list li {
+          position: relative; /* Create a positioning context for the icon */
+          padding-left: 2.5em; /* Create space for the icon to live */
+          margin-bottom: 0.8em;
+          text-align: left;
+      }
+      .icon-list .bx {
+          position: absolute; /* Position the icon relative to the li */
+          left: 0;
+          top: 0.1em; /* Adjust for better vertical alignment with the text */
+          font-size: 1.5em;
+          line-height: 1; /* Prevent the icon's line height from adding extra space */
+          color: #d5112d; /* Use link color from theme */
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="particles-js"></div>
+    <div class="reveal">
+      <div class="slides">
+        <!-- Title Slide -->
+        <section class="title-slide" data-particles="true">
+          <div class="title-content">
+            <h1 class="presentation-title r-fit-text">Resilient Nowcasting</h1>
+            <h2 class="presentation-subtitle">
+              Predicting Spatio-Temporal Dynamics from Incomplete Urban Sensor
+              Data
+            </h2>
+            <p class="author-affiliation">Carrow Morris-Wiltshire</p>
+            <p class="supervisors">
+              <span class="supervisor-label">Supervisors:</span>
+              Prof. Stuart Barr, Prof. Phil James &amp; Keith Hermiston (DSTL)
+            </p>
+          </div>
+        </section>
+
+		<section data-background-image="/images/cupum/emergency_response.jpg">
+			<div class="text-box" style="text-align: left;">
+				<h2>The Core Urban Challenge</h2>
+
+				<p class="fragment"><i class='bx bx-sitemap'></i> Nowcasting pedestrian flow is crucial for urban management and transit.</p>
+
+				<p class="fragment"><i class='bx bxs-ambulance'></i> In a crisis, this real-time understanding is critical for saving lives.</p>
+
+				<p class="fragment"><i class='bx bx-wifi-off'></i> But effectiveness depends entirely on sensor data that is often incomplete.</p>
+
+			</div>
+			<aside class="notes">
+				<ul>
+					<li>Effective urban planning and management, from daily transit operations to emergency response, fundamentally depends on our ability to nowcast—to predict where people will be in the near future.</li>
+					<li>Scenarios like the Manchester Arena incident highlight that in a crisis, a real-time understanding of pedestrian flow is critical for guiding interventions and saving lives.</li>
+					<li>However, the effectiveness of any real-time system is critically dependent on the quality and completeness of its underlying sensor data.</li>
+				</ul>
+			</aside>
+		</section>
+
+        <!-- NEW: Research Aim Slide -->
+        <section data-background-image="/images/cupum/research_aim.jpg">
+            <div class="text-box" style="text-align: left;">
+                <h2>Research Aim</h2>
+                <p>
+                    To develop a resilient spatio-temporal nowcasting model that can accurately predict urban pedestrian flow, even with incomplete or missing sensor data.
+                </p>
+            </div>
+            <aside class="notes">
+                <ul>
+                    <li>This is the core goal of the project.</li>
+                    <li>"Resilient" is the key word here - the model must be robust to the real-world problem of sensor failure.</li>
+                    <li>We're focusing on "nowcasting" - predicting the very near future - which is most relevant for operational decisions.</li>
+                </ul>
+            </aside>
+        </section>
+
+        <!-- NEW: Why this architecture slide -->
+		<section data-background-image="/images/cupum/architecture_choice.jpg">
+			<div class="text-box" style="text-align: left;">
+				<h2>Why this Architecture?</h2>
+
+
+					<p><i class='bx bx-network-chart'></i> <strong>Graph Neural Networks (GNNs)</strong> for Spatial Dependencies.</p>
+					<small>They naturally model the irregular, network-based structure of a city's sensor grid.</small>
+
+					<p><i class='bx bx-time-five'></i> <strong>Temporal Self-Attention</strong> for Time Dependencies.</p>
+					<small>It allows the model to weigh the importance of past events differently, capturing complex patterns like morning rush hour vs. midday lulls.</small>
+
+			</div>
+			<aside class="notes">
+				<ul>
+					<li>Our problem has two key dimensions: space and time. We need an architecture that can handle both.</li>
+					<li>For the spatial part, a GNN is the perfect fit. Unlike a grid-based model like a CNN, a GNN can understand the complex and irregular connections of a real-world sensor network.</li>
+					<li>For the temporal part, self-attention is more powerful than a simple RNN. It can look back at the entire history of a sensor and decide which past moments are most important for predicting the next 15 minutes. This is key for understanding daily and weekly cycles.</li>
+				</ul>
+			</aside>
+		</section>
+
+
+        <!-- Slide 3 Case Study -->
+        <section data-state="full-width" data-auto-animate>
+          <div class="grid" style="grid-template-columns: 30% 70%">
+            <div data-id="methodology-text-container">
+              <p data-id="case-study">Case Study &amp; Experimental Design</p>
+            </div>
+            <div style="height: 800px" class="v-center-container"></div>
+          </div>
+          <aside class="notes">
+            <ul>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- Slide 3 CS Data -->
+        <section data-state="full-width" data-auto-animate>
+          <div class="grid" style="grid-template-columns: 30% 70%">
+            <div data-id="methodology-text-container">
+              <p data-id="case-study">Case Study &amp; Experimental Design</p>
+              <small data-id="data-source">
+                <hr />
+                <strong>Data:</strong> Pedestrian counts from the Newcastle
+                Urban Observatory.</small
+              >
+            </div>
+            <div style="height: 800px" class="v-center-container"></div>
+          </div>
+          <aside class="notes">
+            <ul>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- Slide 3 Sensor Video-->
+        <section data-state="full-width" data-auto-animate>
+          <div class="grid" style="grid-template-columns: 30% 70%">
+            <div data-id="methodology-text-container">
+              <p data-id="case-study">Case Study &amp; Experimental Design</p>
+              <small data-id="data-source">
+                <hr />
+                <strong>Data:</strong> Pedestrian counts from the Newcastle
+                Urban Observatory.</small
+              >
+            </div>
+            <div style="height: 800px" class="v-center-container">
+              <video
+                data-id="video"
+                style="border-radius: 12px; align-items: center"
+                autoplay
+              >
+                <source
+                  data-src="/videos/computer_vision.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+          <aside class="notes">
+            <ul>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- Slide 3 Sensor Counts -->
+        <section
+          data-auto-animate
+          data-state="full-width"
+          class="visualization-slide"
+        >
+          <div class="grid" style="grid-template-columns: 30% 70%">
+            <div data-id="methodology-text-container">
+              <p data-id="case-study">Case Study &amp; Experimental Design</p>
+              <small data-id="data-source">
+                <hr />
+                <strong>Data:</strong> Pedestrian counts from the Newcastle
+                Urban Observatory.</small
+              >
+            </div>
+            <div class="viz-column" style="height: 800px">
+              <canvas data-viz="bar-chart" id="bar-chart-2"></canvas>
+            </div>
+          </div>
+          <aside class="notes">
+            <ul>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- Slide 3 Sensor Map -->
+        <section
+          data-auto-animate
+          data-state="full-width"
+          class="visualization-slide"
+        >
+          <div class="grid" style="grid-template-columns: 30% 70%">
+            <div data-id="methodology-text-container">
+              <p data-id="case-study">Case Study &amp; Experimental Design</p>
+              <small data-id="data-source">
+                <hr />
+                <strong>Data:</strong> Pedestrian counts from the Newcastle
+                Urban Observatory.</small
+              >
+              <small data-id="masking-strategy"
+                ><hr />
+                <strong>Masking Strategy:</strong> A percentage of 'target'
+                sensors are hidden from the model during training, forcing it to
+                predict their values based only on the surrounding 'context'
+                sensors.</small
+              >
+            </div>
+
+    <!-- The parent div now uses the new centering class -->
+    <div class="h-center-content viz-full" style="height: 800px;">
+        <!-- The map div now has a specific width and will be centered -->
+        <div data-viz="map" id="sensor-map-1" style="width: 65%; height: 100%;"></div>
+          </div>
+          <aside class="notes">
+            <ul>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+        <!-- Slide 3 Network Map -->
+        <section
+          data-auto-animate
+          data-state="full-width"
+          class="visualization-slide"
+        >
+          <div class="grid" style="grid-template-columns: 30% 70%">
+            <div data-id="methodology-text-container">
+              <p data-id="case-study">Case Study &amp; Experimental Design</p>
+              <small data-id="data-source">
+                <hr />
+                <strong>Data:</strong> Pedestrian counts from the Newcastle
+                Urban Observatory.</small
+              >
+              <small data-id="masking-strategy"
+                ><hr />
+                <strong>Masking Strategy:</strong> A percentage of 'target'
+                sensors are hidden from the model during training, forcing it to
+                predict their values based only on the surrounding 'context'
+                sensors.</small
+              >
+              <small data-id="graph-description">
+                <hr />
+                <strong>Graph Construction:</strong> The sensor locations form
+                the nodes of a fully-connected graph, allowing the model to
+                initially consider all possible spatial relationships.
+              </small>
+            </div>
+    <!-- The parent div now uses the new centering class -->
+    <div class="h-center-content viz-full" style="height: 800px;">
+        <!-- The map div now has a specific width and will be centered -->
+        <div data-viz="connected-graph" id="connected-graph-1" style="width: 65%; height: 100%;"></div>
+    </div>
+          </div>
+          <aside class="notes">
+            <ul>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- Slide 3 Model Architecture -->
+        <section
+          data-auto-animate
+          data-state="full-width"
+          class="visualization-slide"
+        >
+          <div class="grid" style="grid-template-columns: 30% 70%">
+            <div data-id="methodology-text-container">
+              <p data-id="case-study">Case Study &amp; Experimental Design</p>
+
+              <small data-id="data-source"
+                ><hr />
+                <strong>Data:</strong> Pedestrian counts from the Newcastle
+                Urban Observatory.</small
+              >
+              <small data-id="masking-strategy"
+                ><hr />
+                <strong>Masking Strategy:</strong> A percentage of 'target'
+                sensors are hidden from the model during training, forcing it to
+                predict their values based only on the surrounding 'context'
+                sensors.</small
+              >
+              <small data-id="graph-description">
+                <hr />
+                <strong>Graph Construction:</strong> The sensor locations form
+                the nodes of a fully-connected graph, allowing the model to
+                initially consider all possible spatial relationships.
+              </small>
+              <small data-id="model-architecture"
+                ><hr />
+                A <strong>Graph Attention Network (GAT)</strong> learns spatial
+                relationships, combined with a
+                <strong>temporal self-attention</strong> mechanism to capture
+                time-varying patterns.</small
+              >
+            </div>
+            <div class="viz-column" style="height: 800px">
+              <div data-viz="flowchart" id="architecture-flowchart"></div>
+            </div>
+          </div>
+          <aside class="notes">
+            <ul>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+
+		<!-- Finding 1: Interactive Attention Visualization -->
+		<section data-auto-animate class="visualization-slide">
+		<h2>Finding 1: The Network Learns Real-World Dependencies</h2>
+
+		<!-- This container will be filled by our new JavaScript function -->
+		<div data-viz="attention-map" id="attention-viz-1" style="width: 90%; height: 750px; margin: auto;">
+			<!-- The JS will create a selector and map inside this div -->
+		</div>
+
+		<aside class="notes">
+			<ul>
+			<li>
+				The goal here is to build trust. Before showing *how well* it performs, show that it's *learning the right things*.
+			</li>
+			<li>
+				When the visualisation appears, point to it directly. "As you
+				can see, to predict the flow here at this selected target sensor, the model
+				correctly pays most attention to these historically correlated
+				neighbours..."
+			</li>
+			<li>
+				This slide proves that your model has developed a "generalised
+				understanding," which is a key part of your research.
+			</li>
+			</ul>
+		</aside>
+		</section>
+
+
+    <section data-auto-animate class="visualization-slide">
+    <h2>Finding 2: Model Performance on Individual Sensors</h2>
+    <p>
+        An interactive look at the model's t+1 forecast vs. the ground truth for any sensor in the network.
+    </p>
+
+    <!-- UPDATED: Increased height from 600px to 750px -->
+    <div data-viz="forecast-chart" id="forecast-viz-1" style="width: 95%; height: 750px; margin: auto;">
+        <!-- The JS will create a selector and chart inside this div -->
+    </div>
+
+    <aside class="notes">
+        <ul>
+        <li>
+            This slide allows for a granular inspection of the model's performance.
+        </li>
+        <li>
+            Use the dropdown to select different sensors. Highlight how the model performs on both 'sensor' (blue) and 'target' (red) nodes.
+        </li>
+        <li>
+            Point out how the forecast (dashed red line) closely tracks the ground truth (solid blue line), especially during the test period.
+        </li>
+        </ul>
+    </aside>
+    </section>
+
+	<!-- NEW: Slide for Failure Simulation -->
+    <section data-auto-animate class="visualization-slide">
+        <h2>Finding 3: Resilience to Sensor Failure</h2>
+        <div data-viz="failure-simulation-chart" id="failure-viz-1" style="width: 95%; height: 700px; margin: auto;">
+            <!-- The JS will create a selector and chart inside this div -->
+        </div>
+
+        <aside class="notes">
+            <ul>
+                <li>This is the core test of resilience.</li>
+                <li>Here we see the ground truth (blue) and the model's normal prediction (green).</li>
+                <li>Now, we simulate the failure of its most important neighbour. The new prediction (red) is less accurate, as expected, but it does NOT collapse. It has learned from the wider network to produce a reasonable fallback forecast.</li>
+            </ul>
+        </aside>
+    </section>
+
+
+    <!-- NEW SLIDE: Key Metrics -->
+    <section>
+        <h2>Some Numbers: Key Metrics</h2>
+        <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; margin-top: 2em;">
+            <div class="metric-box" style="background: rgba(0,0,0,0.2); padding: 2em; border-radius: 12px; text-align: center;">
+                <h3>Context Sensors (Training Fit)</h3>
+                <p style="font-size: 1.5em; margin-top: 1em;">MAE: <span style="font-weight: bold; color: #4cd137;">~3.0</span> people</p>
+                <p style="font-size: 1.5em;">MSE: <span style="font-weight: bold; color: #4cd137;">19.0</span></p>
+            </div>
+            <div class="metric-box" style="background: rgba(0,0,0,0.2); padding: 2em; border-radius: 12px; text-align: center;">
+                <h3>Target Sensors (Generalisation)</h3>
+                <p style="font-size: 1.5em; margin-top: 1em;">MAE: <span style="font-weight: bold; color: #00a8ff;">~4.2</span> people</p>
+                <p style="font-size: 1.5em;">MSE: <span style="font-weight: bold; color: #00a8ff;">39.0</span></p>
+            </div>
+        </div>
+        <aside class="notes">
+            <p>This slide provides a quantitative look at the model's performance.</p>
+            <ul>
+                <li>The MAE, or Mean Absolute Error, for the context sensors it trained on is around 3 people. This shows the model has learned the patterns in the data it can see.</li>
+                <li>More importantly, the MAE for the hidden target sensors is only slightly higher at 4.2 people. This demonstrates the model's ability to generalise and make accurate predictions for locations it has never seen data from before.</li>
+                <li>The MSE (Mean Squared Error) follows a similar pattern, penalising larger errors more heavily but still showing strong performance.</li>
+            </ul>
+        </aside>
+    </section>
+
+    <!-- NEW SLIDE: Summary and Future Work -->
+    <section>
+        <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 40px;">
+            <div>
+                <h4>Summary: Generalisation Capabilities</h4>
+                <ul class="icon-list" style="margin-top: 2em; list-style-type: none;">
+                    <li><i class='bx bx-check-shield'></i><strong style="color: #4cd137;">Good:</strong> Generalises well to unknown targets when contextual data is available.</li>
+                    <li style="margin-top: 1em;"><i class='bx bx-check-shield'></i><strong style="color: #4cd137;">Good:</strong> Generalises to known sensors even when their own data feed is lost (resilience).</li>
+                    <li style="margin-top: 1em;"><i class='bx bx-error-alt'></i><strong style="color: #e84118;">Challenge:</strong> Struggles to predict values for unknown sensors when there is no immediate contextual data.</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Future Research Directions</h4>
+                <ul class="icon-list" style="margin-top: 2em; list-style-type: none;">
+                    <li><i class='bx bx-git-branch'></i>Use more complex, pre-computed graphs (e.g., based on pedestrian pathways).</li>
+                    <li style="margin-top: 1em;"><i class='bx bx-cloud-light-rain'></i>Incorporate additional static and dynamic features, such as weather conditions or event schedules.</li>
+                    <li style="margin-top: 1em;"><i class='bx bxs-group'></i>Enrich the dataset with synthetic data from Agent-Based Models (ABM) to improve robustness.</li>
+                </ul>
+            </div>
+        </div>
+        <hr style="margin-top: 2em;" />
+        <h3>Thank You / Questions?</h3>
+    </section>
+
+      </div>
+      <div id="footer-images" class="footer-images">
+        <img
+          src="images/white_logos/newcastle.png"
+          alt="Newcastle University Logo"
+        />
+        <img src="images/white_logos/dstl.png" alt="DSTL Logo" />
+        <img src="images/white_logos/cdt_long.png" alt="CDT Logo" />
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/custom/visualizations.js"></script>
+    <script src="js/custom/particles-config.js"></script>
+    <script src="js/custom/presentation-controller.js"></script>
+
+    <script>
+      // Initialize Mermaid with a theme
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: "dark",
+        flowchart: { useMaxWidth: true, htmlLabels: false },
+      });
+
+      // Initialize Reveal
+      Reveal.initialize({
+        controls: true,
+        controlsLayout: "edges",
+        hash: true,
+        progress: true,
+        autoAnimate: true,
+
+        transition: "slide",
+        plugins: [RevealNotes, RevealHighlight],
+        width: 1920,
+        height: 1080,
+      });
+
+      // Attach the event handler from our controller script
+      Reveal.on("ready", handleStateChanges);
+      Reveal.on("slidechanged", handleStateChanges);
+    </script>
+  </body>
+</html>
