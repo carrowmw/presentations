@@ -1,0 +1,792 @@
+{
+    "sensorNodes": [
+        {
+            "pos": [
+                54.9813,
+                -1.58788
+            ],
+            "type": "target",
+            "name": "NclHeatonParkViewHeatonParkRd_from_Junction_to_HeatonParkVeiw",
+            "dir": 33,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.00046253469010175765,
+            "closeness_centrality": 1.6183915531226958,
+            "eigenvector_centrality": 0.15994283760922376,
+            "id": "10026",
+            "internal_id": 5
+        },
+        {
+            "pos": [
+                54.9814,
+                -1.58792
+            ],
+            "type": "target",
+            "name": "NclHeatonParkViewWest_from_westHeatonParkView_to_eastHeatonPar",
+            "dir": 56,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.0371554194459949,
+            "closeness_centrality": 1.612568938755371,
+            "eigenvector_centrality": 0.1596427243513252,
+            "id": "10000",
+            "internal_id": 0
+        },
+        {
+            "pos": [
+                54.9813,
+                -1.58788
+            ],
+            "type": "sensor",
+            "name": "NclHeatonParkViewHeatonParkRd_from_HeatonParkVeiw_to_Junction",
+            "dir": 27,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.00046253469010175765,
+            "closeness_centrality": 1.6183915531226958,
+            "eigenvector_centrality": 0.15994283760922376,
+            "id": "10001",
+            "internal_id": 1
+        },
+        {
+            "pos": [
+                54.9814,
+                -1.58792
+            ],
+            "type": "sensor",
+            "name": "NclHeatonParkViewWest_from_eastHeatonParkView_to_westHeatonPar",
+            "dir": 43,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.0371554194459949,
+            "closeness_centrality": 1.612568938755371,
+            "eigenvector_centrality": 0.1596427243513252,
+            "id": "10037",
+            "internal_id": 9
+        },
+        {
+            "pos": [
+                54.9774,
+                -1.57866
+            ],
+            "type": "sensor",
+            "name": "NclShieldsRdSquareWest_northwest_to_southwest",
+            "dir": 70,
+            "degree_centrality": 0.9361702127659575,
+            "betweenness_centrality": 0.012150807623935854,
+            "closeness_centrality": 1.275972683766979,
+            "eigenvector_centrality": 0.13814235130825459,
+            "id": "10100",
+            "internal_id": 20
+        },
+        {
+            "pos": [
+                54.9777,
+                -1.57746
+            ],
+            "type": "target",
+            "name": "NclShieldsRdRobinsonStNorth_west_to_east",
+            "dir": 96,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.0032377428307123037,
+            "closeness_centrality": 1.2191944143753448,
+            "eigenvector_centrality": 0.14303003017367039,
+            "id": "10217",
+            "internal_id": 47
+        },
+        {
+            "pos": [
+                54.9774,
+                -1.57866
+            ],
+            "type": "sensor",
+            "name": "NclShieldsRdSquareWest_southwest_to_northwest",
+            "dir": 85,
+            "degree_centrality": 0.9361702127659575,
+            "betweenness_centrality": 0.012150807623935854,
+            "closeness_centrality": 1.275972683766979,
+            "eigenvector_centrality": 0.13814235130825459,
+            "id": "10197",
+            "internal_id": 42
+        },
+        {
+            "pos": [
+                54.9775,
+                -1.57837
+            ],
+            "type": "sensor",
+            "name": "NclShieldsRdSquareEast_northeast_to_southeast",
+            "dir": 67,
+            "degree_centrality": 0.9361702127659575,
+            "betweenness_centrality": 0.012150807623935854,
+            "closeness_centrality": 1.275972683766979,
+            "eigenvector_centrality": 0.13814235130825459,
+            "id": "10109",
+            "internal_id": 23
+        },
+        {
+            "pos": [
+                54.9777,
+                -1.57746
+            ],
+            "type": "target",
+            "name": "NclShieldsRdRobinsonStNorth_east_to_west",
+            "dir": 12,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.0032377428307123037,
+            "closeness_centrality": 1.2191944143753448,
+            "eigenvector_centrality": 0.14303003017367039,
+            "id": "10085",
+            "internal_id": 16
+        },
+        {
+            "pos": [
+                54.9775,
+                -1.57837
+            ],
+            "type": "sensor",
+            "name": "NclShieldsRdSquareEast_southeast_to_northeast",
+            "dir": 78,
+            "degree_centrality": 0.9361702127659575,
+            "betweenness_centrality": 0.012150807623935854,
+            "closeness_centrality": 1.275972683766979,
+            "eigenvector_centrality": 0.13814235130825459,
+            "id": "10030",
+            "internal_id": 6
+        },
+        {
+            "pos": [
+                54.9776,
+                -1.57748
+            ],
+            "type": "sensor",
+            "name": "NclShieldsRdRobinsonStSouth_west_to_east",
+            "dir": 96,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.0,
+            "closeness_centrality": 1.2060092779994955,
+            "eigenvector_centrality": 0.14221428047075638,
+            "id": "10198",
+            "internal_id": 43
+        },
+        {
+            "pos": [
+                54.9776,
+                -1.57748
+            ],
+            "type": "target",
+            "name": "NclShieldsRdRobinsonStSouth_east_to_west",
+            "dir": 12,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.0,
+            "closeness_centrality": 1.2060092779994955,
+            "eigenvector_centrality": 0.14221428047075638,
+            "id": "10174",
+            "internal_id": 36
+        },
+        {
+            "pos": [
+                54.984,
+                -1.57904
+            ],
+            "type": "target",
+            "name": "NclNinthAveSecondAve_east_to_west",
+            "dir": 12,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.02992832655726489,
+            "closeness_centrality": 0.9723763110588478,
+            "eigenvector_centrality": 0.12060484397314589,
+            "id": "10181",
+            "internal_id": 38
+        },
+        {
+            "pos": [
+                54.9845,
+                -1.57912
+            ],
+            "type": "target",
+            "name": "NclTenthAveSecondAve_east_to_west",
+            "dir": 12,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.00046253469010175765,
+            "closeness_centrality": 0.924497036666769,
+            "eigenvector_centrality": 0.11552737582176764,
+            "id": "10164",
+            "internal_id": 32
+        },
+        {
+            "pos": [
+                54.9845,
+                -1.57912
+            ],
+            "type": "sensor",
+            "name": "NclTenthAveSecondAve_west_to_east",
+            "dir": 96,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.00046253469010175765,
+            "closeness_centrality": 0.924497036666769,
+            "eigenvector_centrality": 0.11552737582176764,
+            "id": "10199",
+            "internal_id": 44
+        },
+        {
+            "pos": [
+                54.984,
+                -1.57904
+            ],
+            "type": "sensor",
+            "name": "NclNinthAveSecondAve_west_to_east",
+            "dir": 96,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.02992832655726489,
+            "closeness_centrality": 0.9723763110588478,
+            "eigenvector_centrality": 0.12060484397314589,
+            "id": "10177",
+            "internal_id": 37
+        },
+        {
+            "pos": [
+                54.977,
+                -1.58006
+            ],
+            "type": "target",
+            "name": "NclShieldsRdRabySt_to_south",
+            "dir": 91,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.00046253469010175765,
+            "closeness_centrality": 1.3805884293330992,
+            "eigenvector_centrality": 0.15228344566678978,
+            "id": "10173",
+            "internal_id": 35
+        },
+        {
+            "pos": [
+                54.9772,
+                -1.58078
+            ],
+            "type": "sensor",
+            "name": "NclShieldsRdEdwinStNorth_west_to_east",
+            "dir": 96,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.0009250693802035153,
+            "closeness_centrality": 1.4644809336422377,
+            "eigenvector_centrality": 0.15616099919341225,
+            "id": "10205",
+            "internal_id": 45
+        },
+        {
+            "pos": [
+                54.977,
+                -1.58006
+            ],
+            "type": "target",
+            "name": "NclShieldsRdRabySt_from_south",
+            "dir": 49,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.00046253469010175765,
+            "closeness_centrality": 1.3805884293330992,
+            "eigenvector_centrality": 0.15228344566678978,
+            "id": "10035",
+            "internal_id": 8
+        },
+        {
+            "pos": [
+                54.9772,
+                -1.58078
+            ],
+            "type": "sensor",
+            "name": "NclShieldsRdEdwinStNorth_east_to_west",
+            "dir": 12,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.0009250693802035153,
+            "closeness_centrality": 1.4644809336422377,
+            "eigenvector_centrality": 0.15616099919341225,
+            "id": "10004",
+            "internal_id": 2
+        },
+        {
+            "pos": [
+                54.977,
+                -1.58149
+            ],
+            "type": "sensor",
+            "name": "NclShieldsRdMatthewStSouth_west_to_east",
+            "dir": 96,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.002775208140610546,
+            "closeness_centrality": 1.4868193881566452,
+            "eigenvector_centrality": 0.15709385934074854,
+            "id": "10107",
+            "internal_id": 22
+        },
+        {
+            "pos": [
+                54.977,
+                -1.58149
+            ],
+            "type": "target",
+            "name": "NclShieldsRdMatthewStSouth_east_to_west",
+            "dir": 12,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.002775208140610546,
+            "closeness_centrality": 1.4868193881566452,
+            "eigenvector_centrality": 0.15709385934074854,
+            "id": "10216",
+            "internal_id": 46
+        },
+        {
+            "pos": [
+                54.9799,
+                -1.58652
+            ],
+            "type": "target",
+            "name": "NclHeatonParkRdBolingbrokeSt_from_HeatonParkRd_to_BolingbrokeSt",
+            "dir": 25,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.037467104319465455,
+            "closeness_centrality": 1.9142828414441364,
+            "eigenvector_centrality": 0.17010861286634904,
+            "id": "10062",
+            "internal_id": 11
+        },
+        {
+            "pos": [
+                54.9804,
+                -1.58665
+            ],
+            "type": "sensor",
+            "name": "NclHeatonParkRdWandsworthRd_from_HeatonParkRd_to_WandsworthRd",
+            "dir": 26,
+            "degree_centrality": 0.9361702127659575,
+            "betweenness_centrality": 0.00023126734505087883,
+            "closeness_centrality": 1.6984717565355278,
+            "eigenvector_centrality": 0.15483654364210622,
+            "id": "10083",
+            "internal_id": 14
+        },
+        {
+            "pos": [
+                54.9804,
+                -1.58665
+            ],
+            "type": "target",
+            "name": "NclHeatonParkRdWandsworthRd_from_WandsworthRd_to_MowbraySt",
+            "dir": 39,
+            "degree_centrality": 0.9361702127659575,
+            "betweenness_centrality": 0.00023126734505087883,
+            "closeness_centrality": 1.6984717565355278,
+            "eigenvector_centrality": 0.15483654364210622,
+            "id": "10162",
+            "internal_id": 31
+        },
+        {
+            "pos": [
+                54.9804,
+                -1.58665
+            ],
+            "type": "sensor",
+            "name": "NclHeatonParkRdWandsworthRd_from_MowbraySt_to_WandsworthRd",
+            "dir": 35,
+            "degree_centrality": 0.9361702127659575,
+            "betweenness_centrality": 0.00023126734505087883,
+            "closeness_centrality": 1.6984717565355278,
+            "eigenvector_centrality": 0.15483654364210622,
+            "id": "10128",
+            "internal_id": 27
+        },
+        {
+            "pos": [
+                54.9799,
+                -1.58652
+            ],
+            "type": "sensor",
+            "name": "NclHeatonParkRdBolingbrokeSt_from_BolingbrokeSt_to_HeatonParkRd",
+            "dir": 20,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.037467104319465455,
+            "closeness_centrality": 1.9142828414441364,
+            "eigenvector_centrality": 0.17010861286634904,
+            "id": "10098",
+            "internal_id": 18
+        },
+        {
+            "pos": [
+                54.9804,
+                -1.58665
+            ],
+            "type": "target",
+            "name": "NclHeatonParkRdWandsworthRd_from_WandsworthRd_to_HeatonParkRd",
+            "dir": 38,
+            "degree_centrality": 0.9361702127659575,
+            "betweenness_centrality": 0.00023126734505087883,
+            "closeness_centrality": 1.6984717565355278,
+            "eigenvector_centrality": 0.15483654364210622,
+            "id": "10084",
+            "internal_id": 15
+        },
+        {
+            "pos": [
+                54.979,
+                -1.58531
+            ],
+            "type": "sensor",
+            "name": "NclHeatonParkRdHeatonGrove_south_to_north",
+            "dir": 73,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.12462358786459846,
+            "closeness_centrality": 1.917941527177776,
+            "eigenvector_centrality": 0.17061908039993384,
+            "id": "10191",
+            "internal_id": 41
+        },
+        {
+            "pos": [
+                54.979,
+                -1.58531
+            ],
+            "type": "sensor",
+            "name": "NclHeatonParkRdHeatonGrove_north_to_south",
+            "dir": 60,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.12462358786459846,
+            "closeness_centrality": 1.917941527177776,
+            "eigenvector_centrality": 0.17061908039993384,
+            "id": "10031",
+            "internal_id": 7
+        },
+        {
+            "pos": [
+                54.9804,
+                -1.58049
+            ],
+            "type": "target",
+            "name": "NclHeatonRdGuildfordPl_north_to_south",
+            "dir": 60,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.0227511356068792,
+            "closeness_centrality": 1.3766607170726257,
+            "eigenvector_centrality": 0.15054976160985606,
+            "id": "10124",
+            "internal_id": 25
+        },
+        {
+            "pos": [
+                54.9811,
+                -1.58094
+            ],
+            "type": "sensor",
+            "name": "NclHeatonRdFalmouthRd_from_FalmouthRd_to_HeatonRd",
+            "dir": 23,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.00046253469010175765,
+            "closeness_centrality": 1.273788141806982,
+            "eigenvector_centrality": 0.14477511845272403,
+            "id": "10170",
+            "internal_id": 34
+        },
+        {
+            "pos": [
+                54.9804,
+                -1.58049
+            ],
+            "type": "target",
+            "name": "NclHeatonRdGuildfordPl_south_to_north",
+            "dir": 73,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.0227511356068792,
+            "closeness_centrality": 1.3766607170726257,
+            "eigenvector_centrality": 0.15054976160985606,
+            "id": "10167",
+            "internal_id": 33
+        },
+        {
+            "pos": [
+                54.9811,
+                -1.58094
+            ],
+            "type": "sensor",
+            "name": "NclHeatonRdFalmouthRd_from_HeatonRd_to_FalmouthRd",
+            "dir": 28,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.00046253469010175765,
+            "closeness_centrality": 1.273788141806982,
+            "eigenvector_centrality": 0.14477511845272403,
+            "id": "10099",
+            "internal_id": 19
+        },
+        {
+            "pos": [
+                54.9809,
+                -1.58353
+            ],
+            "type": "sensor",
+            "name": "NclHeatonHallRdCardiganTer_from_westCardiganTer_to_eastCardiganTer",
+            "dir": 55,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.02987974098057354,
+            "closeness_centrality": 1.5704968391081926,
+            "eigenvector_centrality": 0.15923098609110994,
+            "id": "10064",
+            "internal_id": 12
+        },
+        {
+            "pos": [
+                54.9809,
+                -1.58353
+            ],
+            "type": "target",
+            "name": "NclHeatonHallRdCardiganTer_from_eastCardiganTer_to_westCardiganTer",
+            "dir": 41,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.02987974098057354,
+            "closeness_centrality": 1.5704968391081926,
+            "eigenvector_centrality": 0.15923098609110994,
+            "id": "10145",
+            "internal_id": 29
+        },
+        {
+            "pos": [
+                54.9792,
+                -1.59024
+            ],
+            "type": "sensor",
+            "name": "NclMowbrayStStratfordRdANPR_southcrossing_to_east",
+            "dir": 74,
+            "degree_centrality": 0.9361702127659575,
+            "betweenness_centrality": 0.0,
+            "closeness_centrality": 1.2524321711115505,
+            "eigenvector_centrality": 0.13845560081357494,
+            "id": "10134",
+            "internal_id": 28
+        },
+        {
+            "pos": [
+                54.9792,
+                -1.59024
+            ],
+            "type": "target",
+            "name": "NclMowbrayStStratfordRdANPR_west_to_east",
+            "dir": 96,
+            "degree_centrality": 0.9361702127659575,
+            "betweenness_centrality": 0.0,
+            "closeness_centrality": 1.2524321711115505,
+            "eigenvector_centrality": 0.13845560081357494,
+            "id": "10184",
+            "internal_id": 39
+        },
+        {
+            "pos": [
+                54.9792,
+                -1.59024
+            ],
+            "type": "target",
+            "name": "NclMowbrayStStratfordRdANPR_east_to_southcrossing",
+            "dir": 11,
+            "degree_centrality": 0.9361702127659575,
+            "betweenness_centrality": 0.0,
+            "closeness_centrality": 1.2524321711115505,
+            "eigenvector_centrality": 0.13845560081357494,
+            "id": "10070",
+            "internal_id": 13
+        },
+        {
+            "pos": [
+                54.9792,
+                -1.59024
+            ],
+            "type": "target",
+            "name": "NclMowbrayStStratfordRdANPR_east_to_west",
+            "dir": 12,
+            "degree_centrality": 0.9361702127659575,
+            "betweenness_centrality": 0.0,
+            "closeness_centrality": 1.2524321711115505,
+            "eigenvector_centrality": 0.13845560081357494,
+            "id": "10122",
+            "internal_id": 24
+        },
+        {
+            "pos": [
+                54.9765,
+                -1.58508
+            ],
+            "type": "sensor",
+            "name": "NclShieldsRdCliffordStSouth_west_to_east",
+            "dir": 96,
+            "degree_centrality": 0.9361702127659575,
+            "betweenness_centrality": 0.0,
+            "closeness_centrality": 1.3073870891058252,
+            "eigenvector_centrality": 0.1426992469485956,
+            "id": "10011",
+            "internal_id": 3
+        },
+        {
+            "pos": [
+                54.9766,
+                -1.58514
+            ],
+            "type": "sensor",
+            "name": "NclShieldsRdCliffordStNorth_east_to_west",
+            "dir": 12,
+            "degree_centrality": 0.9361702127659575,
+            "betweenness_centrality": 0.0,
+            "closeness_centrality": 1.3073870891058252,
+            "eigenvector_centrality": 0.1426992469485956,
+            "id": "10127",
+            "internal_id": 26
+        },
+        {
+            "pos": [
+                54.9766,
+                -1.58514
+            ],
+            "type": "target",
+            "name": "NclShieldsRdCliffordStNorth_west_to_east",
+            "dir": 96,
+            "degree_centrality": 0.9361702127659575,
+            "betweenness_centrality": 0.0,
+            "closeness_centrality": 1.3073870891058252,
+            "eigenvector_centrality": 0.1426992469485956,
+            "id": "10048",
+            "internal_id": 10
+        },
+        {
+            "pos": [
+                54.9765,
+                -1.58508
+            ],
+            "type": "sensor",
+            "name": "NclShieldsRdCliffordStSouth_east_to_west",
+            "dir": 12,
+            "degree_centrality": 0.9361702127659575,
+            "betweenness_centrality": 0.0,
+            "closeness_centrality": 1.3073870891058252,
+            "eigenvector_centrality": 0.1426992469485956,
+            "id": "10105",
+            "internal_id": 21
+        },
+        {
+            "pos": [
+                54.9842,
+                -1.58781
+            ],
+            "type": "target",
+            "name": "NclOuseburnRdANPR_from_south_to_north",
+            "dir": 50,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.00046253469010175765,
+            "closeness_centrality": 0.9384723091806155,
+            "eigenvector_centrality": 0.11664702422029558,
+            "id": "10189",
+            "internal_id": 40
+        },
+        {
+            "pos": [
+                54.9842,
+                -1.58781
+            ],
+            "type": "target",
+            "name": "NclOuseburnRdANPR_from_north_to_south",
+            "dir": 46,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.00046253469010175765,
+            "closeness_centrality": 0.9384723091806155,
+            "eigenvector_centrality": 0.11664702422029558,
+            "id": "10151",
+            "internal_id": 30
+        },
+        {
+            "pos": [
+                54.9903,
+                -1.58666
+            ],
+            "type": "target",
+            "name": "NclArmstrongBrgJesmondParkW_west_to_east",
+            "dir": 96,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.0,
+            "closeness_centrality": 0.5649452141890726,
+            "eigenvector_centrality": 0.04782898251819772,
+            "id": "10097",
+            "internal_id": 17
+        },
+        {
+            "pos": [
+                54.9903,
+                -1.58666
+            ],
+            "type": "target",
+            "name": "NclArmstrongBrgJesmondParkW_east_to_west",
+            "dir": 12,
+            "degree_centrality": 0.9787234042553191,
+            "betweenness_centrality": 0.0,
+            "closeness_centrality": 0.5649452141890726,
+            "eigenvector_centrality": 0.04782898251819772,
+            "id": "10022",
+            "internal_id": 4
+        }
+    ],
+    "sensorCounts": {
+        "NclShieldsRdRobinsonStNorth_west_to_east": 85.90648925890136,
+        "NclShieldsRdEdwinStNorth_west_to_east": 84.57444436185237,
+        "NclHeatonParkViewHeatonParkRd_from_Junction_to_HeatonParkVeiw": 84.23845982308778,
+        "NclHeatonParkViewHeatonParkRd_from_HeatonParkVeiw_to_Junction": 83.70177655541515,
+        "NclHeatonParkRdHeatonGrove_south_to_north": 83.28402586783618,
+        "NclShieldsRdCliffordStNorth_west_to_east": 83.24091280755222,
+        "NclShieldsRdEdwinStNorth_east_to_west": 82.29539879580763,
+        "NclHeatonParkRdHeatonGrove_north_to_south": 81.86129487846577,
+        "NclShieldsRdRobinsonStNorth_east_to_west": 81.83304839069353,
+        "NclHeatonRdGuildfordPl_south_to_north": 81.82264178993533,
+        "NclHeatonRdGuildfordPl_north_to_south": 81.80628856017246,
+        "NclShieldsRdCliffordStNorth_east_to_west": 78.9385267226641,
+        "NclShieldsRdRobinsonStSouth_east_to_west": 78.49847617631755,
+        "NclShieldsRdRobinsonStSouth_west_to_east": 78.03017914219876,
+        "NclShieldsRdRabySt_from_south": 77.81758715528136,
+        "NclShieldsRdRabySt_to_south": 77.73433434921579,
+        "NclShieldsRdMatthewStSouth_east_to_west": 76.4275626254367,
+        "NclShieldsRdCliffordStSouth_east_to_west": 74.96766520478704,
+        "NclShieldsRdMatthewStSouth_west_to_east": 74.14703040214079,
+        "NclShieldsRdSquareEast_southeast_to_northeast": 73.2015163903962,
+        "NclShieldsRdSquareEast_northeast_to_southeast": 71.31494833866053,
+        "NclShieldsRdCliffordStSouth_west_to_east": 70.54634653980526,
+        "NclShieldsRdSquareWest_southwest_to_northwest": 69.81045120047573,
+        "NclArmstrongBrgJesmondParkW_west_to_east": 69.72125176540548,
+        "NclShieldsRdSquareWest_northwest_to_southwest": 68.7549245521445,
+        "NclArmstrongBrgJesmondParkW_east_to_west": 65.68349067122575,
+        "NclHeatonParkRdWandsworthRd_from_WandsworthRd_to_MowbraySt": 50.48539359250724,
+        "NclHeatonParkRdWandsworthRd_from_MowbraySt_to_WandsworthRd": 49.72125176540548,
+        "NclTenthAveSecondAve_west_to_east": 46.573998364677024,
+        "NclTenthAveSecondAve_east_to_west": 45.92284248866424,
+        "NclMowbrayStStratfordRdANPR_southcrossing_to_east": 44.78852300602097,
+        "NclMowbrayStStratfordRdANPR_east_to_southcrossing": 43.356872073143535,
+        "NclNinthAveSecondAve_east_to_west": 36.399316137664464,
+        "NclNinthAveSecondAve_west_to_east": 34.367055675314056,
+        "NclHeatonParkViewWest_from_westHeatonParkView_to_eastHeatonPar": 28.094848732624694,
+        "NclHeatonParkViewWest_from_eastHeatonParkView_to_westHeatonPar": 26.648331227235563,
+        "NclOuseburnRdANPR_from_north_to_south": 26.44465918382517,
+        "NclOuseburnRdANPR_from_south_to_north": 24.614584107633984,
+        "NclHeatonRdFalmouthRd_from_HeatonRd_to_FalmouthRd": 22.047127034862115,
+        "NclHeatonRdFalmouthRd_from_FalmouthRd_to_HeatonRd": 21.36921132832825,
+        "NclHeatonHallRdCardiganTer_from_eastCardiganTer_to_westCardiganTer": 20.04608637478629,
+        "NclHeatonHallRdCardiganTer_from_westCardiganTer_to_eastCardiganTer": 19.186798483609603,
+        "NclMowbrayStStratfordRdANPR_east_to_west": 15.991972050843678,
+        "NclMowbrayStStratfordRdANPR_west_to_east": 15.07767784137367,
+        "NclHeatonParkRdBolingbrokeSt_from_HeatonParkRd_to_BolingbrokeSt": 9.663272132609826,
+        "NclHeatonParkRdWandsworthRd_from_HeatonParkRd_to_WandsworthRd": 8.604772169776258,
+        "NclHeatonParkRdBolingbrokeSt_from_BolingbrokeSt_to_HeatonParkRd": 8.10822864788523,
+        "NclHeatonParkRdWandsworthRd_from_WandsworthRd_to_HeatonParkRd": 7.632498327510592
+    },
+    "boundingBox": [
+        [
+            -1.59104,
+            54.97594
+        ],
+        [
+            -1.57062,
+            54.97594
+        ],
+        [
+            -1.57062,
+            54.99059
+        ],
+        [
+            -1.59104,
+            54.99059
+        ]
+    ]
+}

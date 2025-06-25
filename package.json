@@ -102,6 +102,7 @@
     }
   },
   "dependencies": {
+    "boxicons": "^2.1.4",
     "reveal.js": "^5.1.0"
   }
 }

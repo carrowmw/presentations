@@ -1,0 +1,244 @@
+/**
+ * Enhanced Black theme for reveal.js based on your original 'newcastle.scss'.
+ * This includes specific styles for an animated title slide and custom slide elements.
+ *
+ * By Hakim El Hattab, http://hakim.se
+ * Enhanced by Carrow Morris-Wiltshire & Gemini
+ */
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+// Include theme-specific fonts
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #003a65;
+$mainColor: #ffffff;
+$headingColor: #ffffff;
+// We are making the base font size responsive to the viewport width (vw).
+// It will try to be 2.5vw, but won't go below 24px or above 42px.
+$mainFontSize: clamp(24px, 2.5vw, 42px);
+$mainFont: "Inter", Helvetica, sans-serif;
+$headingFont: "Inter", Helvetica, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: -0.02em;
+$headingTextTransform: none;
+$headingFontWeight: 600;
+$linkColor: #d5112d;
+$linkColorHover: lighten($linkColor, 15%);
+$selectionBackgroundColor: rgba($linkColor, 0.75);
+
+// Font sizes you modified are preserved here
+$heading1Size: 1.5em;
+$heading2Size: 1.3em;
+$heading3Size: 1.1em;
+$heading4Size: 0.9em;
+
+// Change text colors against light slide backgrounds
+@include light-bg-text-color(#222);
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+// ==== STYLES FOR ENHANCED TITLE SLIDE ====
+
+.reveal .slides > section.title-slide {
+  /* --- REVERTED TO SIMPLER VERSION --- */
+  background-color: transparent !important;
+  text-align: left;
+}
+
+.title-slide .title-content {
+  /* --- REVERTED TO SIMPLER VERSION --- */
+  max-width: 85%;
+  z-index: 1;
+  position: relative;
+}
+
+.title-slide h1.presentation-title {
+  /* This rule is now less critical because of r-fit-text, but good for structure */
+  font-size: 2em; /* A fixed large size, r-fit-text will handle scaling */
+  font-weight: 700;
+  margin-bottom: 0.2em;
+  line-height: 1.1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.title-slide h2.presentation-subtitle {
+  /* --- MODIFIED LINE --- Reduced min, preferred, and max font sizes */
+  font-size: clamp(0.9em, calc(0.75em + 0.7vw), 1.6em);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1.5em;
+  line-height: 1.4;
+  max-width: 90%;
+}
+
+.title-slide p.author-affiliation {
+  /* --- MODIFIED LINE --- Reduced min, preferred, and max font sizes */
+  font-size: clamp(0.7em, calc(0.6em + 0.45vw), 1.1em);
+  font-weight: 400;
+  margin-bottom: 1.5em;
+}
+
+.title-slide .affiliation {
+  font-size: 1em;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+// ==== NEW: Styles for the Supervisors block ====
+.title-slide p.supervisors {
+  /* --- MODIFIED LINE --- Reduced min, preferred, and max font sizes */
+  font-size: clamp(0.5em, calc(0.4em + 0.35vw), 0.9em);
+  color: rgba(255, 255, 255, 0.8);
+  border-left: 3px solid $linkColor;
+  padding-left: 15px;
+  margin-top: 2em;
+}
+
+.title-slide .supervisor-label {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  display: block; // Puts the label on its own line
+  margin-bottom: 0.25em;
+  font-size: 1.05em;
+}
+
+// ---- Your original custom classes ----
+.emphasised {
+  font: $mainFont;
+  font-size: 1em;
+  font-style: italic;
+}
+
+// ===================================================================
+// ==== STYLES ADDED FROM INDEX.HTML <HEAD> ====
+// ===================================================================
+
+:root {
+  /* --- MODIFIED LINES --- Switched to viewport height (vh) units */
+  --footer-height: 5vh; /* 5% of the screen height */
+  --footer-bottom-margin: 2vh; /* 2% of the screen height */
+}
+
+.reveal section img {
+  border: none;
+  box-shadow: none;
+  background: none;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Global padding to avoid overlap with the footer */
+.reveal .slides section {
+  box-sizing: border-box;
+  padding-top: 5vh;
+  /* --- MODIFIED LINE --- The calculation now also uses vh for synchronized scaling */
+  padding-bottom: calc(
+    var(--footer-height) + var(--footer-bottom-margin) + 4vh
+  );
+}
+
+/* --- Styles for the animated background --- */
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0; /* Behind other content */
+}
+
+/* --- Footer Styles --- */
+.footer-images {
+  position: absolute;
+  bottom: var(--footer-bottom-margin); /* Use the variable */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center; /* Corrected from 'left' */
+  justify-content: center;
+  gap: 30px;
+  z-index: 10;
+  transition: opacity 0.3s ease;
+}
+
+.footer-images.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.footer-images img {
+  height: var(--footer-height); /* Use the variable */
+  width: auto;
+  filter: none; /* Default for dark slides */
+}
+
+.footer-images.footer-logos-inverted img {
+  filter: invert(1); /* Inverts white logos to black on light slides */
+}
+
+/* */
+
+.text-box {
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.7
+  ); /* Slightly darker for better contrast */
+  padding: 20px 25px;
+  border-radius: 15px;
+  display: inline-block;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  /* This transition is used by auto-animate for the box resize */
+  transition: all 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+/* --- FADE ANIMATION LOGIC --- */
+
+/* Base style for all text inside the box */
+.reveal .text-box h2,
+.reveal .text-box p {
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  margin: 0;
+  line-height: 1.4;
+
+  /* Define the fade-in and fade-out animation */
+  transition: opacity 0.2s ease-in-out;
+  /* Start with text invisible by default */
+  opacity: 0;
+}
+
+/* When a slide is ACTIVE/PRESENT, make its immediate text visible */
+.reveal .slides section.present > .text-box > h2,
+.reveal .slides section.present > .text-box > p {
+  opacity: 1;
+  /* Add a slight delay to let the box animation finish first */
+  transition-delay: 0.2s;
+}
+
+/* Specific styling for the title slide to make it stand out */
+.reveal .title-box h2 {
+  font-size: 2.2em;
+}
+
+/* This is for the intermediate slides, to make the box hold its size but keep text invisible */
+.text-box.is-resizing p,
+.text-box.is-resizing h2 {
+  opacity: 0 !important;
+}
+
+.reveal .slides .full-width {
+  max-width: none !important;
+  width: 100% !important;
+}
