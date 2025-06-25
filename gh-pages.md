@@ -47,3 +47,23 @@ Under "Branch", select the gh-pages branch from the dropdown menu and leave the 
 Click Save.
 
 GitHub will now build your site from the gh-pages branch. After a minute or two, your presentation will be live at the URL shown on the Pages settings screen (usually https://<your-username>.github.io/<your-repo-name>/).
+
+Step 4: Updating the Deployed Site
+Once you make changes to your project and update the builds/cupum_build directory, you'll need to update the gh-pages branch and push it again.
+
+Commit Your Changes: First, make sure you've committed all the latest changes to your main branch.
+
+git add .
+git commit -m "Update build folder with new changes"
+
+Re-run the Subtree Split: Run the exact same subtree command as before. This will regenerate the gh-pages branch with the latest contents of your build directory, overwriting the old version of the branch.
+
+git subtree split --prefix=builds/cupum_build -b gh-pages
+
+Force Push the Branch: Because the history of the gh-pages branch is rewritten every time you run the split command, you need to "force push" it to your cupum remote. This tells Git to replace the remote branch with your new local one.
+
+git push cupum gh-pages --force
+
+Note: The --force flag is necessary and safe in this specific case because the gh-pages branch is being used purely for deployment.
+
+Your GitHub Pages site will automatically redeploy with the latest changes. This usually takes a minute or two.
