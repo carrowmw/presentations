@@ -1,69 +1,111 @@
-Deploying a Subfolder to a New Repository and GitHub Pages
-This guide outlines how to take a subfolder from your main project (e.g., builds/cupum_build) and deploy it as a standalone GitHub Pages website in a separate repository.
+# Deploying a build/ subfolder to GitHub Pages
 
-Step 1: Split the Build Folder into a New Branch
-First, you need to create a new branch in your local repository that contains only the contents and history of your builds/cupum_build folder. The git subtree command is perfect for this.
+This guide explains how to:
 
-Run the following command in your terminal from the root of your main project repository:
+- create a presentation build with `create_build.py` into `builds/<name>_build`, and
+- publish that subfolder to GitHub Pages using `git subtree`.
 
-git subtree split --prefix=builds/cupum_build -b gh-pages
+## Prerequisites
 
-What this command does:
+- Python 3 available as `python3`
+- Git installed
+- (Recommended) Git LFS installed if your build includes large binaries: https://git-lfs.github.com
 
-git subtree split: This is the command for splitting a subdirectory into a new branch.
+## 1) Create the build
 
---prefix=builds/cupum_build: This tells Git which folder you want to split off.
+Run the project’s build script. Replace `<name>` with your presentation key (e.g., `ap2`).
 
--b gh-pages: This creates a new branch named gh-pages to store the result. Using gh-pages is a standard convention for branches that will be deployed to GitHub Pages.
+```bash
+python3 create_build.py --name <name>
+# Result: builds/<name>_build/ with index.html and assets
+```
 
-After running this, you will have a new local branch named gh-pages that contains only the contents of your build folder.
+Verify the build exists:
 
-Step 2: Push the New Branch to Your New Remote Repository
-Next, you need to push the gh-pages branch to your new remote repository (which you've named cupum).
+```bash
+ls -la builds/<name>_build
+```
 
-Run the following command:
+## 2) Commit your changes to main
 
-git push cupum gh-pages
-
-What this command does:
-
-git push cupum: This specifies that you are pushing to your new remote repository.
-
-gh-pages: This tells Git to push the gh-pages branch. A branch of the same name will be created on the remote repository.
-
-Step 3: Configure GitHub Pages
-Finally, you need to tell GitHub to serve your site from the new branch you just pushed.
-
-Navigate to your new GitHub repository on the web (the one associated with the cupum remote).
-
-Click on the Settings tab.
-
-In the left sidebar, click on Pages.
-
-Under the "Build and deployment" section, for the Source, select Deploy from a branch.
-
-Under "Branch", select the gh-pages branch from the dropdown menu and leave the folder as /(root).
-
-Click Save.
-
-GitHub will now build your site from the gh-pages branch. After a minute or two, your presentation will be live at the URL shown on the Pages settings screen (usually https://<your-username>.github.io/<your-repo-name>/).
-
-Step 4: Updating the Deployed Site
-Once you make changes to your project and update the builds/cupum_build directory, you'll need to update the gh-pages branch and push it again.
-
-Commit Your Changes: First, make sure you've committed all the latest changes to your main branch.
-
+```bash
 git add .
-git commit -m "Update build folder with new changes"
+git commit -m "Build <name> for deployment"
+git push origin main
+```
 
-Re-run the Subtree Split: Run the exact same subtree command as before. This will regenerate the gh-pages branch with the latest contents of your build directory, overwriting the old version of the branch.
+If you see “Large files detected” when pushing, move those assets to Git LFS and retry:
 
-git subtree split --prefix=builds/cupum_build -b gh-pages
+```bash
+git lfs install
+git lfs track "**/*.json"   # or track specific large paths
+git add .gitattributes
+git commit -m "Track large assets with LFS"
+# If the large file was already committed, rewrite history:
+git lfs migrate import --include="**/*.json" --include-ref=refs/heads/main
+git push origin main --force-with-lease
+```
 
-Force Push the Branch: Because the history of the gh-pages branch is rewritten every time you run the split command, you need to "force push" it to your cupum remote. This tells Git to replace the remote branch with your new local one.
+If Git warns about “embedded git repository” inside builds/, remove the nested .git folder and re-add:
 
-git push cupum gh-pages --force
+```bash
+git rm --cached -r builds/<name>_build
+rm -rf builds/<name>_build/.git
+git add builds/<name>_build
+git commit -m "Convert <name>_build from submodule to regular folder"
+git push origin main
+```
 
-Note: The --force flag is necessary and safe in this specific case because the gh-pages branch is being used purely for deployment.
+## 3) Create a Pages branch from the build folder
 
-Your GitHub Pages site will automatically redeploy with the latest changes. This usually takes a minute or two.
+Use `git subtree split` from the repo root. This produces a branch whose root is your build folder.
+
+```bash
+# Optional: remove a conflicting local gh-pages
+git branch -D gh-pages 2>/dev/null || true
+
+# Create a split branch with only the build contents
+git subtree split --prefix=builds/<name>_build -b <name>-gh-pages
+```
+
+## 4) Publish to GitHub Pages (same repository)
+
+Push the split branch to the repo’s gh-pages branch:
+
+```bash
+git push origin <name>-gh-pages:gh-pages --force
+```
+
+Then in GitHub:
+
+- Settings → Pages → Build and deployment: “Deploy from a branch”
+- Branch: `gh-pages`, Folder: `/ (root)`
+- Save. Pages will deploy in ~1–2 minutes.
+
+Your site will be at:
+
+```
+https://<your-username>.github.io/<this-repo>/
+```
+
+## 5) Update the site after changes
+
+After editing slides and re-running the build:
+
+```bash
+python3 create_build.py --name <name>
+git add .
+git commit -m "Update <name> build"
+git push origin main
+
+# Recreate and push the split
+git branch -D <name>-gh-pages 2>/dev/null || true
+git subtree split --prefix=builds/<name>_build -b <name>-gh-pages
+git push origin <name>-gh-pages:gh-pages --force
+```
+
+## Notes
+
+- Use a unique local branch name (e.g., `<name>-gh-pages`) to avoid conflicts with any existing `gh-pages`.
+- If you prefer a separate repository for the site, add it as a remote (e.g., `git remote add <site> <url>`) and `git push <site> <name>-gh-pages:gh-pages --force`.
+- Avoid nested Git repos in `builds/`. If you intended a submodule, manage it via `git submodule`; otherwise remove the nested `.git` folder before committing.
