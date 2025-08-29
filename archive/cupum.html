@@ -644,7 +644,12 @@
       });
 
       // Attach the event handler from our controller script
-      Reveal.on("ready", handleStateChanges);
+        // Ensure current slide visualizations render on first load
+        Reveal.on('ready', (evt) => {
+          if (window.processVisualizationSlide) {
+            window.processVisualizationSlide(evt.currentSlide);
+          }
+        });
       Reveal.on("slidechanged", handleStateChanges);
     </script>
   </body>

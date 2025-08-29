@@ -104,6 +104,62 @@ git subtree split --prefix=builds/<name>_build -b <name>-gh-pages
 git push origin <name>-gh-pages:gh-pages --force
 ```
 
+## Host multiple builds under one GitHub Pages site
+
+You can persist many presentations by publishing each build into a subfolder of the `gh-pages` branch using a worktree.
+
+Note: `../presentations-pages` is just a local folder that holds a checkout of the `gh-pages` branch of this same repository. It is not a separate GitHub repository. Pushes from this worktree go to `origin gh-pages` on the current repo.
+
+One-time setup:
+```bash
+git fetch origin
+# Create/update a gh-pages worktree into ../presentations-pages
+if git ls-remote --exit-code --heads origin gh-pages >/dev/null 2>&1; then
+  git worktree add -B gh-pages ../presentations-pages origin/gh-pages
+else
+  git worktree add -B gh-pages ../presentations-pages
+fi
+
+cd ../presentations-pages
+git rm -r . 2>/dev/null || true
+git clean -fdx
+
+# Use a single-quoted heredoc to avoid '!' expansion in zsh
+cat > index.html <<'HTML'
+<!doctype html><meta charset="utf-8"><title>Presentations</title>
+<h1>Presentations</h1>
+<ul></ul>
+HTML
+
+git add -A && git commit -m "Initialize gh-pages for multi-build hosting" || true
+git push -u origin gh-pages
+```
+
+Publish builds:
+```bash
+# From repo root
+rsync -av --delete --exclude '.git*' builds/<name>_build/ ../presentations-pages/<name>/
+cd ../presentations-pages && git add -A && git commit -m "Publish <name>" && git push origin gh-pages
+```
+
+Helper script:
+```bash
+./scripts/publish-build.sh <name> [<build-path>]
+# e.g.
+./scripts/publish-build.sh ap2 builds/ap2_build
+./scripts/publish-build.sh cupum builds/cupum_build
+```
+
+Your links will be:
+```
+https://<your-username>.github.io/<this-repo>/<name>/
+```
+
+Notes:
+- If a build folder is a submodule, initialize it before publishing:
+  `git submodule update --init --recursive builds/<name>_build`
+- Keep using `create_build.py` to regenerate builds, then re-run the publish script.
+
 ## Notes
 
 - Use a unique local branch name (e.g., `<name>-gh-pages`) to avoid conflicts with any existing `gh-pages`.

@@ -10,8 +10,8 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
 
-    <link rel="stylesheet" href="../dist/reveal.css" />
-    <!-- <link rel="stylesheet" href="../dist/theme/white.css" id="theme" /> -->
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <!-- <link rel="stylesheet" href="dist/theme/white.css" id="theme" /> -->
     <link rel="stylesheet" href="../plugin/highlight/monokai.css" />
 
     <style>
@@ -25,7 +25,8 @@
           "Segoe UI Symbol";
         background-color: #f8f9fa;
         color: #333;
-        padding: 40px 20px; /* More padding for horizontal view */
+        margin: 0;
+        padding: 0; /* Remove padding to avoid clipping Reveal controls */
       }
 
       /* ============================================
@@ -213,92 +214,93 @@
           <h4>2024-2025</h4>
           <medium>Carrow Morris-Wiltshire</medium>
         </section>
-  <body>
-    <section class="timeline-section">
-      <h2>PhD Progress Overview</h2>
-      <div class="timeline-container">
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>Sep 2022</h3>
-            <p><strong>M1:</strong> MRes Beginning</p>
-          </div>
-        </div>
+        <!-- REMOVE stray <body> tag below -->
+        <!-- <body> -->
+        <section class="timeline-section">
+          <h2>PhD Progress Overview</h2>
+          <div class="timeline-container">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Sep 2022</h3>
+                <p><strong>M1:</strong> MRes Beginning</p>
+              </div>
+            </div>
 
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>Sep 2023</h3>
-            <p><strong>M2:</strong> MRes Completion</p>
-          </div>
-        </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Sep 2023</h3>
+                <p><strong>M2:</strong> MRes Completion</p>
+              </div>
+            </div>
 
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>Jan 2024</h3>
-            <p><strong>M3:</strong> PhD Proposal</p>
-          </div>
-        </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Jan 2024</h3>
+                <p><strong>M3:</strong> PhD Proposal</p>
+              </div>
+            </div>
 
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>Sep 2024</h3>
-            <p><strong>M4:</strong> DSTL Del. 1</p>
-          </div>
-        </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Sep 2024</h3>
+                <p><strong>M4:</strong> DSTL Del. 1</p>
+              </div>
+            </div>
 
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>Jan 2025</h3>
-            <p><strong>M5:</strong> Paper/Objective 1</p>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Jan 2025</h3>
+                <p><strong>M5:</strong> Paper/Objective 1</p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <div class="timeline-container">
+          <div class="timeline-container">
 
-        <div class="timeline-item upcoming">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>Sep 2025</h3>
-            <p><strong>M6:</strong> DSTL Del. 2</p>
-            <p><strong>M7:</strong> Paper/Objective 2</p>
+            <div class="timeline-item upcoming">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Sep 2025</h3>
+                <p><strong>M6:</strong> DSTL Del. 2</p>
+                <p><strong>M7:</strong> Paper/Objective 2</p>
+              </div>
+            </div>
+            <div class="timeline-item upcoming">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Jan 2026</h3>
+                <p><strong>M9:</strong> Paper/Objective 3</p>
+              </div>
+            </div>
+            <div class="timeline-item upcoming">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Jun 2026</h3>
+                <p><strong>M11:</strong> Paper/Objective 4</p>
+              </div>
+            </div>
+            <div class="timeline-item upcoming">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Sep 2026</h3>
+                <p><strong>M11:</strong> DSTL Del. 3</p>
+                <p><strong>M12:</strong> Thesis Sub.</p>
+              </div>
+            </div>
+            <div class="timeline-item upcoming">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Dec 2026</h3>
+                <p><strong>M13:</strong> Funding Ends</p>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="timeline-item upcoming">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>Jan 2026</h3>
-            <p><strong>M9:</strong> Paper/Objective 3</p>
-          </div>
-        </div>
-        <div class="timeline-item upcoming">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>Jun 2026</h3>
-            <p><strong>M11:</strong> Paper/Objective 4</p>
-          </div>
-        </div>
-        <div class="timeline-item upcoming">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>Sep 2026</h3>
-            <p><strong>M11:</strong> DSTL Del. 3</p>
-            <p><strong>M12:</strong> Thesis Sub.</p>
-          </div>
-        </div>
-        <div class="timeline-item upcoming">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>Dec 2026</h3>
-            <p><strong>M13:</strong> Funding Ends</p>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
 
         <section>
@@ -393,7 +395,7 @@
               height="250"
               frameborder="0"
               style="padding-top: 20px"></iframe>
-            </iframe>
+            <!-- Removed duplicate closing iframe -->
           </div>
           <div
             class="fragment"
@@ -408,7 +410,7 @@ real-time urban planning</p>
               height="250"
               frameborder="0"
               style="padding-top: 20px"></iframe>
-            </iframe>
+            <!-- Removed duplicate closing iframe -->
           </div>
           <div
             class="fragment"
@@ -484,8 +486,8 @@ using deep-learning</p>
       </div>
     </div>
 
-    <script src="../dist/reveal.js"></script>
-    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
     <script>
       // Initialize Reveal
       Reveal.initialize({
@@ -493,6 +495,7 @@ using deep-learning</p>
         hash: true,
         progress: true,
         autoAnimate: true,
+        margin: 0.04 // 4% viewport margin without clipping controls
       });
     </script>
   </body>

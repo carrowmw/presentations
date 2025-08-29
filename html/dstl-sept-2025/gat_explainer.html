@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GAT Explainer Dashboard with AI</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      #map {
+        height: 100vh;
+      }
+      .leaflet-tooltip {
+        background-color: rgba(255, 255, 255, 0.9);
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+      }
+      .ai-summary-container {
+        max-height: 400px;
+        overflow-y: auto;
+      }
+      .legend {
+        line-height: 1.2;
+        color: #333;
+      }
+      .loader {
+        border: 4px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 4px solid #3498db;
+        width: 20px;
+        height: 20px;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 font-sans">
+    <div id="map"></div>
+
+    <div
+      class="absolute top-4 right-4 bg-white p-4 rounded-lg shadow-lg z-[1000] max-w-sm w-full"
+    >
+      <div class="flex justify-between items-center mb-3">
+        <h2 class="text-xl font-bold text-gray-800">GNN Explainer</h2>
+        <div id="loading-spinner" class="loader" style="display: none"></div>
+      </div>
+
+      <div class="mb-4">
+        <label
+          for="model-select"
+          class="block text-sm font-medium text-gray-700"
+          >Select Model Iteration:</label
+        >
+        <select
+          id="model-select"
+          class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+        >
+          <option value="iter20" selected>iter20</option>
+          <option value="iter21p3">iter21p3</option>
+          <option value="iter21p4">iter21p4</option>
+          <option value="iter21p5">iter21p5</option>
+          <option value="X">X</option>
+        </select>
+      </div>
+
+      <div class="mb-4">
+        <label
+          for="sample-select"
+          class="block text-sm font-medium text-gray-700"
+          >Select Sample Window:</label
+        >
+        <select
+          id="sample-select"
+          class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+        ></select>
+      </div>
+
+      <div class="mb-4">
+        <label
+          for="timestep-slider"
+          class="block text-sm font-medium text-gray-700"
+          >Timestep:</label
+        >
+        <input
+          type="range"
+          id="timestep-slider"
+          min="0"
+          max="11"
+          value="0"
+          class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+        />
+        <p
+          id="timestamp-display"
+          class="text-center text-sm text-gray-600 mt-1 font-medium"
+        ></p>
+      </div>
+
+      <div class="mb-4">
+        <label
+          for="edge-k-input"
+          class="block text-sm font-medium text-gray-700"
+          >Top K Edges to Display:</label
+        >
+        <input
+          type="number"
+          id="edge-k-input"
+          value="50"
+          min="0"
+          class="mt-1 block w-full pl-3 pr-2 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+        />
+      </div>
+
+      <div class="mt-4">
+        <button
+          id="ai-summary-btn"
+          class="w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out"
+        >
+          Get AI Summary
+        </button>
+      </div>
+
+      <div
+        id="ai-summary-container"
+        class="mt-4 p-3 bg-gray-50 rounded-lg border border-gray-200 ai-summary-container"
+        style="display: none"
+      >
+        <h3 class="text-md font-bold text-gray-800 mb-2">AI Analysis</h3>
+        <div
+          id="ai-summary-content"
+          class="text-sm text-gray-700 space-y-2"
+        ></div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        const map = L.map("map", { minZoom: 10, maxZoom: 24 }).setView(
+          [54.9783, -1.6178],
+          12
+        );
+        L.tileLayer(
+          "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+          {
+            attribution:
+              '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+          }
+        ).addTo(map);
+
+        const modelSelect = document.getElementById("model-select");
+        const sampleSelect = document.getElementById("sample-select");
+        const timestepSlider = document.getElementById("timestep-slider");
+        const timestampDisplay = document.getElementById("timestamp-display");
+        const edgeKInput = document.getElementById("edge-k-input");
+        const aiSummaryBtn = document.getElementById("ai-summary-btn");
+        const aiSummaryContainer = document.getElementById(
+          "ai-summary-container"
+        );
+        const aiSummaryContent = document.getElementById("ai-summary-content");
+        const loadingSpinner = document.getElementById("loading-spinner");
+
+        let graphData, explanationData, timestampsData;
+        let nodeMarkers = [],
+          edgeLayers = [];
+
+        const legend = L.control({ position: "bottomright" });
+        legend.onAdd = function (map) {
+          const div = L.DomUtil.create(
+            "div",
+            "info legend bg-white p-3 rounded-lg shadow-lg"
+          );
+          div.innerHTML = `<h4 class="font-bold text-md mb-2">Legend</h4>
+                    <div class="flex items-center mb-2">
+                        <div class="w-5 h-5 rounded-full mr-2" style="background: linear-gradient(135deg, rgba(255, 200, 0, 0.8), rgba(255, 20, 0, 0.8)); border: 1px solid #555;"></div>
+                        <div><div class="text-sm font-semibold">Nodes</div><div class="text-xs text-gray-600">Larger & redder = more important</div></div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-5 h-1.5 mr-2" style="background: linear-gradient(to right, rgba(20, 80, 200, 0.2), rgba(20, 80, 200, 1));"></div>
+                        <div><div class="text-sm font-semibold">Edges</div><div class="text-xs text-gray-600">Thicker & darker = more important</div></div>
+                    </div>`;
+          return div;
+        };
+        legend.addTo(map);
+
+        async function loadIterationData(iteration) {
+          loadingSpinner.style.display = "block";
+          try {
+            const graphPath = `data/${iteration}/graph_data.json`;
+            const explanationPath = `data/${iteration}/explanation_data.json`;
+            const timestampsPath = `data/${iteration}/timestamps.json`;
+
+            // Fetch all three files for the selected iteration
+            const [graphRes, explanationRes, timestampsRes] = await Promise.all(
+              [fetch(graphPath), fetch(explanationPath), fetch(timestampsPath)]
+            );
+
+            if (!graphRes.ok) throw new Error(`Failed to load ${graphPath}`);
+            if (!explanationRes.ok)
+              throw new Error(`Failed to load ${explanationPath}`);
+            if (!timestampsRes.ok)
+              throw new Error(`Failed to load ${timestampsPath}`);
+
+            graphData = await graphRes.json();
+            explanationData = await explanationRes.json();
+            timestampsData = await timestampsRes.json();
+
+            populateSampleSelect();
+            updateVisualization();
+          } catch (error) {
+            console.error(
+              `Error loading data for iteration ${iteration}:`,
+              error
+            );
+            alert(
+              `Could not load data for "${iteration}". Please check the server console and ensure the file paths are correct.`
+            );
+          } finally {
+            loadingSpinner.style.display = "none";
+          }
+        }
+
+        function populateSampleSelect() {
+          sampleSelect.innerHTML = "";
+          if (!explanationData) return;
+          const samples = Object.keys(explanationData);
+          samples.forEach((sample) => {
+            const option = document.createElement("option");
+            option.value = sample;
+            option.textContent = sample
+              .replace(/_/g, " ")
+              .replace(/\b\w/g, (l) => l.toUpperCase());
+            sampleSelect.appendChild(option);
+          });
+        }
+
+        // // ✅ NEW FUNCTION (use this one)
+        // function updateVisualization() {
+        //   // --- Get the selected sample first ---
+        //   const selectedSample = sampleSelect.value;
+
+        //   if (
+        //     !explanationData ||
+        //     !graphData ||
+        //     !selectedSample ||
+        //     !explanationData[selectedSample]
+        //   ) {
+        //     // Clear previous drawings if data is not ready
+        //     nodeMarkers.forEach((marker) => map.removeLayer(marker));
+        //     edgeLayers.forEach((layer) => map.removeLayer(layer));
+        //     nodeMarkers = [];
+        //     edgeLayers = [];
+        //     return;
+        //   }
+
+        //   // ✅ FIX: Define currentExplanation based on the selected sample
+        //   const currentExplanation = explanationData[selectedSample];
+        //   const currentTimestamps = timestampsData[selectedSample];
+
+        //   // --- 1. Get current values from UI controls ---
+        //   const t = parseInt(timestepSlider.value);
+        //   const k = parseInt(edgeKInput.value);
+
+        //   // Update timestamp display
+        //   if (currentTimestamps && currentTimestamps[t]) {
+        //     timestampDisplay.textContent = new Date(
+        //       currentTimestamps[t]
+        //     ).toLocaleString();
+        //   }
+
+        //   // --- 2. Get pre-processed data for the current timestep ---
+        //   // Access the 'dynamic_graph' structure
+        //   const timestepData = currentExplanation.dynamic_graph[t];
+        //   if (!timestepData) {
+        //     console.error(`No data for timestep ${t}`);
+        //     return;
+        //   }
+
+        //   // --- 3. Get the top K edges and active nodes ---
+        //   const topEdges = timestepData.edges.slice(0, k);
+        //   const activeNodeIds = new Set();
+        //   topEdges.forEach((edge) => {
+        //     activeNodeIds.add(edge.source);
+        //     activeNodeIds.add(edge.target);
+        //   });
+
+        //   // --- 4. Update node visualization ---
+        //   // Clear previous markers
+        //   nodeMarkers.forEach((marker) => map.removeLayer(marker));
+        //   nodeMarkers = [];
+
+        //   graphData.nodes.forEach((node, i) => {
+        //     if (node.pos) {
+        //       const isActive = activeNodeIds.has(node.id);
+        //       const radius = isActive ? 8 : 4;
+        //       const color = isActive ? "orange" : "steelblue";
+        //       const fillOpacity = isActive ? 0.9 : 0.6;
+
+        //       const marker = L.circleMarker([node.pos.lat, node.pos.lon], {
+        //         // Corrected to [lat, lon] for Leaflet
+        //         radius: radius,
+        //         fillColor: color,
+        //         color: "#333",
+        //         weight: 1.5,
+        //         opacity: 1,
+        //         fillOpacity: fillOpacity,
+        //       }).addTo(map);
+
+        //       marker.bindTooltip(`<b>${node.name}</b>`);
+        //       nodeMarkers.push(marker);
+        //     }
+        //   });
+
+        //   // --- 5. Update edge visualization ---
+        //   // Clear previous edges
+        //   edgeLayers.forEach((layer) => map.removeLayer(layer));
+        //   edgeLayers = [];
+
+        //   topEdges.forEach((edge) => {
+        //     const sourceNode = graphData.nodes.find(
+        //       (n) => n.id === edge.source
+        //     );
+        //     const targetNode = graphData.nodes.find(
+        //       (n) => n.id === edge.target
+        //     );
+
+        //     if (sourceNode && targetNode && sourceNode.pos && targetNode.pos) {
+        //       const weight = 2 + edge.importance * 10;
+        //       const opacity = 0.4 + edge.importance * 5; // Scale opacity as well
+
+        //       const polyline = L.polyline(
+        //         [
+        //           [sourceNode.pos.lat, sourceNode.pos.lon], // Corrected to [lat, lon]
+        //           [targetNode.pos.lat, targetNode.pos.lon],
+        //         ],
+        //         {
+        //           color: "grey",
+        //           weight: weight,
+        //           opacity: opacity,
+        //         }
+        //       ).addTo(map);
+        //       edgeLayers.push(polyline);
+        //     }
+        //   });
+        // }
+
+        function updateVisualization() {
+          if (!graphData || !explanationData || !timestampsData) return;
+
+          const selectedSample = sampleSelect.value;
+          const timestep = parseInt(timestepSlider.value);
+          const k = parseInt(edgeKInput.value) || 0;
+
+          if (
+            !selectedSample ||
+            !explanationData[selectedSample] ||
+            !timestampsData[selectedSample]
+          )
+            return;
+
+          const nodeImportance =
+            explanationData[selectedSample].node_importance[timestep];
+          const edgeImportanceData =
+            explanationData[selectedSample].edge_importance[timestep];
+          const currentTimestamp = timestampsData[selectedSample][timestep];
+
+          timestampDisplay.textContent = new Date(
+            currentTimestamp
+          ).toLocaleString();
+
+          nodeMarkers.forEach((marker) => map.removeLayer(marker));
+          edgeLayers.forEach((layer) => map.removeLayer(layer));
+          nodeMarkers = [];
+          edgeLayers = [];
+
+          const maxNodeImportance = Math.max(
+            ...nodeImportance.filter((v) => isFinite(v))
+          );
+          graphData.nodes.forEach((node, i) => {
+            if (node.pos) {
+              const importance = nodeImportance[i] || 0;
+              const normalizedImportance =
+                importance / (maxNodeImportance || 1);
+              const radius = 4 + normalizedImportance * 12;
+              const color = `rgba(255, ${
+                200 - Math.floor(normalizedImportance * 180)
+              }, 0, 0.8)`;
+
+              const marker = L.circleMarker(node.pos, {
+                radius,
+                fillColor: color,
+                color: "#333",
+                weight: 1.5,
+                opacity: 1,
+                fillOpacity: 0.8,
+              }).addTo(map);
+              marker.bindTooltip(
+                `<b>${node.name}</b><br>Importance: ${importance.toFixed(4)}`
+              );
+              nodeMarkers.push(marker);
+            }
+          });
+
+          const topKEdges = graphData.edges
+            .map((edge, i) => ({
+              ...edge,
+              importance: edgeImportanceData[i] || 0,
+            }))
+            .sort((a, b) => b.importance - a.importance)
+            .slice(0, k);
+
+          const maxEdgeImportance = topKEdges[0]?.importance || 1;
+          topKEdges.forEach((edge) => {
+            const sourceNode = graphData.nodes.find(
+              (n) => n.id === edge.source
+            );
+            const targetNode = graphData.nodes.find(
+              (n) => n.id === edge.target
+            );
+
+            if (sourceNode && targetNode && sourceNode.pos && targetNode.pos) {
+              const normalizedImportance = edge.importance / maxEdgeImportance;
+              const weight = 1 + normalizedImportance * 5;
+              const color = `rgba(20, 80, 200, ${
+                0.1 + normalizedImportance * 0.4
+              })`;
+
+              const polyline = L.polyline([sourceNode.pos, targetNode.pos], {
+                color,
+                weight,
+              }).addTo(map);
+              edgeLayers.push(polyline);
+            }
+          });
+        }
+
+        async function getAISummary() {
+          aiSummaryContainer.style.display = "block";
+          aiSummaryContent.innerHTML =
+            '<p class="text-center animate-pulse">🤖 Asking AI for insights...</p>';
+
+          const selectedIteration = modelSelect.value;
+          const selectedSample = sampleSelect.value;
+          const timestep = parseInt(timestepSlider.value);
+          const currentTimestamp = new Date(
+            timestampsData[selectedSample][timestep]
+          ).toLocaleString();
+
+          const nodeImportances = explanationData[
+            selectedSample
+          ].node_importance[timestep]
+            .map((imp, index) => ({
+              name: graphData.nodes[index]?.name || "Unknown",
+              importance: imp,
+            }))
+            .sort((a, b) => b.importance - a.importance)
+            .slice(0, 5);
+
+          const edgeImportances = explanationData[
+            selectedSample
+          ].edge_importance[timestep]
+            .map((imp, index) => {
+              const edge = graphData.edges[index];
+              if (!edge) return null;
+              const sourceName =
+                graphData.nodes.find((n) => n.id === edge.source)?.name ||
+                "Unknown";
+              const targetName =
+                graphData.nodes.find((n) => n.id === edge.target)?.name ||
+                "Unknown";
+              return {
+                name: `${sourceName} to ${targetName}`,
+                importance: imp,
+              };
+            })
+            .filter(Boolean)
+            .sort((a, b) => b.importance - a.importance)
+            .slice(0, 5);
+
+          const prompt = `
+                    You are an expert data scientist explaining a GNN model that predicts pedestrian flow.
+                    Current Context:
+                    - Model Version: ${selectedIteration}
+                    - Sample Window: ${selectedSample}
+                    - Timestamp: ${currentTimestamp}
+                    Key Observations:
+                    - Top 5 important nodes: ${nodeImportances
+                      .map(
+                        (n) =>
+                          `${n.name} (Importance: ${n.importance.toFixed(3)})`
+                      )
+                      .join(", ")}.
+                    - Top 5 important edges: ${edgeImportances
+                      .map(
+                        (e) =>
+                          `${e.name} (Importance: ${e.importance.toFixed(3)})`
+                      )
+                      .join(", ")}.
+                    Task: Provide a concise summary explaining what these importances might signify in the real world (e.g., events, traffic patterns).`;
+
+          try {
+            const response = await fetch("/api/get-summary", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                contents: [{ role: "user", parts: [{ text: prompt }] }],
+              }),
+            });
+            if (!response.ok)
+              throw new Error(`API request failed: ${response.status}`);
+            const result = await response.json();
+            if (result.candidates && result.candidates.length > 0) {
+              aiSummaryContent.innerHTML =
+                result.candidates[0].content.parts[0].text.replace(
+                  /\n/g,
+                  "<br>"
+                );
+            } else {
+              throw new Error("No content received from API.");
+            }
+          } catch (error) {
+            console.error("Gemini API error:", error);
+            aiSummaryContent.innerHTML =
+              '<p class="text-red-600">Sorry, unable to generate summary. Check the server console.</p>';
+          }
+        }
+
+        modelSelect.addEventListener("change", (e) =>
+          loadIterationData(e.target.value)
+        );
+        sampleSelect.addEventListener("change", updateVisualization);
+        timestepSlider.addEventListener("input", updateVisualization);
+        edgeKInput.addEventListener("input", updateVisualization);
+        aiSummaryBtn.addEventListener("click", getAISummary);
+
+        // --- Initial Load ---
+        await loadIterationData(modelSelect.value);
+      });
+    </script>
+  </body>
+</html>

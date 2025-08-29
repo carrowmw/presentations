@@ -1,9 +1,11 @@
 # conceptual_build_script.py
 import os
+from pathlib import Path
 import shutil
-from bs4 import BeautifulSoup
 import re
+from bs4 import BeautifulSoup
 import argparse
+import tempfile
 
 # --- Configuration ---
 # Attributes to check for local file paths
@@ -100,6 +102,60 @@ def process_css_file(css_abs_path, base_input_dir, output_dir):
             print(f"Warning: CSS asset path {asset_abs_path} is outside project base. Skipping.")
 
 
+def find_source_html(name: str) -> Path:
+    """
+    Try common locations for a presentation named <name>.
+    Also consider a top-level index.html if it exists.
+    """
+    root = Path.cwd()
+    candidates = [
+        root / f"{name}.html",
+        root / "archive" / f"{name}.html",
+        root / name / "index.html",
+        root / "presentations" / name / "index.html",
+        root / "slides" / name / "index.html",
+        root / "builds" / f"{name}_build" / "index.html",
+        root / "index.html",  # fallback: top-level index.html
+    ]
+    for p in candidates:
+        if p.exists():
+            return p
+    raise FileNotFoundError(
+        f"No source HTML found for name '{name}'. Tried:\n" + "\n".join(str(p) for p in candidates)
+    )
+
+def find_project_root(start_dir: str) -> str:
+    """
+    Walk up until a Git root or filesystem root is found.
+    """
+    cur = os.path.abspath(start_dir)
+    while True:
+        if os.path.isdir(os.path.join(cur, ".git")):
+            return cur
+        parent = os.path.dirname(cur)
+        if parent == cur:
+            return cur
+        cur = parent
+
+def determine_base_input_dir(input_html_file: str) -> str:
+    """
+    Choose a base directory that contains shared assets like dist/, plugin/, images/, pdf/, css/, js/.
+    Start from the HTML dir and walk up until we find one.
+    """
+    wanted = {"dist", "plugin", "images", "pdf", "css", "js"}
+    html_dir = os.path.dirname(os.path.abspath(input_html_file))
+    cur = html_dir
+    project_root = find_project_root(html_dir)
+    while True:
+        if any(os.path.isdir(os.path.join(cur, d)) for d in wanted):
+            return cur
+        if cur == project_root:
+            return cur
+        parent = os.path.dirname(cur)
+        if parent == cur:
+            return html_dir
+        cur = parent
+
 def process_html_file(html_file_path, base_input_dir, output_dir):
     """
     Processes a single HTML file: copies its assets and the file itself.
@@ -118,83 +174,146 @@ def process_html_file(html_file_path, base_input_dir, output_dir):
         print(f"Warning: Could not parse HTML file {html_file_path}: {e}")
         return
 
-
     # Copy assets linked in the HTML
     for tag_name, attr_name in ATTRS_TO_CHECK.items():
         for tag in soup.find_all(tag_name):
             asset_url = tag.get(attr_name)
             if asset_url:
+                # FIX: use base_input_dir instead of undefined base_dir
                 asset_abs_path = get_asset_path(base_input_dir, asset_url, html_file_path)
                 if asset_abs_path:
-                    # Check if this asset is within the base_input_dir
                     if os.path.commonpath([asset_abs_path, base_input_dir]) == base_input_dir:
                         copied_rel_path = copy_asset(asset_abs_path, base_input_dir, output_dir)
-
-                        # If it's a CSS file, process it for more assets (like fonts)
                         if copied_rel_path and copied_rel_path.lower().endswith('.css'):
                             process_css_file(os.path.join(output_dir, copied_rel_path), base_input_dir, output_dir)
-
-                        # If it's a local HTML iframe, process it recursively
-                        # Note: This would require careful handling of base paths and output paths for recursion
-                        # and potentially rewriting the src attribute in the copied parent HTML.
-                        # For simplicity, this example just copies it. A full recursive solution is more complex.
                         if tag_name == 'iframe' and copied_rel_path and copied_rel_path.lower().endswith(('.html', '.htm')):
-                            # Simplistic copy; recursive processing is more involved
-                            # process_html_file(asset_abs_path, base_input_dir, output_dir) # This needs refinement for recursion
+                            # process_html_file(asset_abs_path, base_input_dir, output_dir)
                             pass
                     else:
-                         print(f"Warning: HTML asset path {asset_abs_path} is outside project base. Skipping.")
+                        print(f"Warning: HTML asset path {asset_abs_path} is outside project base. Skipping.")
 
+    # Copy the HTML file itself to the build root as index.html
+    os.makedirs(output_dir, exist_ok=True)
+    shutil.copy2(html_file_path, os.path.join(output_dir, "index.html"))
+    print(f"Copied HTML: {html_file_path} -> {os.path.join(output_dir, 'index.html')}")
 
-    # Copy the HTML file itself
-    html_rel_path = os.path.relpath(html_file_path, base_input_dir)
-    dest_html_path = os.path.join(output_dir, html_rel_path)
-    os.makedirs(os.path.dirname(dest_html_path), exist_ok=True)
-    shutil.copy2(html_file_path, dest_html_path)
-    print(f"Copied HTML: {html_file_path} -> {dest_html_path}")
+def write_no_lfs_gitattributes(build_dir: Path):
+    """
+    Ensure the build is never LFS-filtered when committed or split to gh-pages.
+    This file will land at the root of the gh-pages branch (subtree split).
+    """
+    ga = build_dir / ".gitattributes"
+    ga.write_text(
+        "# Disable Git LFS and related filters for this published site\n"
+        "* -filter -diff -merge -text\n",
+        encoding="utf-8"
+    )
+
+def verify_no_lfs_pointers(build_dir: Path):
+    """
+    Fail the build if any file inside the build dir is still an LFS pointer.
+    """
+    pointer_sig = "version https://git-lfs.github.com/spec/v1"
+    bad = []
+    for p in build_dir.rglob("*"):
+        if p.is_file():
+            try:
+                with p.open("rb") as f:
+                    head = f.read(200).decode("utf-8", errors="ignore")
+                if head.startswith(pointer_sig):
+                    bad.append(str(p.relative_to(build_dir)))
+            except Exception:
+                pass
+    if bad:
+        raise RuntimeError(
+            "Build contains Git LFS pointer files (not raw content):\n"
+            + "\n".join(f"  - {x}" for x in bad)
+            + "\nRun: git lfs install && git lfs pull, then rebuild."
+        )
+
+def make_build_self_contained(build_dir: Path):
+    """
+    Ensure a build folder contains its own Reveal assets and
+    that index.html references them with 'dist/' and 'plugin/'.
+    """
+    root = Path.cwd()
+
+    # Prefer repo-level dist/ and plugin/ if present, else fall back to a known-good build
+    src_dist = root / "dist"
+    src_plugin = root / "plugin"
+    fallback = root / "builds" / "cupum_build"
+    if not src_dist.exists():
+        cand = fallback / "dist"
+        if cand.exists():
+            src_dist = cand
+    if not src_plugin.exists():
+        cand = fallback / "plugin"
+        if cand.exists():
+            src_plugin = cand
+
+    # Copy assets into the build
+    dst_dist = build_dir / "dist"
+    dst_plugin = build_dir / "plugin"
+    if src_dist.exists():
+        shutil.copytree(src_dist, dst_dist, dirs_exist_ok=True)
+    if src_plugin.exists():
+        shutil.copytree(src_plugin, dst_plugin, dirs_exist_ok=True)
+
+    # Rewrite ../dist and ../plugin to local paths
+    index = build_dir / "index.html"
+    if index.exists():
+        html = index.read_text(encoding="utf-8")
+        html = re.sub(r'href="\.\./dist/', 'href="dist/', html)
+        html = re.sub(r'src="\.\./dist/', 'src="dist/', html)
+        html = re.sub(r'src="\.\./plugin/', 'src="plugin/', html)
+        index.write_text(html, encoding="utf-8")
 
 
 # --- Main Script Logic ---
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Create a minimal build for a Reveal.js presentation.")
-    parser.add_argument("input_html", help="Path to the main HTML file of the presentation.")
-    parser.add_argument("output_dir", help="Directory to store the minimal build.")
-    # parser.add_argument("--download-cdn", action="store_true", help="Download CDN assets locally (not implemented in this example).")
-
+    parser.add_argument("--name", help="Presentation name (e.g., ap2). If set, input/output paths are inferred.")
+    parser.add_argument("input_html", nargs="?", help="Path to the main HTML file of the presentation.")
+    parser.add_argument("output_dir", nargs="?", help="Directory to store the minimal build.")
     args = parser.parse_args()
 
-    input_html_file = os.path.abspath(args.input_html)
-    # Assume the project root is the directory containing the input HTML file's parent,
-    # or adjust as needed if your assets (like a global 'dist' or 'plugin' folder) are higher up.
-    # For this example, let's assume the input_html_file is in the root of your project structure for THIS presentation.
-    # If your 'dist', 'plugin', 'css', 'images' folders are siblings to where your presentation HTMLs are,
-    # then base_input_dir should be the parent of your input_html_file.
-    # If index.html is at project_root/index.html, then base_input_dir = project_root
-    # If index.html is at project_root/presentations/my_pres/index.html, and 'dist' is at project_root/dist,
-    # then base_input_dir = os.path.abspath(os.path.join(os.path.dirname(input_html_file), '../../')) # Adjust as needed
+    if args.name:
+        name = args.name
+        src_html = find_source_html(name)
+        out_dir = Path("builds") / f"{name}_build"
+        input_html_file = str(src_html.resolve())
+        output_build_dir = str((Path.cwd() / out_dir).resolve())
+    else:
+        if not args.input_html or not args.output_dir:
+            parser.error("Either --name or both positional arguments <input_html> <output_dir> are required.")
+        input_html_file = os.path.abspath(args.input_html)
+        output_build_dir = os.path.abspath(args.output_dir)
 
-    # A common setup: your presentation HTML is in the root of its own asset collection.
-    # Or, if you have one BIG common folder for all assets, the base_input_dir is that common folder.
-    # Let's assume the script is run from the root of the BIG project folder,
-    # and input_html is like 'presentations_folder/my_pres.html'
-    # For your case, your index.html seems to be in the root of where 'dist', 'plugin', 'css', 'images' are.
-    base_input_dir = os.path.abspath(os.path.dirname(input_html_file)) # Assuming assets are relative to the HTML's dir or in subdirs
-    # If assets like 'dist/' are in the parent of where index.html is, adjust this.
-    # Given your paths like 'dist/reveal.css', it's likely index.html is in the main project root.
-    # So base_input_dir should be the directory containing index.html, dist/, plugin/, etc.
-    # If script is in project_root and you run: python script.py index.html build_output
-    # then base_input_dir = os.getcwd() or specifically os.path.dirname(os.path.abspath(args.input_html)) if html is in root.
-
-    output_build_dir = os.path.abspath(args.output_dir)
-
-    if os.path.exists(output_build_dir):
-        # Basic cleanup: remove if exists. Be careful with this in production scripts!
-        print(f"Output directory {output_build_dir} exists. Removing it.")
-        shutil.rmtree(output_build_dir)
-    os.makedirs(output_build_dir)
-
+    # Determine a correct base dir that actually contains assets
+    base_input_dir = determine_base_input_dir(input_html_file)
     print(f"Project base directory identified as: {base_input_dir}")
-    process_html_file(input_html_file, base_input_dir, output_build_dir)
 
-    print("\nMinimal build process complete.")
+    # Build into a temporary staging dir to avoid deleting input
+    staging_dir = output_build_dir + ".tmp"
+    if os.path.exists(staging_dir):
+        shutil.rmtree(staging_dir)
+    os.makedirs(staging_dir)
+
+    # Process HTML and assets into staging
+    process_html_file(input_html_file, base_input_dir, staging_dir)
+
+    print("\nMinimal build process complete (staging).")
+    print(f"Staged at: {staging_dir}")
+
+    # Make self-contained (dist/plugin + path rewrites) against staging
+    make_build_self_contained(Path(staging_dir))
+
+    # NEW: drop a .gitattributes at build root to disable LFS and verify content
+    write_no_lfs_gitattributes(Path(staging_dir))
+    verify_no_lfs_pointers(Path(staging_dir))
+
+    # Atomically replace the output dir
+    if os.path.exists(output_build_dir):
+        shutil.rmtree(output_build_dir)
+    os.replace(staging_dir, output_build_dir)
     print(f"Presentation exported to: {output_build_dir}")

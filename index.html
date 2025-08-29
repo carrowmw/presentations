@@ -1,34 +1,63 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
 
-    <title>reveal.js - Layout Helpers</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>reveal.js</title>
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/newcastle-enchanced.css" />
+    <link rel="stylesheet" href="css/boxicons.min.css" />
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
 
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    <!-- Libraries -->
+    <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     />
-
-    <link rel="stylesheet" href="../dist/reveal.css" />
-    <!-- <link rel="stylesheet" href="../dist/theme/white.css" id="theme" /> -->
-    <link rel="stylesheet" href="../plugin/highlight/monokai.css" />
-
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <style>
-      /* ============================================
-      General Body & Font Styles
-      ============================================
-      */
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-          "Segoe UI Symbol";
-        background-color: #f8f9fa;
-        color: #333;
-        padding: 40px 20px; /* More padding for horizontal view */
-      }
+              .reveal table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            font-size: 0.6em;
+            width: 90%;
+        }
 
-      /* ============================================
+        .reveal th,
+        .reveal td {
+            border: 1px solid #ffffff;
+            padding: 10px 15px;
+            text-align: left;
+        }
+
+        .reveal th {
+            background-color: #d5112d;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .reveal tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Ensure code blocks have correct color */
+        pre code {
+            color: #fff;
+            /* Default text color for code blocks */
+        }
+
+        .hljs {
+            background: #272822;
+            /* Background color for code blocks */
+        }
+
+          /* ============================================
       Horizontal Timeline Container (Desktop)
       ============================================
       - Uses Flexbox to lay out items horizontally.
@@ -202,103 +231,674 @@
           display: none; /* Hide connectors */
         }
       }
+
+        /* Match ap2.html spacing and font-size while keeping theme styles */
+        body { margin: 0; padding: 0; }
+        html { font-size: 14px; } /* was ~16px */
+
+        /* Make all Reveal text smaller (headings are in em, body copy gets extra cut) */
+        .reveal { font-size: 24px; } /* was 40px */
+        .reveal h1 { font-size: 1.6em; }
+        .reveal h2 { font-size: 1.25em; }
+        .reveal h3 { font-size: 1.05em; }
+        .reveal h4 { font-size: 0.95em; }
+
+        .reveal p {
+          font-size: 0.8em;
+        }
+        .reveal b {
+          font-size: 0.8em;
+        }
+        .reveal li,
+        .reveal td,
+        .reveal th,
+        .reveal small {
+          font-size: 0.8em;
+          line-height: 1.3;
+        }
+
+        /* Optional: tighten list margins a bit so more fits */
+        .reveal ul, .reveal ol { margin: 0.3em 0 0.3em 1em; }
+              .viz-container {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 20px;
+        height: 100%;
+      }
+      .viz-column {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      .viz-full {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+      }
+      .v-center-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%; /* Make sure the container fills the grid cell's height */
+      }
+      .h-center-content {
+        display: flex;
+        justify-content: center; /* This is the key for horizontal centering */
+        align-items: center; /* This will also handle vertical centering */
+        width: 100%;
+      }
+      .viz-container [data-viz],
+      .viz-full [data-viz] {
+        width: 100%;
+        min-height: 800px; /* Allow the container to grow taller if needed */
+        height: auto; /* Let the content determine the final height */
+        border-radius: 12px;
+      }
+      #particles-js {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        display: none;
+      }
+      #architecture-flowchart {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* UPDATED: Add cursor to show it's clickable */
+        cursor: zoom-in;
+      }
+
+      /* UPDATED: Styles for the zoomed-in, now SCROLLABLE flowchart */
+      #architecture-flowchart.zoomed {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(20, 20, 20, 0);
+          z-index: 1000;
+          cursor: zoom-out;
+          padding: 0em; /* This was your previous setting */
+          box-sizing: border-box;
+          /* NEW: Add overflow to allow scrolling */
+          overflow: auto;
+          /* NEW: Ensure the flex properties are here to center the large SVG */
+          display: flex;
+          align-items: flex-start; /* Aligns the flowchart to the top */
+          justify-content: center; /* Keeps it centered horizontally */
+      }
+
+      /* UPDATED: Change SVG sizing to be larger than the screen */
+      #architecture-flowchart.zoomed svg {
+        /* Making the SVG larger than its container (the screen) is what
+          triggers the overflow and makes the scrollbars appear.
+          150% is a good starting point, you can adjust this value. */
+        width: 150%;
+        height: 150%;
+      }
+      /* Add this new rule here */
+      #architecture-flowchart .node span {
+        font-size: 15px !important;
+        line-height: 1 !important;
+        font-weight: normal !important;
+      }
+
+      .attention-controls,
+      .forecast-controls,
+      .failure-controls {
+        margin-bottom: 15px;
+        text-align: center;
+      }
+      .attention-controls label,
+      .forecast-controls label,
+      .failure-controls label {
+          margin-right: 10px;
+          font-size: 0.8em;
+      }
+      .attention-controls select,
+      .forecast-controls select,
+      .failure-controls select {
+          padding: 8px 12px;
+          border-radius: 8px;
+          border: 1px solid #555;
+          background-color: #333;
+          color: #fff;
+          font-family: inherit;
+          font-size: 0.7em;
+      }
+      .attention-map-container {
+          height: calc(100% - 50px); /* Adjust height to account for controls */
+          width: 100%;
+          border-radius: 12px;
+      }
+
+      /*
+        Force the SVG element itself to scale to the full height of its container.
+      */
+      #architecture-flowchart svg {
+        height: 100%;
+        /* The width is already handled by the `useMaxWidth: true` mermaid config,
+          but being explicit doesn't hurt. */
+        width: 100%;
+      }
+
+      /* Styling for the icon list on the motivation slide */
+      .icon-list {
+          list-style-type: none; /* Remove default bullets */
+          padding-left: 0;
+          margin-top: 1em;
+      }
+      .icon-list li {
+          position: relative; /* Create a positioning context for the icon */
+          padding-left: 2.5em; /* Create space for the icon to live */
+          margin-bottom: 0.8em;
+          text-align: left;
+      }
+      .icon-list .bx {
+          position: absolute; /* Position the icon relative to the li */
+          left: 0;
+          top: 0.1em; /* Adjust for better vertical alignment with the text */
+          font-size: 1.5em;
+          line-height: 1; /* Prevent the icon's line height from adding extra space */
+          color: #d5112d; /* Use link color from theme */
+      }
     </style>
-  </head>
+</head>
 
-  <body>
+<body>
     <div class="reveal">
-      <div class="slides">
-        <section id="title-slide">
-          <h1 class="r-fit-text">Annual Progress Report</h1>
-          <h4>2024-2025</h4>
-          <medium>Carrow Morris-Wiltshire</medium>
+        <div class="slides">
+            <!-- Title Slide -->
+            <section data-state="make-it-pop" data-transition="slide-in fade-out" class="title-slide">
+                <h2>Quarterly DSTL Report</h2>
+                <br>
+                <medium>Sept 2025</medium>
+                <br>
+                <br>
+                <small>Carrow Morris-Wiltshire</small>
+                <br>
+                <small>Supervisors: Phil James, Sheen Cabeneros, Keith Hermiston, Stuart Barr - (emeritus)</small>
+                <br>
+
+                <img src="images/white_logos/newcastle.png" height="50px" color='#FFFFFF'>
+                <img src="images/white_logos/dstl.png" height="50px" color='#FFFFFF'>
+                <img src="images/white_logos/cdt_long.png" height="50px" color='#FFFFFF'>
+                <aside class="notes"></aside>
+            </section>
+
+                  <!-- Motivation Slide -->
+		<section data-background-image="images/cupum/emergency_response.jpg">
+			<div class="text-box" style="text-align: left; width: 60%;">
+				<h2>The Core Urban Challenge</h2>
+
+				<p class="fragment"><i class='bx bx-sitemap'></i> Nowcasting pedestrian flow is crucial for urban management and transit.</p>
+
+				<p class="fragment"><i class='bx bxs-ambulance'></i> In a crisis, this real-time understanding is critical for saving lives.</p>
+
+				<p class="fragment"><i class='bx bx-wifi-off'></i> But effectiveness depends entirely on sensor data that is often incomplete.</p>
+
+			</div>
+			<aside class="notes">
+				<ul>
+					<li>Effective urban planning and management, from daily transit operations to emergency response, fundamentally depends on our ability to nowcast—to predict where people will be in the near future.</li>
+					<li>Scenarios like the Manchester Arena incident highlight that in a crisis, a real-time understanding of pedestrian flow is critical for guiding interventions and saving lives.</li>
+					<li>Increasingly CBRN attacks and evacuation.</li>
+					<li>However, the effectiveness of any real-time system is critically dependent on the quality and completeness of its underlying sensor data.</li>
+				</ul>
+			</aside>
+		</section>
+
+        <!-- NEW: Research Aim Slide -->
+        <section data-background-image="images/cupum/research_aim.png">
+            <div class="text-box" style="text-align: left; width: 60%;">
+                <h2>Research Aim</h2>
+                <p>
+                    To develop a resilient spatio-temporal nowcasting model that can accurately predict urban pedestrian flow, even with incomplete or missing sensor data.
+                </p>
+            </div>
+            <aside class="notes">
+                <ul>
+                    <li>This is the core goal of the project.</li>
+                    <li>"Resilient" is the key word here - the model must be robust to the real-world problem of sensor failure.</li>
+                    <li>We're focusing on "nowcasting" - predicting the very near future - which is most relevant for operational decisions.</li>
+                </ul>
+            </aside>
         </section>
-  <body>
-    <section class="timeline-section">
-      <h2>PhD Progress Overview</h2>
-      <div class="timeline-container">
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>Sep 2022</h3>
-            <p><strong>M1:</strong> MRes Beginning</p>
-          </div>
-        </div>
 
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>Sep 2023</h3>
-            <p><strong>M2:</strong> MRes Completion</p>
-          </div>
-        </div>
+        <!-- NEW: Why this architecture slide -->
+		<section data-background-image="images/cupum/architecture_choice.jpg">
+			<div class="text-box" style="text-align: left; width: 60%;">
+				<h2>Why this Architecture?</h2>
 
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>Jan 2024</h3>
-            <p><strong>M3:</strong> PhD Proposal</p>
-          </div>
-        </div>
 
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>Sep 2024</h3>
-            <p><strong>M4:</strong> DSTL Del. 1</p>
-          </div>
-        </div>
+					<p><i class='bx bx-network-chart'></i> <strong>Graph Neural Networks (GNNs)</strong> for Spatial Dependencies.</p>
+					<small>They naturally model the irregular, network-based structure of a city's sensor grid.</small>
 
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>Jan 2025</h3>
-            <p><strong>M5:</strong> Paper/Objective 1</p>
+					<p><i class='bx bx-time-five'></i> <strong>Temporal Self-Attention</strong> for Time Dependencies.</p>
+					<small>It allows the model to weigh the importance of past events differently, capturing complex patterns like morning rush hour vs. midday lulls.</small>
+
+			</div>
+			<aside class="notes">
+				<ul>
+					<li>Our problem has two key dimensions: space and time. We need an architecture that can handle both.</li>
+					<li>For the spatial part, a GNN is the perfect fit. Unlike a grid-based model like a CNN, a GNN can understand the complex and irregular connections of a real-world sensor network.</li>
+					<li>For the temporal part, self-attention is more powerful than a simple RNN. It can look back at the entire history of a sensor and decide which past moments are most important for predicting the next 15 minutes. This is key for understanding daily and weekly cycles.</li>
+				</ul>
+			</aside>
+		</section>
+
+
+        <!-- Slide 3 Case Study -->
+        <section data-state="full-width" data-auto-animate>
+          <div class="grid" style="grid-template-columns: 30% 70%">
+            <div data-id="methodology-text-container">
+              <p data-id="case-study">Case Study &amp; Experimental Design</p>
+            </div>
+            <div style="height: 800px" class="v-center-container"></div>
           </div>
-        </div>
+          <aside class="notes">
+            <ul>
+              <li>Established the background</li>
+              <li>Set the scene for the case study</li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- Slide 3 CS Data -->
+        <section data-state="full-width" data-auto-animate>
+          <div class="grid" style="grid-template-columns: 30% 70%">
+            <div data-id="methodology-text-container">
+              <p data-id="case-study">Case Study &amp; Experimental Design</p>
+              <small data-id="data-source">
+                <hr />
+                <strong>Data:</strong> Pedestrian counts from the Newcastle
+                Urban Observatory.</small
+              >
+            </div>
+            <div style="height: 800px" class="v-center-container"></div>
+          </div>
+          <aside class="notes">
+            <ul>
+              <li>Data comes from the urban observatory 1000s of sensors across the city collecting everything from air pollution levels to pedestrian counts</li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- Slide 3 Sensor Video-->
+        <section data-state="full-width" data-auto-animate>
+          <div class="grid" style="grid-template-columns: 30% 70%">
+            <div data-id="methodology-text-container">
+              <p data-id="case-study">Case Study &amp; Experimental Design</p>
+              <small data-id="data-source">
+                <hr />
+                <strong>Data:</strong> Pedestrian counts from the Newcastle
+                Urban Observatory.</small
+              >
+            </div>
+            <div style="height: 800px" class="v-center-container">
+              <video
+                data-id="video"
+                style="border-radius: 12px; align-items: center"
+                autoplay
+                controls
+              >
+                <source
+                  data-src="videos/computer_vision.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+          <aside class="notes">
+            <ul>
+              <li>Explain video</li>
+              <li></li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- Slide 3 Sensor Counts -->
+        <section
+        data-auto-animate
+        data-state="full-width"
+        class="visualization-slide"
+        >
+        <div class="grid" style="grid-template-columns: 30% 70%">
+          <div data-id="methodology-text-container">
+            <p data-id="case-study">Case Study &amp; Experimental Design</p>
+            <small data-id="data-source">
+              <hr />
+              <strong>Data:</strong> Pedestrian counts from the Newcastle
+              Urban Observatory.</small
+              >
+            </div>
+            <div class="viz-column" style="height: 800px">
+              <canvas data-viz="bar-chart" id="bar-chart-2"></canvas>
+            </div>
+          </div>
+          <aside class="notes">
+            <ul>
+              <li>Looked at data over a 3 year period</li>
+              <li>Can see there is a big variation in data quality</li>
+              <li>Explain data quality</li>
+            </ul>
+          </aside>
+        </section>
+
+        <!-- Slide 3 Sensor Map -->
+        <section
+        data-auto-animate
+        data-state="full-width"
+        class="visualization-slide"
+        >
+        <div class="grid" style="grid-template-columns: 30% 70%">
+          <div data-id="methodology-text-container">
+            <p data-id="case-study">Case Study &amp; Experimental Design</p>
+            <small data-id="data-source">
+              <hr />
+              <strong>Data:</strong> Pedestrian counts from the Newcastle
+              Urban Observatory.</small
+              >
+              <small data-id="masking-strategy"
+              ><hr />
+              <strong>Masking Strategy:</strong> A percentage of 'target'
+              sensors are hidden from the model during training, forcing it to
+              predict their values based only on the surrounding 'context'
+              sensors.</small
+              >
+            </div>
+
+            <!-- The parent div now uses the new centering class -->
+            <div class="h-center-content viz-full" style="height: 800px;">
+              <!-- The map div now has a specific width and will be centered -->
+              <div data-viz="map" id="sensor-map-1" style="width: 65%; height: 100%;"></div>
+            </div>
+            <aside class="notes">
+              <ul>
+                <li>Havnt used all the sensor - focused on 48 - some of them are in the same location recording specific directions of travel</li>
+                <li>Sensor split into "sensors" and targets for model training. All of the sensor data is seen in the forward pass through the model but only the "sensors" are used in the loss calculation during backpropagration.</li>
+                <li>So its only learning from the "sensor" not the targets</li>
+              </ul>
+            </aside>
+          </section>
+          <!-- Slide 3 Network Map -->
+          <section
+          data-auto-animate
+          data-state="full-width"
+          class="visualization-slide"
+          >
+          <div class="grid" style="grid-template-columns: 30% 70%">
+            <div data-id="methodology-text-container">
+              <p data-id="case-study">Case Study &amp; Experimental Design</p>
+              <small data-id="data-source">
+                <hr />
+                <strong>Data:</strong> Pedestrian counts from the Newcastle
+                Urban Observatory.</small
+                >
+                <small data-id="masking-strategy"
+                ><hr />
+                <strong>Masking Strategy:</strong> A percentage of 'target'
+                sensors are hidden from the model during training, forcing it to
+                predict their values based only on the surrounding 'context'
+                sensors.</small
+                >
+                <small data-id="graph-description">
+                  <hr />
+                  <strong>Graph Construction:</strong> The sensor locations form
+                  the nodes of a fully-connected graph, allowing the model to
+                  initially consider all possible spatial relationships.
+                </small>
+              </div>
+              <!-- The parent div now uses the new centering class -->
+              <div class="h-center-content viz-full" style="height: 800px;">
+                <!-- The map div now has a specific width and will be centered -->
+                <div data-viz="connected-graph" id="connected-graph-1" style="width: 65%; height: 100%;"></div>
+              </div>
+            </div>
+            <aside class="notes">
+              <ul>
+                <li>Very simple graph construction used in the current model iteration so that we can understand how the model is using the weights - not computational efficient - not scalable</li>
+
+              </ul>
+            </aside>
+        </section>
+
+        <!-- Slide 3 Model Architecture -->
+        <section
+          data-auto-animate
+          data-state="full-width"
+          class="visualization-slide"
+        >
+          <div class="grid" style="grid-template-columns: 30% 70%">
+            <div data-id="methodology-text-container">
+              <p data-id="case-study">Case Study &amp; Experimental Design</p>
+
+              <small data-id="data-source"
+                ><hr />
+                <strong>Data:</strong> Pedestrian counts from the Newcastle
+                Urban Observatory.</small
+              >
+              <small data-id="masking-strategy"
+                ><hr />
+                <strong>Masking Strategy:</strong> A percentage of 'target'
+                sensors are hidden from the model during training, forcing it to
+                predict their values based only on the surrounding 'context'
+                sensors.</small
+              >
+              <small data-id="graph-description">
+                <hr />
+                <strong>Graph Construction:</strong> The sensor locations form
+                the nodes of a fully-connected graph, allowing the model to
+                initially consider all possible spatial relationships.
+              </small>
+              <small data-id="model-architecture"
+                ><hr />
+                A <strong>Graph Attention Network (GAT)</strong> learns spatial
+                relationships, combined with a
+                <strong>temporal self-attention</strong> mechanism to capture
+                time-varying patterns.</small
+              >
+            </div>
+            <div class="viz-column" style="height: 800px">
+              <div data-viz="flowchart" id="architecture-flowchart"></div>
+            </div>
+          </div>
+          <aside class="notes">
+              <ul>
+                <li>Dynamic features include sin and cos waves with a period of day, week, year</li>
+                <li>Rotary positional encodings for temporal context</li>
+                <li>Direction embedding currently not very useful as there is a lack of consitency in labelling</li>
+                <li>GatV1Layer currently used as there are no embeddings of edge features</li>
+                <li>Combined into spatio-temporal features that are then used in self-attention - these are effectively "learned neighbourhood representation of the original timeseries</li>
+              </ul>
+          </aside>
+        </section>
+
+		<!-- Finding 1: Interactive Attention Visualization -->
+		<section class="visualization-slide">
+		<h2>Finding 1: The Network Learns Real-World Dependencies</h2>
+
+		<!-- This container will be filled by our new JavaScript function -->
+		<div data-viz="attention-map" id="attention-viz-1" style="width: 90%; height: 750px; margin: auto;">
+			<!-- The JS will create a selector and map inside this div -->
+		</div>
+
+		<aside class="notes">
+			<ul>
+			<li>
+				The goal here is to build trust. Before showing *how well* it performs, show that it's *learning the right things*.
+			</li>
+			<li>
+				When the visualisation appears, point to it directly. "As you
+				can see, to predict the flow here at this selected target sensor, the model
+				correctly pays most attention to these historically correlated
+				neighbours..."
+			</li>
+			<li>
+				This slide proves that your model has developed a "generalised
+				understanding," which is a key part of your research.
+			</li>
+			</ul>
+		</aside>
+		</section>
+
+      <!-- Finding 2 : Model Performance on Individual Sensors -->
+    <section class="visualization-slide">
+      <h2>Finding 2: Model Performance on Individual Sensors</h2>
+      <!-- UPDATED: Increased height from 600px to 750px -->
+      <div data-viz="forecast-chart" id="forecast-viz-1" style="width: 90%; height: 750px; margin: auto;">
+          <!-- The JS will create a selector and chart inside this div -->
       </div>
 
-      <div class="timeline-container">
-
-        <div class="timeline-item upcoming">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>Sep 2025</h3>
-            <p><strong>M6:</strong> DSTL Del. 2</p>
-            <p><strong>M7:</strong> Paper/Objective 2</p>
-          </div>
-        </div>
-        <div class="timeline-item upcoming">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>Jan 2026</h3>
-            <p><strong>M9:</strong> Paper/Objective 3</p>
-          </div>
-        </div>
-        <div class="timeline-item upcoming">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>Jun 2026</h3>
-            <p><strong>M11:</strong> Paper/Objective 4</p>
-          </div>
-        </div>
-        <div class="timeline-item upcoming">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>Sep 2026</h3>
-            <p><strong>M11:</strong> DSTL Del. 3</p>
-            <p><strong>M12:</strong> Thesis Sub.</p>
-          </div>
-        </div>
-        <div class="timeline-item upcoming">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>Dec 2026</h3>
-            <p><strong>M13:</strong> Funding Ends</p>
-          </div>
-        </div>
-      </div>
+      <aside class="notes">
+          <ul>
+          <li>
+              This slide allows for a granular inspection of the model's performance.
+          </li>
+          <li>
+              Use the dropdown to select different sensors. Highlight how the model performs on both 'sensor' (blue) and 'target' (red) nodes.
+          </li>
+          <li>
+              Point out how the forecast (dashed red line) closely tracks the ground truth (solid blue line), especially during the test period.
+          </li>
+          </ul>
+      </aside>
     </section>
+
+	<!-- NEW: Slide for Failure Simulation -->
+    <section class="visualization-slide">
+        <h2>Finding 3: Resilience to Sensor Failure</h2>
+        <div data-viz="failure-simulation-chart" id="failure-viz-1" style="width: 90%; height: 750px; margin: auto;">
+            <!-- The JS will create a selector and chart inside this div -->
+        </div>
+
+        <aside class="notes">
+            <ul>
+                <li>This is the core test of resilience.</li>
+                <li>Here we see the ground truth (blue) and the model's normal prediction (green).</li>
+                <li>Now, we simulate the failure of its most important neighbour. The new prediction (red) is less accurate, as expected, but it does NOT collapse. It has learned from the wider network to produce a reasonable fallback forecast.</li>
+            </ul>
+        </aside>
+    </section>
+
+    <!-- NEW SLIDE: Key Metrics -->
+    <section>
+        <h2>Some Numbers: Key Metrics</h2>
+        <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; margin-top: 2em;">
+            <div class="metric-box" style="background: rgba(0,0,0,0.2); padding: 2em; border-radius: 12px; text-align: center;">
+                <h3>Context Sensors (Test Fit)</h3>
+                <p style="font-size: 1.5em; margin-top: 1em;">MAE: <span style="font-weight: bold; color: rgba(0, 168, 255, 1);">~3.0</span> people</p>
+                <p style="font-size: 1.5em;">MSE: <span style="font-weight: bold; color: rgba(0, 168, 255, 1);">19.0</span></p>
+            </div>
+            <div class="metric-box" style="background: rgba(0,0,0,0.2); padding: 2em; border-radius: 12px; text-align: center;">
+                <h3>Target Sensors (Generalisation)</h3>
+                <p style="font-size: 1.5em; margin-top: 1em;">MAE: <span style="font-weight: bold; color: rgba(232, 65, 24, 1.0);">~4.2</span> people</p>
+                <p style="font-size: 1.5em;">MSE: <span style="font-weight: bold; color: rgba(232, 65, 24, 1.0);">39.0</span></p>
+            </div>
+        </div>
+        <aside class="notes">
+            <p>This slide provides a quantitative look at the model's performance.</p>
+            <ul>
+                <li>The MAE, or Mean Absolute Error, for the context sensors it trained on is around 3 people. This shows the model has learned the patterns in the data it can see.</li>
+                <li>More importantly, the MAE for the hidden target sensors is only slightly higher at 4.2 people. This demonstrates the model's ability to generalise and make accurate predictions for locations it has never seen data from before.</li>
+                <li>The MSE (Mean Squared Error) follows a similar pattern, penalising larger errors more heavily but still showing strong performance.</li>
+            </ul>
+        </aside>
+    </section>
+
+                    <section class="timeline-section">
+          <h2>PhD Progress Overview</h2>
+          <div class="timeline-container">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Sep 2022</h3>
+                <p><strong>M1:</strong> MRes Beginning</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Sep 2023</h3>
+                <p><strong>M2:</strong> MRes Completion</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Jan 2024</h3>
+                <p><strong>M3:</strong> PhD Proposal</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Sep 2024</h3>
+                <p><strong>M4:</strong> DSTL Del. 1</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Jan 2025</h3>
+                <p><strong>M5:</strong> Paper/Objective 1</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-container">
+
+            <div class="timeline-item upcoming">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Sep 2025</h3>
+                <p><strong>M6:</strong> DSTL Del. 2</p>
+                <p><strong>M7:</strong> Paper/Objective 2</p>
+              </div>
+            </div>
+            <div class="timeline-item upcoming">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Jan 2026</h3>
+                <p><strong>M8:</strong> Paper/Objective 3</p>
+              </div>
+            </div>
+            <div class="timeline-item upcoming">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Jun 2026</h3>
+                <p><strong>M9:</strong> Paper/Objective 4</p>
+              </div>
+            </div>
+            <div class="timeline-item upcoming">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Sep 2026</h3>
+                <p><strong>M10:</strong> DSTL Del. 3</p>
+                <p><strong>M11:</strong> Thesis Sub.</p>
+              </div>
+            </div>
+            <div class="timeline-item upcoming">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>Dec 2026</h3>
+                <p><strong>M12:</strong> Funding Ends</p>
+              </div>
+            </div>
+          </div>
+        </section>
 
 
         <section>
@@ -393,7 +993,7 @@
               height="250"
               frameborder="0"
               style="padding-top: 20px"></iframe>
-            </iframe>
+            <!-- Removed duplicate closing iframe -->
           </div>
           <div
             class="fragment"
@@ -408,7 +1008,7 @@ real-time urban planning</p>
               height="250"
               frameborder="0"
               style="padding-top: 20px"></iframe>
-            </iframe>
+            <!-- Removed duplicate closing iframe -->
           </div>
           <div
             class="fragment"
@@ -480,20 +1080,228 @@ using deep-learning</p>
           </div>
           </div>
         </section>
+          <section>
+            <section>
+                <h2>Model Explainability</h2>
+                <p>To understand our model's predictions, we use a "Knowns vs. Unknowns" framework. This helps clarify what data the model uses in different scenarios.</p>
+                <div style="text-align: left; margin: 30px auto; width: 80%;">
+                    <ul>
+                        <li class="fragment"><strong style="color: #d5112d;">Known Knowns:</strong> Clean, available input data that we are aware of and can use directly.</li>
+                        <li class="fragment"><strong style="color: #d5112d;">Known Unknowns:</strong> Data that we know is missing, such as from a sensor failure. The model must infer this information.</li>
+                    </ul>
+                </div>
+            </section>
+            <section>
+                <h4>Scenario 1: Ground Truth (The Benchmark) 🎯</h4>
+                <p>This is the actual, historical data. It's not a prediction, but the "correct answer" we use to evaluate the model's performance.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Node Type</th>
+                            <th>Input Data (Past)</th>
+                            <th>Target Data (Future)</th>
+                            <th>Framework</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>All Nodes</strong></td>
+                            <td>Historical traffic data</td>
+                            <td>Actual future traffic data</td>
+                            <td><strong>Known Knowns</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section>
+                <h4>Scenario 2: Original Prediction (Normal Operation) 📈</h4>
+                <p>The model's standard forecast, where it has access to complete historical data from all nodes in the network.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Node Type</th>
+                            <th>Input Data (Past)</th>
+                            <th>Target Data (Future)</th>
+                            <th>Framework</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Sensor Nodes</strong></td>
+                            <td>Full historical data</td>
+                            <td><strong>Predicted</strong> by the model</td>
+                            <td><strong>Known Knowns</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Target Nodes</strong></td>
+                            <td>Full historical data</td>
+                            <td><strong>Predicted</strong> by the model</td>
+                            <td><strong>Known Knowns</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section>
+                <h4>Scenario 3: Prediction Under Failure (Sensor Outage) 🚧</h4>
+                <p>Simulates a data outage at a specific node to test the model's resilience and ability to infer missing information.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Node Type</th>
+                            <th>Input Data (Past)</th>
+                            <th>Target Data (Future)</th>
+                            <th>Framework</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Neighboring Nodes</strong></td>
+                            <td>Full historical data</td>
+                            <td><strong>Predicted</strong> by the model</td>
+                            <td><strong>Known Knowns</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Failed Node (Target)</strong></td>
+                            <td><strong>No historical data</strong> (masked)</td>
+                            <td><strong>Predicted</strong> by the model</td>
+                            <td><strong>Known Unknowns</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section>
+                <h4>Summary of Sensor Scenarios</h4>
+                <p>This table connects the framework to specific operational situations, demonstrating the model's capabilities.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Scenario</th>
+                            <th>Location Status</th>
+                            <th>Incoming Data?</th>
+                            <th>Model's Task</th>
+                            <th>Data Framework</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><strong>Previously Unrecorded</strong></td>
+                            <td><strong>No</strong></td>
+                            <td>Imputation + Forecasting</td>
+                            <td>Uses neighbor <strong>Known Knowns</strong> to predict target's <strong>Known Unknowns</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><strong>Previously Recorded</strong></td>
+                            <td><strong>No (Failure)</strong></td>
+                            <td>Imputation + Forecasting</td>
+                            <td>Same as above; relies on spatial context from neighbors.</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><strong>Previously Recorded</strong></td>
+                            <td><strong>Yes (Normal)</strong></td>
+                            <td>Forecasting</td>
+                            <td>Uses <strong>Known Knowns</strong> from the target and its neighbors.</td>
+                        </tr>
+                         <tr>
+                            <td>4</td>
+                            <td><strong>Previously Unrecorded</strong></td>
+                            <td><strong>Yes</strong></td>
+                            <td>Forecasting</td>
+                            <td>Treats the new sensor as a standard node using its <strong>Known Knowns</strong>.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </section>
 
-      </div>
+            <section data-background-iframe="html/dstl-sept-2025/gat_explainer.html">
+
+            </section>
+
+
+        </div>
     </div>
 
-    <script src="../dist/reveal.js"></script>
-    <script src="../plugin/highlight/highlight.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/custom/visualizations.js"></script>
+    <script src="js/custom/particles-config.js"></script>
+    <script src="js/custom/presentation-controller.js"></script>
+
+    <!-- Footer Images Container (Hidden by default) -->
+    <div id="footer-images" class="footer-images hidden">
+        <img src="images/white_logos/newcastle.png" style="color: #FFFFFF;">
+        <img src="images/white_logos/dstl.png" style="color: #FFFFFF;">
+        <img src="images/white_logos/cdt_long.png" style="color: #FFFFFF;">
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
     <script>
-      // Initialize Reveal
-      Reveal.initialize({
-        controls: true,
-        hash: true,
-        progress: true,
-        autoAnimate: true,
-      });
+        Reveal.initialize({
+            controls: true,
+            controlsLayout: 'edges',
+            hash: true,
+            progress: true,
+            autoAnimate: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            preloadIframes: true,
+            plugins: [RevealNotes],
+            // Match ap2.html spacing
+            margin: 0.04,
+            math: {
+                mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+                config: 'TeX-AMS_HTML-full'
+            },
+            width: 1400,
+            height: 800
+        });
+
+        // Function to hide footer on title slide
+        function toggleFooterVisibility() {
+            var currentSlide = Reveal.getCurrentSlide();
+            var footer = document.getElementById('footer-images');
+
+            if (currentSlide.classList.contains('title-slide')) {
+                footer.classList.add('hidden');
+            } else {
+                footer.classList.remove('hidden');
+            }
+        }
+        Reveal.on('ready', (evt) => {
+          if (window.processVisualizationSlide) {
+            window.processVisualizationSlide(evt.currentSlide);
+          }
+        });
+      Reveal.on("slidechanged", handleStateChanges);
+
+        // Add event listeners
+        Reveal.on('slidechanged', function (event) {
+            toggleFooterVisibility();
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            toggleFooterVisibility();
+        });
+        // Fetch and display JSON content
+        fetch('docs/pipeline.json')
+            .then(response => response.json())
+            .then(data => {
+                // Convert JSON object to pretty-printed JSON string
+                const jsonString = JSON.stringify(data, null, 2);
+
+                // Set JSON content to the code block
+                document.getElementById('json-content').textContent = jsonString;
+
+                // Apply syntax highlighting
+                hljs.highlightAll();
+            })
+            .catch(error => console.error('Error fetching JSON:', error));
     </script>
-  </body>
+</body>
+
 </html>
