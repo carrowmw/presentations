@@ -1,2 +1,4 @@
 .json filter=lfs diff=lfs merge=lfs -text
 **/*.json filter=lfs diff=lfs merge=lfs -text
+presentations/js/custom/simulated_failure.json filter=lfs diff=lfs merge=lfs -text
+js/custom/simulated_failure.json filter=lfs diff=lfs merge=lfs -text
