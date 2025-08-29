@@ -90,9 +90,6 @@ function createSensorMap(containerId, data) {
     }
   ).addTo(map);
 
-  // NEW: Add scale bar
-  L.control.scale().addTo(map);
-
   sensorNodes.forEach((node) => {
     if (!node.pos) return;
     const markerColor = node.type === "sensor" ? "#00a8ff" : "#e84118";
@@ -228,9 +225,6 @@ function createBarChart(containerId, data) {
   canvas.setAttribute("data-initialized", "true");
 }
 
-/**
- * UPDATED: Creates a flowchart that can be clicked to zoom.
- */
 function createFlowchart(containerId) {
   const container = document.getElementById(containerId);
   if (!container || container.getAttribute("data-initialized")) return;
@@ -276,10 +270,6 @@ function createFlowchart(containerId) {
 
   mermaid.render(containerId + "-svg", flowchartDefinition).then(({ svg }) => {
     container.innerHTML = svg;
-    // NEW: Add click listener for zoom functionality
-    container.addEventListener("click", () => {
-      container.classList.toggle("zoomed");
-    });
   });
   container.setAttribute("data-initialized", "true");
 }
@@ -304,9 +294,6 @@ function createConnectedGraph(containerId, data) {
       maxZoom: 20,
     }
   ).addTo(map);
-
-  // NEW: Add scale bar
-  L.control.scale().addTo(map);
 
   if (sensorNodes && sensorNodes.length > 1) {
     for (let i = 0; i < sensorNodes.length; i++) {
@@ -369,9 +356,6 @@ function createAttentionMap(containerId, sensorData, attentionData) {
     subdomains: "abcd",
     maxZoom: 20,
   }).addTo(map);
-
-  // NEW: Add scale bar
-  L.control.scale().addTo(map);
 
   const nodeLookup = new Map(
     sensorNodes.map((node) => [String(node.id), node])
@@ -463,8 +447,9 @@ function createForecastChart(containerId, forecastData, sensorData) {
             <label for="node-selector">Select Sensor Node:</label>
             <select id="node-selector">\n</select>
             <span id="node-type-display"></span>
+            <br/>
             <label for="data-slider" style="margin-left: 20px;">Zoom:</label>
-            <input type="range" id="data-slider" min="100" value="1000">
+            <input type="range" id="data-slider" min="100" value="500">
             <span id="slider-value-display"></span>
         </div>
         <div class="forecast-chart-container">
@@ -528,8 +513,7 @@ function createForecastChart(containerId, forecastData, sensorData) {
       nodeInfo.type === "sensor" ? "#00a8ff" : "#e84118";
 
     slider.max = nodeData.ground_truth.length;
-    // UPDATED: Set the default slider value to 1000 or the max length if smaller.
-    slider.value = Math.min(1000, nodeData.ground_truth.length);
+    slider.value = slider.max;
     sliderValueDisplay.textContent = `${slider.value} points`;
 
     const labels = Array.from(
@@ -622,8 +606,9 @@ function createFailureSimChart(containerId, failureData, sensorData) {
         <div class="failure-controls" style="text-align: center; margin-bottom: 10px;">
             <label for="failure-node-selector-${containerId}">Select Target Node to Simulate Failure:</label>
             <select id="failure-node-selector-${containerId}"></select>
+            <br/>
             <label for="failure-data-slider-${containerId}" style="margin-left: 20px;">Zoom:</label>
-            <input type="range" id="failure-data-slider-${containerId}" min="100" value="1000">
+            <input type="range" id="failure-data-slider-${containerId}" min="100" value="500">
             <span id="failure-slider-value-display-${containerId}"></span>
         </div>
         <div class="failure-chart-container" style="height: calc(100% - 40px);"><canvas id="failure-chart-canvas-${containerId}"></canvas></div>
@@ -690,8 +675,7 @@ function createFailureSimChart(containerId, failureData, sensorData) {
 
     fullNodeData = nodeData;
     slider.max = nodeData.ground_truth.length;
-    // UPDATED: Set the default slider value to 1000 or the max length if smaller.
-    slider.value = Math.min(1000, nodeData.ground_truth.length);
+    slider.value = slider.max; // Default to showing all data
 
     const labels = Array.from(
       { length: nodeData.ground_truth.length },
@@ -715,7 +699,7 @@ function createFailureSimChart(containerId, failureData, sensorData) {
           {
             label: "Prediction (Original)",
             data: nodeData.prediction_normal,
-            borderColor: "rgba(232, 65, 24, 0.9)", // Red
+            borderColor: "rgba(232, 65, 24, 1.0)", // Red
             borderWidth: 1.5,
             pointRadius: 0,
             borderDash: [5, 5], // Dashed line
